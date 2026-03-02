@@ -39,7 +39,7 @@ export function Navigation() {
               onClick={() => scrollToSection("benefits")}
               className="px-3 lg:px-4 py-2 text-sm lg:text-base text-gray-700 hover:text-[#00B7F1] transition-colors"
             >
-              활동 혜택
+              VIVAME 활동 혜택
             </button>
             <Link
               to="/apply"

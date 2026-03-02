@@ -137,10 +137,10 @@ export function BenefitsSection() {
           className="text-center mb-12 lg:mb-16"
         >
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
-            활동 혜택
+            VIVAME 활동 혜택
           </h2>
           <p className="text-lg lg:text-xl text-gray-600">
-            VIVAME 활동을 통해 얻게 되는 특별한 혜택들
+            활동 속에서 자연스럽게 얻게 되는 것들
           </p>
         </motion.div>
 
