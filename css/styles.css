@@ -337,7 +337,7 @@ p,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2.5rem;
+  gap: 2rem;
   padding: 1rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -346,6 +346,7 @@ p,
   .quiz-question-row {
     flex-wrap: wrap;
     align-items: flex-start;
+    gap: 1rem;
   }
 }
 
@@ -354,13 +355,16 @@ p,
 }
 
 .quiz-question-text {
-  flex: 1;
+  flex: 1 1 0;
   min-width: 0;
+  max-width: calc(100% - 140px - 2rem);
   font-size: 0.9375rem;
   font-weight: 500;
   color: #1f2937;
   line-height: 1.6;
-  margin-right: 1rem;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (min-width: 640px) {
@@ -372,14 +376,18 @@ p,
 @media (max-width: 639px) {
   .quiz-question-text {
     white-space: normal;
+    max-width: 100%;
+    overflow: visible;
+    text-overflow: unset;
   }
 }
 
 /* Pill 세그먼트 컨트롤 */
 .quiz-pill-segment {
-  display: flex;
   flex-shrink: 0;
-  margin-left: 0.5rem;
+  width: 136px;
+  min-width: 136px;
+  display: flex;
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 9999px;
