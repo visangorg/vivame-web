@@ -13,29 +13,11 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 한국어 텍스트 줄바꿈 - 단어 중간 끊김 방지, 의미 단위 유지, 가독성 */
+/* 텍스트 줄바꿈 품질 향상 - 단어가 잘리지 않고 띄어쓰기 단위로 줄바꿈 */
 p,
-.text-content,
-h1, h2, h3, h4, h5, h6,
-li,
-.vivami-timeline-content,
-.hero-slogan,
-.hero-subtitle,
-footer p {
+.text-content {
   word-break: keep-all;
   overflow-wrap: break-word;
-}
-
-p,
-.text-content,
-.hero-subtitle,
-.vivami-timeline-content p,
-footer p {
-  line-height: 1.5;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.4;
 }
 
 /* 애니메이션 */
