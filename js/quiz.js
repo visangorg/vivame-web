@@ -5,12 +5,21 @@
 let quizAnswers = {};
 
 const QUIZ_RESULTS = {
+  0: {
+    title: "아직은 잠시 고민 중이시네요 🙂",
+    desc: "지금은 아니어도 괜찮아요.<br>비바미는 언제든 마음이 움직일 때 시작할 수 있습니다.",
+    cta: "👉 한 번 더 알아보며 천천히 생각해보셔도 좋아요.",
+    btnText: "한 번 더 알아보기",
+    btnHref: null,
+    scrollToSection: "requirements",
+  },
   1: {
     title: "비바미의 씨앗을 발견했어요 🌿",
     desc: "아직은 조용하지만, 마음 어딘가에 변화의 씨앗이 있네요.<br>비바미는 거창한 사람이 아니라, 작은 관심에서 시작됩니다.",
     cta: "👉 한 번 더 읽어보고… 슬쩍 지원해볼까요?",
     btnText: "한 번 더 알아보기",
-    btnHref: "./apply.html",
+    btnHref: null,
+    scrollToSection: "requirements",
   },
   2: {
     title: "이미 비바미 기질이 보여요 🙂",
@@ -88,9 +97,17 @@ function answerQuestion(questionId, answer) {
   });
 }
 
+function closeAndScrollToSection(sectionId) {
+  closeQuizModal();
+  setTimeout(() => {
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 150);
+}
+
 function submitQuiz() {
   const score = Object.values(quizAnswers).filter(Boolean).length;
-  const result = QUIZ_RESULTS[score] || QUIZ_RESULTS[1];
+  const result = QUIZ_RESULTS[score] ?? QUIZ_RESULTS[0];
 
   const quizSection = document.getElementById("quizSection");
   const resultDiv = document.getElementById("quizResult");
@@ -98,14 +115,16 @@ function submitQuiz() {
   if (quizSection) quizSection.classList.add("hidden");
   if (resultDiv) {
     resultDiv.classList.remove("hidden");
+    const isScrollAction = result.scrollToSection && !result.btnHref;
+    const btnMarkup = isScrollAction
+      ? `<button type="button" onclick="closeAndScrollToSection('${result.scrollToSection}')" class="inline-block mt-6 px-6 py-3.5 bg-[#00B5E2] text-white rounded-2xl font-bold text-base hover:bg-[#00A3CF] transition-colors duration-200 w-full text-center">${result.btnText}</button>`
+      : `<a href="${result.btnHref}" class="inline-block mt-6 px-6 py-3.5 bg-[#00B5E2] text-white rounded-2xl font-bold text-base hover:bg-[#00A3CF] transition-colors duration-200 w-full text-center">${result.btnText}</a>`;
     resultDiv.innerHTML = `
       <div class="quiz-result-inner text-left py-2">
         <h4 class="quiz-result-title">${result.title}</h4>
         <p class="quiz-result-desc">${result.desc}</p>
         <p class="quiz-result-cta">${result.cta}</p>
-        <a href="${result.btnHref}" class="inline-block mt-6 px-6 py-3.5 bg-[#00B5E2] text-white rounded-2xl font-bold text-base hover:bg-[#00A3CF] transition-colors duration-200 w-full text-center">
-          ${result.btnText}
-        </a>
+        ${btnMarkup}
       </div>
     `;
   }
