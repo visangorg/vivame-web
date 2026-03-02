@@ -60,10 +60,9 @@ function closeQuizModal() {
 
   if (quizSection) quizSection.classList.remove("hidden");
   if (questions) {
-    questions.querySelectorAll(".quiz-card-btn").forEach((btn) => {
-      btn.classList.remove("quiz-card-selected");
-      const ind = btn.querySelector(".quiz-card-indicator");
-      if (ind) ind.classList.remove("bg-[#00B5E2]");
+    questions.querySelectorAll(".quiz-yesno-btn").forEach((btn) => {
+      btn.classList.remove("quiz-yesno-selected");
+      btn.classList.add("quiz-yesno-unselected");
     });
   }
   if (submitBtn) submitBtn.classList.remove("hidden");
@@ -74,18 +73,19 @@ function handleQuizEscape(e) {
   if (e.key === "Escape") closeQuizModal();
 }
 
-function toggleQuizItem(questionId) {
-  const btn = document.querySelector(`[data-question="${questionId}"]`);
-  if (!btn) return;
+function answerQuestion(questionId, answer) {
+  quizAnswers[questionId] = answer;
 
-  const isSelected = quizAnswers[questionId] === true;
-  quizAnswers[questionId] = !isSelected;
-
-  if (quizAnswers[questionId]) {
-    btn.classList.add("quiz-card-selected");
-  } else {
-    btn.classList.remove("quiz-card-selected");
-  }
+  const btns = document.querySelectorAll(`[data-question="${questionId}"]`);
+  btns.forEach((btn) => {
+    btn.classList.remove("quiz-yesno-selected", "quiz-yesno-unselected");
+    const isYes = btn.dataset.answer === "yes";
+    if ((isYes && answer) || (!isYes && !answer)) {
+      btn.classList.add("quiz-yesno-selected");
+    } else {
+      btn.classList.add("quiz-yesno-unselected");
+    }
+  });
 }
 
 function submitQuiz() {
