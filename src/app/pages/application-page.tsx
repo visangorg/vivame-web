@@ -76,15 +76,15 @@ export function ApplicationPage() {
             <CheckCircle2 className="w-16 h-16 text-[#00B7F1]" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            지원이 완료되었습니다! 🎉
+            지원이 정상적으로 접수되었습니다 💙
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8">
-            19기 비바미 지원해주셔서 감사합니다.
+            함께 만들어갈 변화를 기대하겠습니다.
             <br />
-            결과는 개별적으로 안내드리겠습니다.
+            확인 후 개별 연락을 드릴 예정입니다.
           </p>
           <div className="text-sm text-gray-500">
-            잠시 후 메인 페이지로 이동합니다...
+            잠시 후 메인 화면으로 이동합니다.
           </div>
         </motion.div>
       </div>
