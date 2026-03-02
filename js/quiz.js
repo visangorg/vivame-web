@@ -1,95 +1,127 @@
 /**
- * VIVAME 적합도 퀴즈 모달
+ * 혹시, 당신도 비바미? - 퀴즈 모달
  */
 
 let quizAnswers = {};
 
+const QUIZ_RESULTS = {
+  1: {
+    title: "비바미의 씨앗을 발견했어요 🌿",
+    desc: "아직은 조용하지만, 마음 어딘가에 변화의 씨앗이 있네요.<br>비바미는 거창한 사람이 아니라, 작은 관심에서 시작됩니다.",
+    cta: "👉 한 번 더 읽어보고… 슬쩍 지원해볼까요?",
+    btnText: "한 번 더 알아보기",
+    btnHref: "./apply.html",
+  },
+  2: {
+    title: "이미 비바미 기질이 보여요 🙂",
+    desc: "회사에 대한 관심과 작은 변화에 대한 마음,<br>그거면 충분합니다. : )",
+    cta: "👉 이제는 생각보다 행동이 더 쉬울지도 몰라요.",
+    btnText: "지원해볼게요",
+    btnHref: "./apply.html",
+  },
+  3: {
+    title: "거의 비바미입니다 💙",
+    desc: "사람, 변화, 그리고 재미.<br>이미 다 갖추셨습니다!",
+    cta: "👉 지원 버튼만 남았네요!",
+    btnText: "지원하기",
+    btnHref: "./apply.html",
+  },
+  4: {
+    title: "시피님… 비바미 맞죠? 😎",
+    desc: "이 정도면 합류만 남았습니다.<br>함께 움직이면, 문화는 더 재밌어지지 않을까요?",
+    cta: "👉 지금 지원하면 딱이에요.",
+    btnText: "지금 지원하기",
+    btnHref: "./apply.html",
+  },
+};
+
 function openQuizModal() {
-  const modal = document.getElementById('quizModal');
+  const modal = document.getElementById("quizModal");
   if (modal) {
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleQuizEscape);
   }
 }
 
 function closeQuizModal() {
-  const modal = document.getElementById('quizModal');
+  const modal = document.getElementById("quizModal");
   if (!modal) return;
 
-  modal.classList.add('hidden');
-  document.body.style.overflow = 'auto';
+  modal.classList.add("hidden");
+  document.body.style.overflow = "auto";
+  document.removeEventListener("keydown", handleQuizEscape);
   quizAnswers = {};
 
-  const questions = document.getElementById('quizQuestions');
-  const submitBtn = document.getElementById('submitQuizBtn');
-  const result = document.getElementById('quizResult');
+  const questions = document.getElementById("quizQuestions");
+  const submitBtn = document.getElementById("submitQuizBtn");
+  const result = document.getElementById("quizResult");
+  const quizSection = document.getElementById("quizSection");
 
-  if (questions) questions.classList.remove('hidden');
-  if (submitBtn) submitBtn.classList.remove('hidden');
-  if (result) result.classList.add('hidden');
-
-  document.querySelectorAll('.quiz-checkbox').forEach((cb) => {
-    if (cb) cb.checked = false;
-  });
+  if (quizSection) quizSection.classList.remove("hidden");
+  if (questions) {
+    questions.querySelectorAll(".quiz-card-btn").forEach((btn) => {
+      btn.classList.remove("quiz-card-selected");
+      const ind = btn.querySelector(".quiz-card-indicator");
+      if (ind) ind.classList.remove("bg-[#00B5E2]");
+    });
+  }
+  if (submitBtn) submitBtn.classList.remove("hidden");
+  if (result) result.classList.add("hidden");
 }
 
-function answerQuestion(questionId, answer) {
-  quizAnswers[questionId] = answer;
+function handleQuizEscape(e) {
+  if (e.key === "Escape") closeQuizModal();
+}
 
-  const submitBtn = document.getElementById('submitQuizBtn');
-  if (Object.keys(quizAnswers).length === 4 && submitBtn) {
-    submitBtn.classList.remove('hidden');
+function toggleQuizItem(questionId) {
+  const btn = document.querySelector(`[data-question="${questionId}"]`);
+  if (!btn) return;
+
+  const isSelected = quizAnswers[questionId] === true;
+  quizAnswers[questionId] = !isSelected;
+
+  if (quizAnswers[questionId]) {
+    btn.classList.add("quiz-card-selected");
+  } else {
+    btn.classList.remove("quiz-card-selected");
   }
 }
 
 function submitQuiz() {
-  const yesCount = Object.values(quizAnswers).filter(Boolean).length;
-  const isReady = yesCount >= 3;
+  const score = Object.values(quizAnswers).filter(Boolean).length;
+  const result = QUIZ_RESULTS[score] || QUIZ_RESULTS[1];
 
-  const questions = document.getElementById('quizQuestions');
-  const submitBtn = document.getElementById('submitQuizBtn');
-  const resultDiv = document.getElementById('quizResult');
+  const quizSection = document.getElementById("quizSection");
+  const resultDiv = document.getElementById("quizResult");
 
-  if (questions) questions.classList.add('hidden');
-  if (submitBtn) submitBtn.classList.add('hidden');
-  if (resultDiv) resultDiv.classList.remove('hidden');
-
-  if (isReady) {
+  if (quizSection) quizSection.classList.add("hidden");
+  if (resultDiv) {
+    resultDiv.classList.remove("hidden");
     resultDiv.innerHTML = `
-      <div class="w-24 h-24 bg-[#00B5E2]/10 rounded-full flex items-center justify-center mx-auto">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#00B5E2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      <div class="quiz-result-inner text-left py-2">
+        <h4 class="quiz-result-title">${result.title}</h4>
+        <p class="quiz-result-desc">${result.desc}</p>
+        <p class="quiz-result-cta">${result.cta}</p>
+        <a href="${result.btnHref}" class="inline-block mt-6 px-6 py-3.5 bg-[#00B5E2] text-white rounded-2xl font-bold text-base hover:bg-[#00A3CF] transition-colors duration-200 w-full text-center">
+          ${result.btnText}
+        </a>
       </div>
-      <h4 class="text-2xl lg:text-3xl font-bold text-gray-900">축하합니다! 🎉</h4>
-      <p class="text-lg text-gray-700">
-        당신은 비바미에 완벽하게 적합합니다!<br />
-        지금 바로 지원하여 변화의 주인공이 되어보세요.
-      </p>
-      <a href="./apply.html" class="inline-block px-8 py-4 bg-[#00B5E2] text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all duration-300">
-        지금 바로 지원하기
-      </a>
-    `;
-  } else {
-    resultDiv.innerHTML = `
-      <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-      </div>
-      <h4 class="text-2xl lg:text-3xl font-bold text-gray-900">조금 더 고민해보세요</h4>
-      <p class="text-lg text-gray-700">
-        비바미 활동에 대해 조금 더 알아보신 후<br />
-        다시 도전해보시는 건 어떨까요?
-      </p>
-      <button type="button" onclick="closeQuizModal()" class="px-8 py-4 bg-gray-800 text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all duration-300">
-        더 알아보기
-      </button>
     `;
   }
 }
 
 function initQuizModal() {
-  const modal = document.getElementById('quizModal');
+  const modal = document.getElementById("quizModal");
   if (!modal) return;
 
-  modal.addEventListener('click', function (e) {
-    if (e.target === this) closeQuizModal();
-  });
+  const backdrop = document.getElementById("quizModalBackdrop");
+  if (backdrop) {
+    backdrop.addEventListener("click", closeQuizModal);
+  }
+
+  const content = document.getElementById("quizModalContent");
+  if (content) {
+    content.addEventListener("click", (e) => e.stopPropagation());
+  }
 }
