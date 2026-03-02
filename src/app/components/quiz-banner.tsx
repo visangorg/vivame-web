@@ -56,7 +56,7 @@ export function QuizBanner() {
                 viewport={{ once: true }}
                 className="text-3xl lg:text-5xl font-bold text-white mb-6"
               >
-                나도 VIVAMI가 될 수 있을까?
+                나도 VIVAME가 될 수 있을까?
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -107,7 +107,7 @@ export function QuizBanner() {
             >
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
-                  VIVAMI 적합도 테스트
+                  VIVAME 적합도 테스트
                 </h3>
                 <button
                   onClick={() => {
@@ -184,7 +184,7 @@ export function QuizBanner() {
                         축하합니다! 🎉
                       </h4>
                       <p className="text-lg text-gray-700">
-                        당신은 VIVAMI에 완벽하게 적합합니다!
+                        당신은 VIVAME에 완벽하게 적합합니다!
                         <br />
                         지금 바로 지원하여 변화의 주인공이 되어보세요.
                       </p>
@@ -207,7 +207,7 @@ export function QuizBanner() {
                         조금 더 고민해보세요
                       </h4>
                       <p className="text-lg text-gray-700">
-                        VIVAMI 활동에 대해 조금 더 알아보신 후<br />
+                        VIVAME 활동에 대해 조금 더 알아보신 후<br />
                         다시 도전해보시는 건 어떨까요?
                       </p>
                       <button

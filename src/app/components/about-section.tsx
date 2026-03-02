@@ -13,7 +13,7 @@ export function AboutSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#00B7F1]/10 rounded-full border border-[#00B7F1]/20 mb-6">
             <span className="text-sm font-medium text-[#00B7F1]">
-              About VIVAMI
+              About VIVAME
             </span>
           </div>
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -30,7 +30,7 @@ export function AboutSection() {
         >
           <div className="space-y-6 text-center lg:text-left">
             <p className="text-lg lg:text-xl text-gray-800 leading-relaxed">
-              <span className="font-bold text-[#00B7F1]">비바미(VIVAMI)</span>는{" "}
+              <span className="font-bold text-[#00B7F1]">비바미(VIVAME)</span>는{" "}
               <span className="font-semibold">
                 '비상 벨류 메신저(Visang Value Messenger)'
               </span>

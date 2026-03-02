@@ -140,7 +140,7 @@ export function BenefitsSection() {
             활동 혜택
           </h2>
           <p className="text-lg lg:text-xl text-gray-600">
-            VIVAMI 활동을 통해 얻게 되는 특별한 혜택들
+            VIVAME 활동을 통해 얻게 되는 특별한 혜택들
           </p>
         </motion.div>
 
@@ -179,7 +179,7 @@ export function BenefitsSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
-            선배 VIVAMI의 이야기
+            선배 VIVAME의 이야기
           </h2>
           <p className="text-lg lg:text-xl text-gray-600">
             실제 활동했던 CP님들의 생생한 후기

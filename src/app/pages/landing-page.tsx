@@ -33,7 +33,7 @@ export function LandingPage() {
             <div>
               <h4 className="font-bold mb-4 text-base">문의하기</h4>
               <p className="text-gray-400">
-                VIVAMI 관련 문의사항이 있으시다면<br />
+                VIVAME 관련 문의사항이 있으시다면<br />
                 교육기획 Cell 유지수 CP에게 연락 주시기 바랍니다.
               </p>
               <p className="text-[#00B7F1] mt-2">

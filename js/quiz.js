@@ -1,5 +1,5 @@
 /**
- * VIVAMI 적합도 퀴즈 모달
+ * VIVAME 적합도 퀴즈 모달
  */
 
 let quizAnswers = {};
@@ -75,7 +75,7 @@ function submitQuiz() {
       </div>
       <h4 class="text-2xl lg:text-3xl font-bold text-gray-900">축하합니다! 🎉</h4>
       <p class="text-lg text-gray-700">
-        당신은 VIVAMI에 완벽하게 적합합니다!<br />
+        당신은 VIVAME에 완벽하게 적합합니다!<br />
         지금 바로 지원하여 변화의 주인공이 되어보세요.
       </p>
       <a href="./apply.html" class="inline-block px-8 py-4 bg-[#00B5E2] text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all duration-300">
@@ -89,7 +89,7 @@ function submitQuiz() {
       </div>
       <h4 class="text-2xl lg:text-3xl font-bold text-gray-900">조금 더 고민해보세요</h4>
       <p class="text-lg text-gray-700">
-        VIVAMI 활동에 대해 조금 더 알아보신 후<br />
+        VIVAME 활동에 대해 조금 더 알아보신 후<br />
         다시 도전해보시는 건 어떨까요?
       </p>
       <button type="button" onclick="closeQuizModal()" class="px-8 py-4 bg-gray-800 text-white rounded-2xl font-bold text-lg hover:shadow-xl transition-all duration-300">
