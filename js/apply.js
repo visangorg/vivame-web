@@ -1,15 +1,9 @@
 /**
  * VIVAME 지원서 폼 스크립트
  * - 진행률 계산, 폼 유효성 검사
- * - 제출 시 server(백엔드)로 전송 → 운영자 CSV 다운로드 가능
- *
- * 백엔드 설정:
- * 1. server/ 폴더에서 npm install && npm start (또는 배포 후 URL 사용)
- * 2. 아래 BACKEND_URL을 로컬 또는 배포된 서버 주소로 변경
- * 3. 운영자 CSV: 브라우저에서 GET {BACKEND_URL}/api/applications/csv?key=ADMIN_SECRET
+ * - 제출 시 Formspree로 전송 → 운영자 대시보드에서 CSV 내보내기
  */
-const BACKEND_URL = ''; // 예: 'http://localhost:3001' 또는 'https://your-app.railway.app'
-const SUBMIT_ENDPOINT = BACKEND_URL ? BACKEND_URL.replace(/\/$/, '') + '/api/apply' : '';
+const SUBMIT_ENDPOINT = 'https://formspree.io/f/xkoqpgga';
 
 const form = document.getElementById('applicationForm');
 const submitBtn = document.getElementById('submitBtn');
