@@ -1,8 +1,15 @@
 /**
  * VIVAME 지원서 폼 스크립트
- * - 진행률 계산
- * - 폼 유효성 검사
+ * - 진행률 계산, 폼 유효성 검사
+ * - 제출 시 server(백엔드)로 전송 → 운영자 CSV 다운로드 가능
+ *
+ * 백엔드 설정:
+ * 1. server/ 폴더에서 npm install && npm start (또는 배포 후 URL 사용)
+ * 2. 아래 BACKEND_URL을 로컬 또는 배포된 서버 주소로 변경
+ * 3. 운영자 CSV: 브라우저에서 GET {BACKEND_URL}/api/applications/csv?key=ADMIN_SECRET
  */
+const BACKEND_URL = ''; // 예: 'http://localhost:3001' 또는 'https://your-app.railway.app'
+const SUBMIT_ENDPOINT = BACKEND_URL ? BACKEND_URL.replace(/\/$/, '') + '/api/apply' : '';
 
 const form = document.getElementById('applicationForm');
 const submitBtn = document.getElementById('submitBtn');
@@ -77,14 +84,56 @@ function initApplyForm() {
     });
   });
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    if (isFormValid() && successModal) {
+    if (!isFormValid() || !successModal) return;
+
+    const payload = {
+      name: fields.name?.value?.trim() ?? '',
+      cell: fields.cell?.value?.trim() ?? '',
+      reason: fields.reason?.value?.trim() ?? '',
+      expectations: fields.expectations?.value?.trim() ?? '',
+      recommend: fields.recommend?.value?.trim() ?? '',
+      agree: fields.agree?.checked ? '동의' : ''
+    };
+
+    const hasEndpoint = SUBMIT_ENDPOINT.length > 0;
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = '제출 중...';
+    }
+    if (validationMessage) validationMessage.classList.add('hidden');
+
+    let submitOk = true;
+    if (hasEndpoint) {
+      try {
+        const res = await fetch(SUBMIT_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) submitOk = false;
+      } catch (_) {
+        submitOk = false;
+      }
+    }
+
+    if (submitOk) {
       successModal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       setTimeout(() => {
         window.location.href = './index.html';
       }, 3000);
+    } else {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '비바미 지원 완료하기';
+      }
+      if (validationMessage) {
+        validationMessage.textContent = '제출에 실패했습니다. 네트워크를 확인하거나 잠시 후 다시 시도해주세요.';
+        validationMessage.classList.remove('hidden');
+      }
     }
   });
 

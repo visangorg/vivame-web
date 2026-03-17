@@ -1,0 +1,18 @@
+{
+  "name": "vivame-apply-server",
+  "version": "1.0.0",
+  "description": "VIVAME 19기 지원서 수집 API (CSV 다운로드용)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}
