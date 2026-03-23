@@ -17,17 +17,19 @@ const fields = {
   cell: document.getElementById('cell'),
   reason: document.getElementById('reason'),
   expectations: document.getElementById('expectations'),
+  strength: document.getElementById('strength'),
   recommend: document.getElementById('recommend'),
   agree: document.getElementById('agree')
 };
 
 function calculateProgress() {
   let filled = 0;
-  const total = 4;
+  const total = 5;
   if (fields.name?.value?.trim()) filled++;
   if (fields.cell?.value?.trim()) filled++;
   if (fields.reason?.value?.trim()) filled++;
   if (fields.expectations?.value?.trim()) filled++;
+  if (fields.strength?.value?.trim()) filled++;
   return (filled / total) * 100;
 }
 
@@ -37,6 +39,7 @@ function isFormValid() {
     fields.cell?.value?.trim() &&
     fields.reason?.value?.trim() &&
     fields.expectations?.value?.trim() &&
+    fields.strength?.value?.trim() &&
     fields.agree?.checked
   );
 }
@@ -88,6 +91,7 @@ function initApplyForm() {
       cell: fields.cell?.value?.trim() ?? '',
       reason: fields.reason?.value?.trim() ?? '',
       expectations: fields.expectations?.value?.trim() ?? '',
+      strength: fields.strength?.value?.trim() ?? '',
       recommend: fields.recommend?.value?.trim() ?? '',
       agree: fields.agree?.checked ? '동의' : '',
       _gotcha: (gotchaEl && gotchaEl.value) || ''
