@@ -392,6 +392,47 @@ function buildMailtoUrl(email) {
   return "mailto:" + email + "?subject=" + subject;
 }
 
+/** 동호회 상세 본문에 삽입되는 ‘찰떡’ 헤드라인(스타일 분리용) */
+var CLUB_MODAL_FIT_HEADLINE = "✨ 이런 CP님, 우리와 찰떡이에요!";
+
+function escapeClubModalHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/**
+ * 상세 텍스트를 HTML로 변환(헤드라인만 콜아웃). XSS 방지를 위해 이스케이프 후 줄바꿈만 허용.
+ * @param {string} detail
+ * @returns {string}
+ */
+function formatClubDetailAsHtml(detail) {
+  if (detail == null || detail === "") return "";
+  var d = String(detail);
+  var head = CLUB_MODAL_FIT_HEADLINE;
+  var idx = d.indexOf(head);
+  if (idx === -1) {
+    return (
+      '<div class="club-modal-detail-text">' + escapeClubModalHtml(d).replace(/\n/g, "<br />") + "</div>"
+    );
+  }
+  var before = d.slice(0, idx);
+  var after = d.slice(idx + head.length);
+  return (
+    '<div class="club-modal-detail-text">' +
+    escapeClubModalHtml(before).replace(/\n/g, "<br />") +
+    "</div>" +
+    '<p class="club-modal-fit-callout">' +
+    escapeClubModalHtml(head) +
+    "</p>" +
+    '<div class="club-modal-detail-text club-modal-detail-text--after">' +
+    escapeClubModalHtml(after).replace(/\n/g, "<br />") +
+    "</div>"
+  );
+}
+
 function openClubModal(/** @type {ClubPortalItem} */ club) {
   var modal = document.getElementById("clubModal");
   if (!modal) return;
@@ -408,7 +449,7 @@ function openClubModal(/** @type {ClubPortalItem} */ club) {
 
   if (titleEl) titleEl.textContent = club.name;
   if (taglineEl) taglineEl.textContent = club.tagline;
-  if (detailEl) detailEl.textContent = club.detail;
+  if (detailEl) detailEl.innerHTML = formatClubDetailAsHtml(club.detail || "");
 
   if (leaderInfoEl) leaderInfoEl.textContent = club.leaderInfo || "";
   if (leaderSection) {

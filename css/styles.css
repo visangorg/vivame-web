@@ -1057,6 +1057,9 @@ p,
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding: 0.75rem 1.5rem 1.75rem;
+  text-align: center;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 @media (min-width: 640px) {
@@ -1070,6 +1073,29 @@ p,
   width: 100%;
   word-break: keep-all;
   overflow-wrap: break-word;
+}
+
+.club-modal-section--detail {
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .club-modal-section--detail {
+    margin-top: 2.25rem;
+  }
+}
+
+.club-modal-section--leader {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 640px) {
+  .club-modal-section--leader {
+    margin-top: 2.25rem;
+    padding-top: 2.25rem;
+  }
 }
 
 .club-modal-section-title {
@@ -1115,12 +1141,91 @@ p,
   }
 }
 
-.club-modal-section-body--compact {
-  padding-top: 1.125rem;
+.club-modal-section-body--detail {
+  padding-top: 1.25rem;
+}
+
+.club-modal-section-body--leader {
+  padding-top: 1rem;
+  padding-bottom: 0.25rem;
+}
+
+.club-modal-detail-text {
+  margin: 0 auto;
+  max-width: 36rem;
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: #1f2937;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 640px) {
+  .club-modal-detail-text {
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+}
+
+.club-modal-detail-text--after {
+  margin-top: 0.25rem;
+}
+
+/* 본문 대비 50% 이상 확대·강조 */
+.club-modal-fit-callout {
+  margin: 1.75rem auto 1.85rem;
+  padding: 0 0.75rem;
+  max-width: 36rem;
+  box-sizing: border-box;
+  font-size: clamp(1.3125rem, 4.5vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  text-align: center;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 640px) {
+  .club-modal-fit-callout {
+    margin: 2rem auto 2.125rem;
+    font-size: clamp(1.45rem, 3.8vw, 1.875rem);
+  }
+}
+
+/* 리더/총무: 본문 대비 2배 이상·굵게 */
+.club-modal-leader-block {
+  font-size: clamp(1.125rem, 4.5vw, 1.875rem);
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: #111827;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 640px) {
+  .club-modal-leader-block {
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    line-height: 1.4;
+  }
 }
 
 .club-modal-section--leader .club-modal-section-title {
   margin-bottom: 0.875rem;
+}
+
+.club-modal-actions {
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .club-modal-actions {
+    margin-top: 2.25rem;
+  }
 }
 
 @keyframes quizModalEnter {

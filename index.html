@@ -1060,23 +1060,23 @@
                     <img id="clubModalImage" src="" alt="" class="hidden absolute inset-0 w-full h-full object-cover object-center" />
                     <span id="clubModalInitials" class="text-3xl sm:text-4xl font-bold text-[#00B5E2] tracking-tight relative z-10" aria-hidden="true"></span>
                 </div>
-                <h3 id="clubModalTitle" class="text-xl sm:text-2xl font-bold text-gray-900 text-content"></h3>
-                <p id="clubModalTagline" class="text-sm sm:text-base text-[#00B5E2] font-medium mt-2 text-content"></p>
-                <div class="club-modal-section mt-7 sm:mt-9">
-                    <h4 class="club-modal-section-title text-content">🎙️ 리더가 전하는 동호회 이야기</h4>
+                <h3 id="clubModalTitle" class="w-full text-center text-xl sm:text-2xl font-bold text-gray-900 text-content"></h3>
+                <p id="clubModalTagline" class="text-sm sm:text-base text-[#00B5E2] font-medium mt-2 text-center text-content"></p>
+                <div class="club-modal-section club-modal-section--detail">
+                    <h4 class="club-modal-section-title text-content">🎙️ 리더의 한마디: 우리의 이야기</h4>
                     <div
                         id="clubModalDetail"
-                        class="club-modal-section-body text-gray-800 text-sm sm:text-base leading-relaxed whitespace-pre-line text-content"
+                        class="club-modal-section-body club-modal-section-body--detail text-gray-800 text-sm sm:text-base leading-relaxed text-content"
                     ></div>
                 </div>
-                <div id="clubModalLeaderSection" class="club-modal-section club-modal-section--leader mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-gray-100">
+                <div id="clubModalLeaderSection" class="club-modal-section club-modal-section--leader">
                     <h4 class="club-modal-section-title text-content">리더 / 총무 정보</h4>
                     <div
                         id="clubModalLeaderInfo"
-                        class="club-modal-section-body club-modal-section-body--compact text-sm text-gray-700 leading-relaxed whitespace-pre-line text-content"
+                        class="club-modal-section-body club-modal-section-body--leader club-modal-leader-block whitespace-pre-line text-content"
                     ></div>
                 </div>
-            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                <div class="club-modal-actions flex w-full max-w-xl flex-col gap-3 sm:mx-auto sm:flex-row">
                 <a id="clubModalMailto" href="#" class="inline-flex flex-1 items-center justify-center gap-2 px-5 py-3.5 rounded-2xl border border-gray-200 text-gray-800 font-medium text-sm sm:text-base hover:border-[#00B5E2] hover:bg-[#00B5E2]/5 transition-colors min-h-[48px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                     이메일 보내기
@@ -1085,7 +1085,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     팀즈 문의하기
                 </a>
-            </div>
+                </div>
             </div>
         </div>
     </div>
