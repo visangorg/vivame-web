@@ -878,7 +878,7 @@
                         <span class="clubs-list-section-accent" aria-hidden="true"></span>
                     </div>
                     <div class="clubs-howto-surface">
-                        <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 lg:items-stretch justify-center">
+                        <div class="clubs-howto-cards">
                             <!-- 기존 동호회 합류 -->
                             <div class="club-guide-card flex-1 min-w-0 w-full text-content">
                                 <div class="club-guide-card-inner">
@@ -887,7 +887,19 @@
                                         <p class="club-guide-lead">비상의 즐거운 에너지는 언제나 열려 있습니다!</p>
                                     </header>
                                     <div class="club-guide-card-main">
-                                        <ol class="club-guide-steps">
+                                        <div class="club-guide-main-stack">
+                                            <figure class="club-guide-hero">
+                                                <img
+                                                    class="club-guide-hero-img"
+                                                    src="./assets/club-four-seasons.png"
+                                                    alt="동호회에서 함께하는 즐거운 활동을 상징하는 일러스트"
+                                                    width="640"
+                                                    height="360"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                />
+                                            </figure>
+                                            <ol class="club-guide-steps">
                                             <li>
                                                 <div class="highlight-text">Step 1. 🔍</div>
                                                 <p>아래 리스트에서 마음이 가는 동호회의 상세 내용을 확인하세요.</p>
@@ -900,7 +912,8 @@
                                                 <div class="highlight-text">Step 3. ✨</div>
                                                 <p>함께 취향을 공유하며 비상만의 특별한 활력을 즐기시면 됩니다!</p>
                                             </li>
-                                        </ol>
+                                            </ol>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -913,6 +926,7 @@
                                         <p class="club-guide-lead">찾으시는 취향이 없나요? 직접 비상의 문화를 만들어보세요!</p>
                                     </header>
                                     <div class="club-guide-card-main">
+                                        <div class="club-guide-main-stack club-guide-main-stack--plain">
                                         <dl class="club-guide-dl">
                                             <div>
                                                 <dt>신설 조건 🤝</dt>
@@ -955,6 +969,7 @@
                                                 </dd>
                                             </div>
                                         </dl>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
