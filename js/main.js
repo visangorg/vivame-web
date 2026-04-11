@@ -824,15 +824,26 @@ function renderClubCards() {
 /**
  * 달력 반복 일정 규칙 (0=일 … 6=토).
  * nameMatch는 CLUB_PORTAL_CLUBS 항목의 name에 부분 일치로 연결됨.
- * 같은 요일을 여러 규칙이 쓰면 해당 날짜에 일정이 겹쳐 표시되고,
- * 툴팁에는 동호회마다 「○○ 동호회 상세 보기」 버튼이 세로로 나열됨.
+ * iconEmoji + chipName: 칸 하단 포인트 칩 UI
  *
- * 겹침 예: 원모어(화·목) + 떼구르(목만) → 목요일 칸에 두 줄, 클릭 시 버튼 두 개.
- * { nameMatch: "떼구르", weekdays: [4], shortLabel: "🎳 떼구르" },
- *
- * @type {{ nameMatch: string, weekdays: number[], shortLabel: string }[]}
+ * @type {{ nameMatch: string, weekdays: number[], shortLabel: string, iconEmoji: string, chipName: string }[]}
  */
-var CLUB_SCHEDULE_RULES = [{ nameMatch: "원모어", weekdays: [2, 4], shortLabel: "💪 원모어" }];
+var CLUB_SCHEDULE_RULES = [
+  {
+    nameMatch: "원모어",
+    weekdays: [2, 4],
+    shortLabel: "💪 원모어",
+    iconEmoji: "💪",
+    chipName: "원모어",
+  },
+];
+
+/** 달력 좌우 이동: 2026년 1월 ~ 5월만 (5월 이후 이동 불가) */
+var CLUB_SCHED_VIEW_MIN = { year: 2026, month: 0 };
+var CLUB_SCHED_VIEW_MAX = { year: 2026, month: 4 };
+
+var clubScheduleViewYear = /** @type {number | null} */ (null);
+var clubScheduleViewMonth = /** @type {number | null} */ (null);
 
 var clubScheduleInteractionBound = false;
 
@@ -841,6 +852,46 @@ function clubScheduleMonthLabelKo(year, monthIndex) {
     year: "numeric",
     month: "long",
   });
+}
+
+function clubScheduleClampView(y, m) {
+  var t = new Date(y, m, 1);
+  var tMin = new Date(CLUB_SCHED_VIEW_MIN.year, CLUB_SCHED_VIEW_MIN.month, 1);
+  var tMax = new Date(CLUB_SCHED_VIEW_MAX.year, CLUB_SCHED_VIEW_MAX.month, 1);
+  if (t < tMin) return { year: CLUB_SCHED_VIEW_MIN.year, month: CLUB_SCHED_VIEW_MIN.month };
+  if (t > tMax) return { year: CLUB_SCHED_VIEW_MAX.year, month: CLUB_SCHED_VIEW_MAX.month };
+  return { year: y, month: m };
+}
+
+function clubScheduleInitialView() {
+  var now = new Date();
+  return clubScheduleClampView(now.getFullYear(), now.getMonth());
+}
+
+function clubScheduleCanGoPrev(y, m) {
+  var t = new Date(y, m, 1);
+  var tMin = new Date(CLUB_SCHED_VIEW_MIN.year, CLUB_SCHED_VIEW_MIN.month, 1);
+  return t > tMin;
+}
+
+function clubScheduleCanGoNext(y, m) {
+  var t = new Date(y, m, 1);
+  var tMax = new Date(CLUB_SCHED_VIEW_MAX.year, CLUB_SCHED_VIEW_MAX.month, 1);
+  return t < tMax;
+}
+
+function clubScheduleIsToday(y, m, day) {
+  var now = new Date();
+  return now.getFullYear() === y && now.getMonth() === m && now.getDate() === day;
+}
+
+function clubScheduleNavChevronSvg(direction) {
+  /* direction: 'left' | 'right' — 얇은 그레이 라인, hover는 CSS로 브랜드 컬러 */
+  var path =
+    direction === "left"
+      ? '<path d="M14 6L8 12l6 6" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>'
+      : '<path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>';
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">' + path + "</svg>";
 }
 
 /** 해당 날짜에 적용되는 일정 규칙 목록 (복수 가능) */
@@ -860,6 +911,8 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
   var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
   var firstDow = new Date(year, monthIndex, 1).getDay();
   var monthLabel = clubScheduleMonthLabelKo(year, monthIndex);
+  var canPrev = clubScheduleCanGoPrev(year, monthIndex);
+  var canNext = clubScheduleCanGoNext(year, monthIndex);
   var pad = '<div class="club-cal-cell club-cal-cell--pad" aria-hidden="true"></div>';
   var cells = [];
   var d;
@@ -871,19 +924,23 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
   for (d = 1; d <= daysInMonth; d++) {
     var events = clubScheduleEventsForDay(year, monthIndex, d);
     var has = events.length > 0;
-    var inner = "";
+    var isToday = clubScheduleIsToday(year, monthIndex, d);
+    var chipsHtml = "";
     if (has) {
-      inner = '<div class="club-cal-events-stack">';
+      chipsHtml = '<div class="club-cal-chips-row">';
       for (var ei = 0; ei < events.length; ei++) {
         var ev = events[ei];
-        inner +=
-          '<div class="club-cal-event">' +
-          '<span class="club-cal-dot" aria-hidden="true"></span>' +
-          '<span class="club-cal-event-text">' +
-          ev.shortLabel +
-          "</span></div>";
+        var em = ev.iconEmoji || "•";
+        var nm = ev.chipName || ev.nameMatch;
+        chipsHtml +=
+          '<span class="club-cal-chip">' +
+          '<span class="club-cal-chip-emoji" aria-hidden="true">' +
+          em +
+          '</span><span class="club-cal-chip-name">' +
+          escapeHtmlText(nm) +
+          "</span></span>";
       }
-      inner += "</div>";
+      chipsHtml += "</div>";
     }
     var nameMatches = events.map(function (ev) {
       return ev.nameMatch;
@@ -894,9 +951,15 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
         return ev.shortLabel;
       }).join(", ");
     }
+    if (isToday) ariaLabel += ", 오늘";
+
+    var cls =
+      "club-cal-day-btn club-cal-cell" +
+      (has ? " club-cal-cell--event" : "") +
+      (isToday ? " club-cal-cell--today" : "");
     cells.push(
-      '<button type="button" class="club-cal-day-btn club-cal-cell' +
-        (has ? " club-cal-cell--event" : "") +
+      '<button type="button" class="' +
+        cls +
         '" data-cal-y="' +
         year +
         '" data-cal-m="' +
@@ -910,10 +973,10 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
         '" aria-pressed="false" aria-label="' +
         escapeHtmlAttr(ariaLabel) +
         '">' +
-        '<span class="club-cal-day-num-wrap"><span class="club-cal-day-num">' +
+        '<span class="club-cal-day-num">' +
         d +
-        "</span></span>" +
-        inner +
+        "</span>" +
+        chipsHtml +
         "</button>"
     );
   }
@@ -930,17 +993,31 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
     })
     .join("");
 
-  return (
-    '<article class="club-calendar-card">' +
-    '<h3 class="club-cal-month-title">' +
+  var nav =
+    '<div class="club-cal-nav">' +
+    '<button type="button" class="club-cal-nav-btn club-cal-nav-btn--prev" aria-label="이전 달"' +
+    (canPrev ? "" : " disabled") +
+    ">" +
+    clubScheduleNavChevronSvg("left") +
+    "</button>" +
+    '<h3 class="club-cal-month-title" id="club-cal-month-heading">' +
     monthLabel +
     "</h3>" +
+    '<button type="button" class="club-cal-nav-btn club-cal-nav-btn--next" aria-label="다음 달"' +
+    (canNext ? "" : " disabled") +
+    ">" +
+    clubScheduleNavChevronSvg("right") +
+    "</button>" +
+    "</div>";
+
+  return (
+    '<article class="club-calendar-card" aria-labelledby="club-cal-month-heading">' +
+    nav +
     '<div class="club-cal-weekdays" aria-hidden="true">' +
     wdRow +
     "</div>" +
     '<div class="club-cal-grid" role="grid" aria-label="' +
-    monthLabel +
-    " 동호회 일정" +
+    escapeHtmlAttr(monthLabel + " 동호회 일정") +
     '">' +
     cells.join("") +
     "</div></article>"
@@ -1045,6 +1122,31 @@ function onClubScheduleDayClick(e) {
   }
 }
 
+function onClubScheduleRootClick(e) {
+  var navBtn = e.target.closest(".club-cal-nav-btn");
+  if (navBtn && clubScheduleViewYear !== null && clubScheduleViewMonth !== null) {
+    if (navBtn.disabled) return;
+    e.preventDefault();
+    if (navBtn.classList.contains("club-cal-nav-btn--prev")) {
+      if (!clubScheduleCanGoPrev(clubScheduleViewYear, clubScheduleViewMonth)) return;
+      var dPrev = new Date(clubScheduleViewYear, clubScheduleViewMonth - 1, 1);
+      clubScheduleViewYear = dPrev.getFullYear();
+      clubScheduleViewMonth = dPrev.getMonth();
+    } else if (navBtn.classList.contains("club-cal-nav-btn--next")) {
+      if (!clubScheduleCanGoNext(clubScheduleViewYear, clubScheduleViewMonth)) return;
+      var dNext = new Date(clubScheduleViewYear, clubScheduleViewMonth + 1, 1);
+      clubScheduleViewYear = dNext.getFullYear();
+      clubScheduleViewMonth = dNext.getMonth();
+    }
+    var cl = clubScheduleClampView(clubScheduleViewYear, clubScheduleViewMonth);
+    clubScheduleViewYear = cl.year;
+    clubScheduleViewMonth = cl.month;
+    renderClubScheduleCalendars();
+    return;
+  }
+  onClubScheduleDayClick(e);
+}
+
 function onClubScheduleDocumentClick(e) {
   var tip = document.getElementById("clubScheduleTooltip");
   if (!tip || tip.hasAttribute("hidden")) return;
@@ -1063,7 +1165,7 @@ function bindClubScheduleInteractions() {
   var root = document.getElementById("clubScheduleCalendarsRoot");
   if (!root || clubScheduleInteractionBound) return;
   clubScheduleInteractionBound = true;
-  root.addEventListener("click", onClubScheduleDayClick);
+  root.addEventListener("click", onClubScheduleRootClick);
   document.addEventListener("click", onClubScheduleDocumentClick);
   document.addEventListener("keydown", onClubScheduleEscape);
 
@@ -1091,14 +1193,15 @@ function renderClubScheduleCalendars() {
 
   hideClubScheduleTooltip();
 
-  var now = new Date();
-  var first = new Date(now.getFullYear(), now.getMonth(), 1);
-  var second = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  if (clubScheduleViewYear === null || clubScheduleViewMonth === null) {
+    var iv = clubScheduleInitialView();
+    clubScheduleViewYear = iv.year;
+    clubScheduleViewMonth = iv.month;
+  }
 
   root.innerHTML =
     '<div class="club-schedule-calendars-grid">' +
-    clubScheduleRenderMonthHtml(first.getFullYear(), first.getMonth()) +
-    clubScheduleRenderMonthHtml(second.getFullYear(), second.getMonth()) +
+    clubScheduleRenderMonthHtml(clubScheduleViewYear, clubScheduleViewMonth) +
     "</div>";
 
   bindClubScheduleInteractions();
