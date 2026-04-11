@@ -35,7 +35,7 @@ function scrollToSection(id) {
 
 var CLUB_PORTAL_CLUBS = [
   {
-    name: "그립(Grip) (운동/퍼포먼스)",
+    name: "그립(Grip)",
     tagline: "압도적인 퍼포먼스, 짧고 굵게 완성하는 전신 운동",
     summary:
       '"인싸들의 운동, 운동 잘해 보이고 싶다면? 여기로!" 짧은 시간에도 눈에 띄는 효과를 보장합니다. 별도 장비 없이 열정만 가지고 오세요!',
@@ -57,7 +57,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "운동/퍼포먼스",
   },
   {
-    name: "포시즌스 (시즌 액티비티/친목)",
+    name: "포시즌스",
     tagline: "비상에서 사계절을 가장 야무지게 즐기는 방법",
     summary:
       "봄에는 벚꽃, 겨울에는 방어회까지! 매달 계절의 변화를 온몸으로 느끼며 소소한 즐거움을 함께 나눌 CP님들을 기다립니다.",
@@ -87,7 +87,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "시즌 액티비티/친목",
   },
   {
-    name: "비상턴 (운동/활동)",
+    name: "비상턴",
     tagline: "높은 활동성과 즐거운 에너지가 가득한 운동 시간",
     summary:
       "매 활동 시 최소 15명 이상 참여하는 활기찬 분위기! 자유로운 출석 속에서 함께 땀 흘리며 새로운 도전을 즐길 CP님들을 기다립니다.",
@@ -109,7 +109,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "운동/활동",
   },
   {
-    name: "모종의 시작 (도시농부/가드닝)",
+    name: "모종의 시작",
     tagline: "회사 옥상에서 펼쳐지는 초록빛 힐링, 도시 농부의 삶",
     summary:
       "회사 옥상 정원을 아지트로 삼아 직접 모종을 심고 가꿉니다. 내 손으로 키운 식물이 주는 정직한 기쁨을 함께 나눠요.",
@@ -127,7 +127,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "도시농부/가드닝",
   },
   {
-    name: "그림책 놀이터 (힐링/독서)",
+    name: "그림책 놀이터",
     tagline: "상상하는 모든 곳으로 떠나는 그림책 여행",
     summary:
       "숲속부터 우주까지, 시공간을 초월한 그림책의 세계! 바쁜 일상 속에서 잠시 멈춰 따뜻한 위로와 휴식을 경험해 보세요.",
@@ -149,7 +149,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "힐링/독서",
   },
   {
-    name: "퐁당다이브클럽 (수영/다이빙)",
+    name: "퐁당다이브클럽",
     tagline: "미지의 세계를 탐험하는 특별한 수중 힐링",
     summary:
       "다른 사람들이 쉽게 접근할 수 없는 물속 세상을 함께 탐험합니다. 새로운 도전을 즐기는 '수속성 인간' CP님들을 기다립니다.",
@@ -171,7 +171,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "수영/다이빙",
   },
   {
-    name: "팝케팅 (트렌드/팝업스토어 탐방)",
+    name: "팝케팅",
     tagline: "서울의 가장 핫한 팝업 스토어와 트렌드 현장 습격!",
     summary:
       "핫플 저장만 해두고 못 가본 분들 모여라! SNS에서 난리 난 트렌디한 공간을 직접 경험하고 영감을 나누는 활발한 에너지의 모임입니다.",
@@ -191,7 +191,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "트렌드/팝업",
   },
   {
-    name: "Focus on (사진/출사)",
+    name: "Focus on",
     tagline: "셔터 한 번으로 일상의 온도를 기록하는 시간",
     summary:
       '"프사 바꿀 때 되셨나요? 여기서 해결해 드립니다!" 찰나의 순간을 기록하고 싶은 분이라면 기종 상관없이 누구나 환영합니다.',
@@ -211,7 +211,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "사진/출사",
   },
   {
-    name: "원모어 (One More) (운동/자기관리)",
+    name: "원모어 (One More)",
     tagline: "압도적인 활발함으로 완성하는 건강한 루틴",
     summary:
       "주 2회 꾸준한 활동과 매력적인 자체 굿즈까지! 확실한 운동 효과는 물론, 분기별 고급 회식으로 즐거움까지 놓치지 않는 비상 최대 규모의 모임입니다.",
@@ -233,7 +233,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "운동/자기관리",
   },
   {
-    name: "비상다독 (독서/자기계발)",
+    name: "비상다독",
     tagline: "함께 지식을 나누며 성장하는 즐거움",
     summary:
       '"함께 지식을 나눈다." 독서를 통해 새로운 인사이트를 얻고 싶은 CP님이라면 누구나 환영합니다! 지적 호기심을 채우고 싶은 마음 하나면 충분합니다.',
@@ -255,7 +255,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "독서/자기계발",
   },
   {
-    name: "다람지 (다양한 스포츠 관람)",
+    name: "다람지",
     tagline: "뜨거운 함성과 열기, 모든 스포츠를 직관하는 즐거움",
     summary:
       "종목 불문! 다양한 스포츠의 현장감을 함께 즐깁니다. 조용하지만 꾸준한 활동으로 스포츠 문화의 진수를 경험할 CP님들을 환영합니다.",
@@ -277,7 +277,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "스포츠 직관",
   },
   {
-    name: "비상골린이들 (골프/친목)",
+    name: "비상골린이들",
     tagline: "헛스윙도 웃음으로 승화하는 유쾌한 필드 나들이",
     summary:
       "실력 부담은 내려놓고 푸른 잔디 위에서 에너지를 충전하세요. 유쾌하고 좋은 사람들과 함께라면 벙커도 해저드도 즐거운 추억이 됩니다!",
@@ -295,7 +295,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "골프/친목",
   },
   {
-    name: "온니 플라워 (플라워/힐링)",
+    name: "온니 플라워",
     tagline: "꽃과 함께 피어나는 일상의 힐링, 한 달에 한 번 나에게 주는 선물",
     summary:
       "월 참여도 90% 이상을 자랑하는 비상의 대표 힐링 모임! 직접 만든 꽃 작품으로 업무 스트레스는 해소하고, 사내 분위기까지 화사하게 업그레이드합니다.",
@@ -317,7 +317,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "플라워/힐링",
   },
   {
-    name: "떼구르 (볼링/친목)",
+    name: "떼구르",
     tagline: "2009년부터 굴려온 비상 찐 동호회, 스트레스 타파!",
     summary:
       "반짝 생겼다 사라지는 모임이 아닌 꾸준히 이어져 온 전통 있는 볼링 동호회입니다. 실력 상관없이 볼링의 희열과 인덕원 맛집 탐방을 함께 즐겨요!",
@@ -338,7 +338,7 @@ var CLUB_PORTAL_CLUBS = [
     badge: "볼링/친목",
   },
   {
-    name: "AVOCADO (맛집 탐방 & 콘솔 게임)",
+    name: "AVOCADO",
     tagline: "매달 떠나는 미식 여행, 그리고 함께 즐기는 게임 한 판",
     summary:
       "매달 새로운 맛집 도장 깨기부터 자유로운 콘솔 게임까지! 미식과 취미를 공유하며 일상의 즐거움을 발견할 파티원을 모집합니다.",
@@ -603,10 +603,10 @@ function renderClubCards() {
       '<h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 text-content">' +
       escapeHtmlText(club.name) +
       "</h3>" +
-      '<p class="text-sm text-[#00B5E2] font-medium mb-3 text-content">' +
+      '<p class="text-sm text-[#00B5E2] font-medium mb-3 text-pretty break-keep text-content">' +
       escapeHtmlText(club.tagline) +
       "</p>" +
-      '<p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line text-content">' +
+      '<p class="text-gray-600 leading-relaxed text-sm text-pretty break-keep text-content">' +
       escapeHtmlText(club.summary) +
       "</p>" +
       "</div></div></button></div>"
