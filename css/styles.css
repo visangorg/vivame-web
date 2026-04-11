@@ -3,9 +3,9 @@
  */
 
 * {
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
-    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
-    "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+  font-family: "Pretendard Variable", Pretendard, "NanumSquare", "Nanum Square", "NanumSquareNeo",
+    -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", sans-serif;
 }
 
@@ -50,6 +50,17 @@ p,
 .text-content {
   word-break: keep-all;
   overflow-wrap: break-word;
+}
+
+/* 사내 동호회 인트로 — About(비바미 소개)와 동일한 keep-all·여백 체계 */
+.clubs-intro-section h1,
+.clubs-intro-section .clubs-intro-copy {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.clubs-intro-section h1 {
+  line-height: 1.35;
 }
 
 /* 애니메이션 */
