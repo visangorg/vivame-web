@@ -52,6 +52,14 @@ p,
   overflow-wrap: break-word;
 }
 
+/* 통합 푸터 — 한글 줄바꿈 */
+.site-footer,
+.site-footer p,
+.site-footer h3 {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 /* 사내 동호회 인트로 — About(비바미 소개)와 동일한 keep-all·여백 체계 */
 .clubs-intro-section h1,
 .clubs-intro-section .clubs-intro-copy,
