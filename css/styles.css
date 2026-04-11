@@ -1488,12 +1488,13 @@ p,
   padding-bottom: 0.25rem;
 }
 
-/* 소개글·찰떡 리스트 본문 — 카드뉴스형 짧은 호흡·중앙 정렬·한글 단어 보호 */
+/* 소개글·찰떡 리스트 본문 — 동일 글자 크기·굵기(리더의 한마디 ↔ 찰떡 궁합) */
 .club-modal-detail-text {
   margin: 0 auto 1rem;
   max-width: 22rem;
   text-align: center;
-  font-size: 0.9375rem;
+  font-size: 1rem;
+  font-weight: 500;
   line-height: 1.65;
   letter-spacing: -0.01em;
   color: #1f2937;
@@ -1504,8 +1505,8 @@ p,
 @media (min-width: 640px) {
   .club-modal-detail-text {
     max-width: 36rem;
-    font-size: 0.96875rem;
-    line-height: 1.68;
+    font-size: 1rem;
+    line-height: 1.65;
     margin-bottom: var(--club-modal-gap);
   }
 }
@@ -1548,6 +1549,7 @@ p,
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.65;
+  letter-spacing: -0.01em;
   color: #1f2937;
   word-break: keep-all;
   overflow-wrap: break-word;
