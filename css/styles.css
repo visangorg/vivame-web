@@ -144,13 +144,21 @@ p,
   }
 }
 
-/* 두 카드 나란히: 동일 높이(stretch) + 카드 height 100% */
+/* 두 카드 가로 배치(기존 레이아웃): 동일 높이(stretch) + 카드 height 100% */
 .clubs-howto-cards {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: stretch;
-  gap: 1rem;
+  justify-content: center;
+  gap: 0.75rem;
   width: 100%;
+}
+
+@media (min-width: 480px) {
+  .clubs-howto-cards {
+    gap: 1rem;
+  }
 }
 
 @media (min-width: 640px) {
@@ -161,9 +169,6 @@ p,
 
 @media (min-width: 1024px) {
   .clubs-howto-cards {
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: center;
     gap: 2rem;
   }
 }
