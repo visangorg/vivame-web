@@ -870,22 +870,6 @@
                     </div>
                 </div>
 
-                <!-- 동호회 활동 일정 (현재 달 · 다음 달 달력) — 소개 직후 -->
-                <section class="club-schedule-section text-content" aria-labelledby="club-schedule-heading">
-                    <div class="club-schedule-heading">
-                        <h2 id="club-schedule-heading" class="clubs-list-section-title">
-                            📅 동호회와 함께하는 활기찬 일상
-                        </h2>
-                        <span class="clubs-list-section-accent" aria-hidden="true"></span>
-                        <p class="clubs-list-section-subtitle club-schedule-subtitle">
-                            이번 달엔 어떤 즐거움이 기다리고 있을까요? 동호회별 정기 활동 일정을 확인해 보세요.
-                        </p>
-                    </div>
-                    <div id="clubScheduleCalendarsRoot" class="club-schedule-calendars-root">
-                        <!-- main.js에서 현재·다음 달 달력 렌더 -->
-                    </div>
-                </section>
-
                 <!-- 동호회 가입·신설 안내 (리스트 섹션 타이틀과 동일 여백·포인트 바) -->
                 <section class="clubs-howto max-w-6xl mx-auto w-full" aria-labelledby="clubs-howto-heading">
                     <div class="clubs-howto-heading-block">
@@ -1012,6 +996,22 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="clubCardsRoot">
                     <!-- 동호회 카드는 main.js에서 렌더링 -->
                 </div>
+
+                <!-- 동호회 활동 일정 (현재 달 · 다음 달 달력) — 탭 콘텐츠 맨 아래 -->
+                <section class="club-schedule-section text-content club-schedule-section--last" aria-labelledby="club-schedule-heading">
+                    <div class="club-schedule-heading">
+                        <h2 id="club-schedule-heading" class="clubs-list-section-title">
+                            📅 동호회와 함께하는 활기찬 일상
+                        </h2>
+                        <span class="clubs-list-section-accent" aria-hidden="true"></span>
+                        <p class="clubs-list-section-subtitle club-schedule-subtitle">
+                            이번 달엔 어떤 즐거움이 기다리고 있을까요? 동호회별 정기 활동 일정을 확인해 보세요.
+                        </p>
+                    </div>
+                    <div id="clubScheduleCalendarsRoot" class="club-schedule-calendars-root">
+                        <!-- main.js에서 현재·다음 달 달력 렌더 -->
+                    </div>
+                </section>
             </div>
         </div>
     </div>
