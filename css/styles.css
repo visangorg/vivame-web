@@ -888,6 +888,7 @@ p,
 .vivami-timeline-item::before {
   content: "";
   position: absolute;
+  z-index: 0;
   left: 6px;
   top: 20px;
   bottom: -1.5rem;
@@ -900,6 +901,8 @@ p,
 }
 
 .vivami-timeline-dot {
+  position: relative;
+  z-index: 1;
   flex-shrink: 0;
   width: 14px;
   height: 14px;
@@ -916,6 +919,8 @@ p,
 }
 
 .vivami-timeline-content {
+  position: relative;
+  z-index: 1;
   flex: 1;
   min-width: 0;
 }
@@ -926,9 +931,13 @@ p,
 }
 
 @media (max-width: 639px) {
+  /*
+   * 모바일에서 column 배치 시 본문이 전체 너비로 내려가며
+   * absolute 세로선(left: ~6px)과 첫 글자가 겹침 → 가로(row) 배치 유지
+   */
   .vivami-timeline-item {
-    flex-direction: column;
-    gap: 0.5rem;
+    align-items: flex-start;
+    gap: 0.75rem;
     padding-bottom: 1.25rem;
   }
 
@@ -942,10 +951,6 @@ p,
     margin-top: 2px;
     width: 12px;
     height: 12px;
-  }
-
-  .vivami-timeline-content {
-    padding-left: 0;
   }
 
   .vivami-timeline-content p {
