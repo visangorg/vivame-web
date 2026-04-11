@@ -1258,16 +1258,30 @@ p,
   }
 }
 
-/* 동호회 카드 썸네일: aspect-ratio 영역을 이미지가 항상 채움(iOS Safari 등에서 회색 빈 영역 방지) */
-.club-portal-section .relative.w-full.aspect-\[5\/4\] img.club-card-thumb,
-.club-portal-section .relative.w-full img.club-card-thumb {
+/* 동호회 카드 썸네일: padding-bottom 비율 박스(5:4) — 모바일 Safari에서 aspect-ratio+absolute 조합 시 하단 회색 누락 완화 */
+.club-card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 80%;
+  overflow: hidden;
+  background-color: #f3f4f6;
+}
+
+.club-card-thumb-wrap .club-card-thumb {
   position: absolute;
-  inset: 0;
+  left: 0;
+  top: 0;
+  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  z-index: 0;
+  /* WebKit에서 object-cover가 남기는 1px 틈 방지 */
+  min-width: 100%;
+  min-height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* 카드 제목·태그라인·요약 — 한글 단어 중간 끊김 완화 */
@@ -1354,6 +1368,14 @@ p,
   box-shadow:
     0 0 0 2px #fefefe,
     0 0 0 4px #00b5e2;
+}
+
+/* 모달 상단 이미지 — 고정 높이 영역에서 모바일 WebKit 가장자리 누락 완화 */
+#clubModalImage:not(.hidden) {
+  min-width: 100%;
+  min-height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .club-modal-body {

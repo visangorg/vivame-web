@@ -767,12 +767,12 @@ function renderClubCards() {
       escapeHtmlAttr(club.name + " 상세 보기") +
       '">' +
       '<div class="h-full bg-white rounded-3xl overflow-hidden border border-gray-200 hover:border-[#00B5E2] hover:shadow-xl transition-all duration-300">' +
-      '<div class="relative w-full aspect-[5/4] overflow-hidden bg-gray-100">' +
+      '<div class="club-card-thumb-wrap relative w-full overflow-hidden bg-gray-100">' +
       '<img src="' +
       escapeHtmlAttr(club.image) +
       '" alt="' +
       escapeHtmlAttr(club.name) +
-      '" class="club-card-thumb absolute inset-0 h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-500" loading="lazy" decoding="async" />' +
+      '" class="club-card-thumb object-cover object-center group-hover:scale-110 transition-transform duration-500" loading="lazy" decoding="async" />' +
       '<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>' +
       '<div class="absolute bottom-4 left-4">' +
       '<span class="px-3 py-1 bg-[#00B5E2]/90 text-white text-xs font-medium rounded-full">' +
