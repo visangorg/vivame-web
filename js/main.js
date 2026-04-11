@@ -495,7 +495,6 @@ function setSiteTab(name, opts) {
   opts = opts || {};
   var vivamePanel = document.getElementById("tab-panel-vivame");
   var clubsPanel = document.getElementById("tab-panel-clubs");
-  var quickNav = document.getElementById("vivameQuickNav");
   if (!vivamePanel || !clubsPanel) return;
 
   var isVivame = name === "vivame";
@@ -510,11 +509,6 @@ function setSiteTab(name, opts) {
     clubsPanel.removeAttribute("hidden");
     vivamePanel.classList.add("hidden");
     vivamePanel.setAttribute("hidden", "");
-  }
-
-  if (quickNav) {
-    if (isVivame) quickNav.classList.remove("hidden");
-    else quickNav.classList.add("hidden");
   }
 
   document.querySelectorAll("[data-site-tab]").forEach(function (btn) {
