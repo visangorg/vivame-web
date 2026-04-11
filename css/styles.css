@@ -423,6 +423,11 @@ p,
     object-fit: cover;
     object-position: center;
   }
+
+  .club-portal-section .relative img {
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 /* ========================================
