@@ -1344,8 +1344,9 @@ p,
 }
 
 .club-modal-section--leader {
-  margin-top: var(--club-modal-gap);
-  padding-top: var(--club-modal-gap);
+  /* 찰떡 블록과 겹치지 않도록 margin·padding 이중 여백 축소 */
+  margin-top: 0.625rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -1400,6 +1401,8 @@ p,
 
 .club-modal-section-body--detail {
   padding-top: 0;
+  /* 본문 하단 패딩은 찰떡·리더 사이 이중 여백을 만들어 축소 (fit-wrap이 하단 여백 담당) */
+  padding-bottom: 0.25rem;
 }
 
 .club-modal-section-body--leader {
@@ -1428,7 +1431,7 @@ p,
   margin: 0 auto;
   width: 100%;
   max-width: 36rem;
-  padding: 0 0.75rem var(--club-modal-gap);
+  padding: 0 0.75rem 1rem;
   box-sizing: border-box;
 }
 
