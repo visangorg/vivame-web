@@ -424,13 +424,48 @@ function formatClubDetailAsHtml(detail) {
     '<div class="club-modal-detail-text">' +
     escapeClubModalHtml(before).replace(/\n/g, "<br />") +
     "</div>" +
-    '<p class="club-modal-fit-callout">' +
+    '<h4 class="club-modal-section-title club-modal-section-title--fit">' +
     escapeClubModalHtml(head) +
-    "</p>" +
+    "</h4>" +
     '<div class="club-modal-detail-text club-modal-detail-text--after">' +
     escapeClubModalHtml(after).replace(/\n/g, "<br />") +
     "</div>"
   );
+}
+
+/**
+ * 리더/총무 문구 — 라벨과 이름 분리(이름만 강조). 줄바꿈은 &lt;br /&gt;
+ * @param {string} raw
+ * @returns {string}
+ */
+function formatLeaderInfoAsHtml(raw) {
+  var t = String(raw || "").trim();
+  if (!t) return "";
+  return t
+    .split(/\r?\n/)
+    .map(function (line) {
+      return line.trim();
+    })
+    .filter(Boolean)
+    .map(function (line) {
+      var colon = line.indexOf(":");
+      if (colon === -1) {
+        return '<p class="club-modal-leader-line">' + escapeClubModalHtml(line) + "</p>";
+      }
+      var label = line.slice(0, colon + 1).trim();
+      var rest = line.slice(colon + 1).trim();
+      return (
+        '<p class="club-modal-leader-line">' +
+        '<span class="club-modal-leader-label">' +
+        escapeClubModalHtml(label) +
+        "</span> " +
+        '<span class="club-modal-leader-names">' +
+        escapeClubModalHtml(rest) +
+        "</span>" +
+        "</p>"
+      );
+    })
+    .join("");
 }
 
 function openClubModal(/** @type {ClubPortalItem} */ club) {
@@ -451,7 +486,7 @@ function openClubModal(/** @type {ClubPortalItem} */ club) {
   if (taglineEl) taglineEl.textContent = club.tagline;
   if (detailEl) detailEl.innerHTML = formatClubDetailAsHtml(club.detail || "");
 
-  if (leaderInfoEl) leaderInfoEl.textContent = club.leaderInfo || "";
+  if (leaderInfoEl) leaderInfoEl.innerHTML = formatLeaderInfoAsHtml(club.leaderInfo || "");
   if (leaderSection) {
     leaderSection.style.display = club.leaderInfo && String(club.leaderInfo).trim() ? "block" : "none";
   }
