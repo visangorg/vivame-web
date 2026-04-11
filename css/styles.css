@@ -168,16 +168,19 @@ p,
 }
 
 @media (min-width: 1024px) {
+  /* flex row 대신 grid로 동일 행 높이 보장 (두 박스 하단 라인 정렬) */
   .clubs-howto-cards {
-    flex-direction: row;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: stretch;
     gap: 2rem;
   }
 
   .clubs-howto-cards > .club-guide-card {
-    flex: 1 1 0;
     min-width: 0;
+    width: 100%;
+    height: 100%;
+    align-self: stretch;
   }
 }
 
