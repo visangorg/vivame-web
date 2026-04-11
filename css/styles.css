@@ -1263,6 +1263,14 @@ p,
   }
 }
 
+/* 비바미 활동 카드 본문 — 줄바꿈(\n) 반영·좌측 정렬(동호회 카드 요약과 동일 리듬) */
+.activity-card-description {
+  text-align: left;
+  white-space: pre-line;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 /* 동호회 카드 썸네일: padding-bottom 비율 박스(5:4) — 모바일 Safari에서 aspect-ratio+absolute 조합 시 하단 회색 누락 완화 */
 .club-card-thumb-wrap {
   position: relative;
