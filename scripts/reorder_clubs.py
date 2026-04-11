@@ -6,7 +6,7 @@ import re
 MAIN = r"c:\Users\user\OneDrive\Documents\GitHub\vivame-web\js\main.js"
 
 ORDER = [
-    "그립(Grip)",
+    "락클라이밍",
     "포시즌스",
     "비상턴",
     "모종의 시작",

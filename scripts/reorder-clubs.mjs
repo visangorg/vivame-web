@@ -18,7 +18,7 @@ const snippet = src.slice(i0, endReal + 3);
 const clubs = new Function(snippet + "\nreturn CLUB_PORTAL_CLUBS;")();
 
 const order = [
-  "그립(Grip)",
+  "락클라이밍",
   "포시즌스",
   "비상턴",
   "모종의 시작",
