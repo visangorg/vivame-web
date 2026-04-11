@@ -982,6 +982,38 @@ p,
   );
 }
 
+/* 사내 동호회 탭 — 비바미 히어로와 동일한 전면 배경(일러스트 + 그라데이션) */
+.clubs-hero-bg-image {
+  background-image: url("../assets/clubs-hero-bg.png");
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  opacity: 0.22;
+}
+
+.clubs-hero-bg-gradient {
+  background:
+    radial-gradient(
+      ellipse 78% 62% at 22% 38%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.5) 42%,
+      rgba(248, 249, 250, 0.28) 68%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 52% 48% at 88% 52%,
+      rgba(0, 176, 240, 0.08) 0%,
+      transparent 58%
+    );
+}
+
+@media (max-width: 639px) {
+  .clubs-hero-bg-image {
+    background-position: 70% 30%;
+    opacity: 0.18;
+  }
+}
+
 /* About Section - soft flow background, dissolved in light (atmosphere-elevating) */
 .about-section-bg {
   background: 
