@@ -47,9 +47,9 @@ var CLUB_PORTAL_CLUBS = [
 * 식물을 죽이는 '마이너스의 손'에서 '초록 손'으로 거듭나고 싶은 분
 
 * 직접 키운 작물을 수확하는 정직한 성취감을 느끼고 싶은 분`,
-    leaderInfo: "리더/총무: 김세별 / 심형석",
+    leaderInfo: "리더/총무: 김새별 / 심형석",
     email: "vivame.clubs.01@visang.com",
-    image: "./assets/club-image-1.png",
+    image: "./assets/club-mojong-yisijak.png",
     badge: "도시농부/가드닝",
   },
   {
