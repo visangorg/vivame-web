@@ -197,6 +197,20 @@ p,
     0 6px 16px rgba(15, 23, 42, 0.06);
   word-break: keep-all;
   overflow-wrap: break-word;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.club-guide-card:hover {
+  position: relative;
+  z-index: 2;
+  transform: translateY(-10px);
+  border-color: #00b0f0;
+  box-shadow:
+    0 32px 56px rgba(0, 0, 0, 0.14),
+    0 14px 32px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(0, 176, 240, 0.45),
+    0 12px 40px rgba(0, 176, 240, 0.22);
 }
 
 @media (min-width: 1024px) {
@@ -416,6 +430,13 @@ p,
   font-weight: 700;
   margin-bottom: 0.5rem;
   font-size: 1rem;
+  display: inline-block;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.club-guide-card:hover .highlight-text {
+  transform: scale(1.1);
 }
 
 @media (min-width: 640px) {
@@ -513,6 +534,12 @@ p,
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 0.35rem;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.club-guide-card:hover dl.club-guide-dl dt {
+  transform: scale(1.08);
 }
 
 .club-guide-card dl.club-guide-dl dd {
@@ -565,8 +592,15 @@ p,
   background: linear-gradient(135deg, #00b5e2 0%, #0090c5 100%);
   border-radius: 9999px;
   box-shadow: 0 4px 14px rgba(0, 181, 226, 0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease, background 0.3s ease;
   vertical-align: baseline;
+  cursor: pointer;
+}
+
+.club-guide-card:hover .club-guide-app-btn {
+  background: linear-gradient(135deg, #0099c4 0%, #007cad 100%);
+  box-shadow: 0 8px 24px rgba(0, 150, 200, 0.48);
+  filter: brightness(0.96);
 }
 
 .club-guide-app-btn--external {
@@ -587,13 +621,45 @@ p,
 }
 
 .club-guide-app-btn:hover {
-  filter: brightness(1.05);
-  box-shadow: 0 6px 18px rgba(0, 181, 226, 0.45);
+  filter: brightness(1.02);
+  box-shadow: 0 8px 26px rgba(0, 160, 210, 0.55);
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #00aedc 0%, #0088b8 100%);
+}
+
+.club-guide-card:hover .club-guide-app-btn:hover {
+  filter: brightness(1);
+  background: linear-gradient(135deg, #0092bd 0%, #007aa3 100%);
 }
 
 .club-guide-app-btn:focus-visible {
   outline: 2px solid #00b5e2;
   outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .club-guide-card {
+    transition: none;
+  }
+
+  .club-guide-card:hover {
+    transform: none;
+  }
+
+  .club-guide-card .highlight-text,
+  .club-guide-card dl.club-guide-dl dt,
+  .club-guide-app-btn {
+    transition: none;
+  }
+
+  .club-guide-card:hover .highlight-text,
+  .club-guide-card:hover dl.club-guide-dl dt {
+    transform: none;
+  }
+
+  .club-guide-app-btn:hover {
+    transform: none;
+  }
 }
 
 .club-guide-apply-block {
