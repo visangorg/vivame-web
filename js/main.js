@@ -18,92 +18,70 @@ function scrollToSection(id) {
   window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
 }
 
-/** @typedef {{ name: string, tagline: string, detail: string, email: string, image: string, badge?: string }} ClubPortalItem */
+/**
+ * 카드용 데이터 수신 후: 각 항목의 name, tagline, summary, detail, leaderInfo, email, badge 를 교체하세요.
+ * 대표 이미지: ./assets/club-image-1.png ~ club-image-15.png (파일명만 유지하면 경로는 그대로입니다.)
+ *
+ * @typedef {{
+ *   name: string,
+ *   tagline: string,
+ *   summary: string,
+ *   detail: string,
+ *   leaderInfo: string,
+ *   email: string,
+ *   image: string,
+ *   badge?: string
+ * }} ClubPortalItem
+ */
+
+function escapeHtmlText(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function escapeHtmlAttr(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/** 비바미 주요 활동 섹션과 유사한 배지 문구 순환 */
+var CLUB_BADGE_ROTATE = [
+  "사회공헌 활동",
+  "즐거운 일터 만들기",
+  "우리의 믿음 내재화",
+  "조직문화",
+  "취미 모임",
+];
+
+function buildClubPortalData() {
+  var placeholderDetail =
+    "[리더 원문 전체]\n\n" +
+    "리더·운영진이 보내주신 소개 글을 이 항목의 detail 필드에 말투·줄바꿈을 한 글자도 빼지 말고 그대로 붙여 넣어 주세요. (임시 안내 문구입니다.)";
+
+  var placeholderLeader =
+    "리더: (이름 / 소속)\n" + "총무: (이름 / 소속)\n" + "문의 가능 시간·채널 등을 여기에 적어 주세요.";
+
+  var list = [];
+  var i;
+  for (i = 1; i <= 15; i++) {
+    list.push({
+      name: "동호회 " + (i < 10 ? "0" : "") + i + " (명칭 수신 예정)",
+      tagline: "슬로건(한 줄) — 카드용 데이터의 tagline 으로 교체해 주세요.",
+      summary:
+        "리스트 카드에 들어갈 짧은 요약입니다. 비바미 주요 활동 카드의 회색 본문과 같은 역할이며, 카드용 데이터의 요약문으로 교체해 주세요.",
+      detail: placeholderDetail,
+      leaderInfo: placeholderLeader,
+      email: "vivame.clubs." + (i < 10 ? "0" + i : String(i)) + "@visang.com",
+      image: "./assets/club-image-" + i + ".png",
+      badge: CLUB_BADGE_ROTATE[(i - 1) % CLUB_BADGE_ROTATE.length],
+    });
+  }
+  return list;
+}
 
 /** @type {ClubPortalItem[]} */
-var CLUB_PORTAL_CLUBS = [
-  {
-    name: "비상 러닝 크루",
-    tagline: "아침을 깨우는 러닝, 함께라서 더 즐겁습니다.",
-    badge: "운동",
-    detail:
-      "주 1~2회 아침 러닝으로 하루를 시작하는 동호회입니다. 난이도는 페이스에 맞춰 조절하며, 러닝 후 가벼운 스트레칭과 커피 타임으로 동료들과 소통합니다.\n\n신입도 환영이며, 운동화만 챙기시면 됩니다.",
-    email: "vivame.clubs.running@visang.com",
-    image: "./assets/belief-test.png",
-  },
-  {
-    name: "북클럽 '날개짓'",
-    tagline: "책 한 권이 만드는 작은 대화의 날개.",
-    badge: "문화",
-    detail:
-      "월 1회 선정 도서를 읽고 모여 이야기를 나눕니다. 업무 서적뿐 아니라 에세이·소설 등 다양한 장르를 오가며, 각자의 관점을 존중하는 토론 문화를 지향합니다.\n\n다음 모임 도서와 일정은 팀즈 공지로 안내드립니다.",
-    email: "vivame.clubs.book@visang.com",
-    image: "./assets/writing-room.png",
-  },
-  {
-    name: "필름 · 사진 소모임",
-    tagline: "일상의 순간을 프레임에 담아 나눕니다.",
-    badge: "취미",
-    detail:
-      "필름·디지털 가리지 않고 촬영과 현상(또는 보정) 경험을 공유합니다. 분기별로 소규모 전시나 촬영 워크숍을 기획하기도 합니다.\n\n장비 유무와 관계없이 관심만 있으시면 환영입니다.",
-    email: "vivame.clubs.photo@visang.com",
-    image: "./assets/film-festival.png",
-  },
-  {
-    name: "업사이클·환경 모임",
-    tagline: "작은 실천이 만드는 순환의 시작.",
-    badge: "ESG",
-    detail:
-      "사내 자원 순환 캠페인과 연계해 병뚜껑·종이 등을 활용한 업사이클 작품을 함께 만듭니다. 환경 이슈를 가볍게 나누고 실천 아이디어를 모읍니다.\n\n새로운 재료 아이디어를 가져오셔도 좋습니다.",
-    email: "vivame.clubs.eco@visang.com",
-    image: "./assets/bottle-cap.png",
-  },
-  {
-    name: "간식 & 푸드 클럽",
-    tagline: "맛있는 한 입이 모이는 자리.",
-    badge: "푸드",
-    detail:
-      "계절 간식·시즌 메뉴를 함께 나누고, 가끔은 직접 만든 메뉴로 소소한 맛집 투어를 즐깁니다. 알레르기·채식 등은 사전에 공유해 주세요.\n\n부담 없이 참여 가능한 가벼운 모임입니다.",
-    email: "vivame.clubs.food@visang.com",
-    image: "./assets/snack-attack.png",
-  },
-  {
-    name: "집씨통 가드너스",
-    tagline: "책상 위 작은 숲, 함께 키워요.",
-    badge: "취미",
-    detail:
-      "반려 식물과 씨앗 키우기를 사랑하는 구성원이 모여 경험을 나눕니다. 물주기 체크·성장 기록 등을 함께하며 과천 숲 프로젝트와 연계된 이야기도 나눕니다.\n\n초보 환영, 화분 하나만 있어도 OK입니다.",
-    email: "vivame.clubs.green@visang.com",
-    image: "./assets/jipssitong.png",
-  },
-  {
-    name: "과천 라이프스타일",
-    tagline: "새 사옥과 동네를 함께 즐겨요.",
-    badge: "라이프",
-    detail:
-      "과천 근교 산책·카페·문화 행사 정보를 공유하고, 동호회 산책 코스를 함께 개척합니다. 에티켓과 배려를 바탕으로 쾌적한 일터 문화를 응원합니다.\n\n가볍게 동네 탐방을 즐기고 싶은 분께 추천합니다.",
-    email: "vivame.clubs.local@visang.com",
-    image: "./assets/gwacheon-etiquette.png",
-  },
-  {
-    name: "우리의 믿음 북토크",
-    tagline: "비상의 가치를 이야기로 잇습니다.",
-    badge: "문화",
-    detail:
-      "핵심 가치 '우리의 믿음'을 주제로 한 독서·토론 모임입니다. 실무 사례와 개인의 경험을 연결하며 조직문화에 대한 통찰을 나눕니다.\n\n발제자·청중 모두 자유롭게 참여할 수 있습니다.",
-    email: "vivame.clubs.belief@visang.com",
-    image: "./assets/fake-docu.png",
-  },
-  {
-    name: "테이블 토크 네트워크",
-    tagline: "한 테이블에서 시작하는 아이디어와 응원.",
-    badge: "네트워킹",
-    detail:
-      "부서·직무를 넘어 원탁 대화를 나누는 소규모 모임입니다. 라이트닝 토크와 자유 질의응답으로 서로의 프로젝트를 소개하고 협업의 씨앗을 찾습니다.\n\n분기별로 주제를 정해 공지합니다.",
-    email: "vivame.clubs.network@visang.com",
-    image: "./assets/quiz-cta-bg.png",
-  },
-];
+var CLUB_PORTAL_CLUBS = buildClubPortalData();
 
 function clubInitials(name) {
   var trimmed = name.replace(/\s+/g, " ").trim();
@@ -132,6 +110,8 @@ function openClubModal(/** @type {ClubPortalItem} */ club) {
   var titleEl = document.getElementById("clubModalTitle");
   var taglineEl = document.getElementById("clubModalTagline");
   var detailEl = document.getElementById("clubModalDetail");
+  var leaderSection = document.getElementById("clubModalLeaderSection");
+  var leaderInfoEl = document.getElementById("clubModalLeaderInfo");
   var imgEl = document.getElementById("clubModalImage");
   var initialsEl = document.getElementById("clubModalInitials");
   var mailEl = document.getElementById("clubModalMailto");
@@ -141,21 +121,30 @@ function openClubModal(/** @type {ClubPortalItem} */ club) {
   if (taglineEl) taglineEl.textContent = club.tagline;
   if (detailEl) detailEl.textContent = club.detail;
 
+  if (leaderInfoEl) leaderInfoEl.textContent = club.leaderInfo || "";
+  if (leaderSection) {
+    leaderSection.style.display = club.leaderInfo && String(club.leaderInfo).trim() ? "block" : "none";
+  }
+
   if (imgEl && initialsEl) {
     imgEl.classList.add("hidden");
+    imgEl.style.zIndex = "";
     initialsEl.textContent = clubInitials(club.name);
     imgEl.alt = club.name;
     imgEl.onload = function () {
       imgEl.classList.remove("hidden");
+      imgEl.style.zIndex = "1";
       initialsEl.textContent = "";
     };
     imgEl.onerror = function () {
       imgEl.classList.add("hidden");
+      imgEl.style.zIndex = "";
       initialsEl.textContent = clubInitials(club.name);
     };
     imgEl.src = club.image;
     if (imgEl.complete && imgEl.naturalWidth > 0) {
       imgEl.classList.remove("hidden");
+      imgEl.style.zIndex = "1";
       initialsEl.textContent = "";
     }
   }
@@ -184,40 +173,41 @@ function renderClubCards() {
   var root = document.getElementById("clubCardsRoot");
   if (!root) return;
 
+  root.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8";
+
   root.innerHTML = CLUB_PORTAL_CLUBS.map(function (club, idx) {
-    var safeName = club.name.replace(/"/g, "&quot;");
-    var safeImg = club.image.replace(/"/g, "&quot;");
     var badge = club.badge || "동호회";
     return (
       '<div class="group hover:-translate-y-2 transition-all duration-300">' +
-      '<button type="button" class="club-portal-card w-full h-full text-left bg-white rounded-3xl overflow-hidden border border-gray-200 hover:border-[#00B5E2] hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00B5E2] focus-visible:ring-offset-2" data-club-index="' +
+      '<button type="button" class="club-portal-card block w-full h-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00B5E2] focus-visible:ring-offset-2 rounded-3xl" data-club-index="' +
       idx +
       '" aria-label="' +
-      safeName +
-      " 상세 보기" +
+      escapeHtmlAttr(club.name + " 상세 보기") +
       '">' +
-      '<div class="relative h-40 sm:h-48 overflow-hidden bg-gradient-to-br from-[#00B5E2]/10 to-blue-50">' +
+      '<div class="h-full bg-white rounded-3xl overflow-hidden border border-gray-200 hover:border-[#00B5E2] hover:shadow-xl transition-all duration-300">' +
+      '<div class="relative h-40 sm:h-48 overflow-hidden">' +
       '<img src="' +
-      safeImg +
+      escapeHtmlAttr(club.image) +
       '" alt="' +
-      safeName +
+      escapeHtmlAttr(club.name) +
       '" class="club-card-thumb w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500" loading="lazy" />' +
-      '<div class="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent pointer-events-none"></div>' +
+      '<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>' +
       '<div class="absolute bottom-4 left-4">' +
       '<span class="px-3 py-1 bg-[#00B5E2]/90 text-white text-xs font-medium rounded-full">' +
-      badge +
+      escapeHtmlText(badge) +
       "</span></div>" +
       "</div>" +
       '<div class="p-4 sm:p-6">' +
       '<h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">' +
-      club.name +
+      escapeHtmlText(club.name) +
       "</h3>" +
-      '<p class="text-sm text-[#00B5E2] font-medium leading-snug">' +
-      club.tagline +
+      '<p class="text-sm text-[#00B5E2] font-medium mb-3">' +
+      escapeHtmlText(club.tagline) +
       "</p>" +
-      "</div>" +
-      "</button>" +
-      "</div>"
+      '<p class="text-gray-600 leading-relaxed text-sm whitespace-pre-line">' +
+      escapeHtmlText(club.summary) +
+      "</p>" +
+      "</div></div></button></div>"
     );
   }).join("");
 
