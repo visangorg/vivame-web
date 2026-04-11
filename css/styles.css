@@ -77,14 +77,55 @@ p,
   font-size: inherit;
 }
 
-/* 동호회 가입·신설 안내 — 인트로와 동일 keep-all */
+/* 동호회 가입·신설 안내 — 리스트 섹션과 동일 상·하 여백, 중앙 정렬, keep-all */
 .clubs-howto {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 60px;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
-/* 가입·신설 카드 — 중앙 정렬·여백·은은한 입체감 (비바미 톤 #00B5E2) */
+@media (max-width: 639px) {
+  .clubs-howto {
+    padding-top: 72px;
+  }
+}
+
+.clubs-howto-heading-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .clubs-howto-heading-block {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .clubs-howto-heading-block {
+    margin-bottom: 3rem;
+    max-width: 56rem;
+  }
+}
+
+/* 가입·신설 카드 영역 — 전체 폭 대비 중앙 정렬 */
 .clubs-howto-surface {
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
   background: linear-gradient(
     165deg,
     rgba(248, 250, 252, 0.95) 0%,
@@ -93,6 +134,8 @@ p,
   );
   border-radius: 1.5rem;
   padding: 1.25rem 1rem 1.75rem;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 @media (min-width: 640px) {
