@@ -1290,13 +1290,12 @@ p,
 }
 
 /*
- * 동호회·비바미 활동 카드 본문 — 반응형 가독성
- * (keep-all + break-word, 중앙·폭 90%, 모바일 줄간 1.72)
+ * 동호회 카드 본문 — 반응형 가독성 (중앙·폭 90%)
+ * 비바미 활동 카드 본문은 .activities-section 아래에서 좌측 정렬로 덮어씀
  */
 .club-portal-card h3,
 .club-card-tagline,
-.club-card-summary,
-.activity-card-description {
+.club-card-summary {
   text-align: center;
   white-space: normal;
   width: 90%;
@@ -1307,9 +1306,50 @@ p,
   overflow-wrap: break-word;
 }
 
+.activity-card-description {
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 비바미 활동 카드 — 본문·버튼 좌측, 그리드 행 높이에 맞춰 CTA를 하단 정렬 */
+.activities-section .group > div.bg-white.rounded-3xl {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.activities-section .group > div.bg-white.rounded-3xl > div:last-of-type {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .activities-section .group .p-4.sm\:p-6,
 .activities-section .group .p-4 {
-  text-align: center;
+  text-align: left;
+}
+
+.activities-section .activity-card-description {
+  text-align: left;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.activities-section .group .border-t.border-gray-100 {
+  margin-top: auto;
+  text-align: left;
+}
+
+.activities-section .group .border-t.border-gray-100 > p {
+  text-align: left;
+}
+
+.activities-section .group .border-t .flex {
+  justify-content: flex-start;
 }
 
 @media (max-width: 639px) {
@@ -1339,6 +1379,11 @@ p,
   .club-modal-fit-item {
     text-wrap: pretty;
   }
+}
+
+/* 활동 카드 CTA 링크 — 본문은 좌측, 버튼 라벨만 가독성 유지 */
+.activities-section .activity-cta-btn {
+  align-self: flex-start;
 }
 
 #clubModalTagline {
