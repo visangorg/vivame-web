@@ -842,8 +842,11 @@ p,
   align-items: center;
   text-align: center;
   margin-bottom: 2rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: clamp(0.5rem, 3vw, 1rem);
+  padding-right: clamp(0.5rem, 3vw, 1rem);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
@@ -852,8 +855,29 @@ p,
   }
 }
 
+/* 섹션 메인 타이틀·부제 — 좁은 화면에서 잘림 방지 */
+.club-schedule-section .clubs-list-section-title {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+@media (max-width: 639px) {
+  .club-schedule-section .clubs-list-section-title {
+    font-size: clamp(1.35rem, 6.5vw, 2.25rem) !important;
+    line-height: 1.2;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+}
+
 .club-schedule-subtitle {
   max-width: 40rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .club-schedule-calendars-root {
@@ -897,50 +921,61 @@ p,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: 0.5rem;
   margin-bottom: 1.35rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .club-cal-month-title {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
   margin: 0;
-  padding: 0 0.25rem;
-  font-size: clamp(1.2rem, 4.2vw, 1.65rem);
+  padding: 0.2rem 0.15rem;
+  font-size: clamp(1rem, 3.8vw, 1.65rem);
   font-weight: 700;
   color: #111827;
   letter-spacing: -0.03em;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.25;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .club-cal-nav-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  width: 2.5rem;
-  height: 2.5rem;
+  flex: 0 0 auto;
+  width: 2.65rem;
+  height: 2.65rem;
   padding: 0;
-  border: none;
+  border: 1px solid #d1d5db;
   border-radius: 9999px;
-  background: transparent;
-  color: #e0e0e0;
+  background-color: #f8fafc;
+  color: #64748b;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
   cursor: pointer;
   transition:
     color 0.2s ease,
     background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
     opacity 0.2s ease;
 }
 
 .club-cal-nav-btn:hover:not(:disabled) {
   color: #00b0f0;
-  background-color: rgba(0, 176, 240, 0.07);
+  border-color: rgba(0, 176, 240, 0.55);
+  background-color: rgba(0, 176, 240, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 176, 240, 0.15);
 }
 
 .club-cal-nav-btn:disabled {
-  opacity: 0.28;
+  opacity: 0.35;
   cursor: not-allowed;
+  border-color: #e5e7eb;
+  background-color: #f9fafb;
 }
 
 .club-cal-nav-btn:focus {
@@ -957,9 +992,18 @@ p,
 }
 
 @media (max-width: 639px) {
+  .club-cal-nav {
+    gap: 0.35rem;
+  }
+
+  .club-cal-month-title {
+    font-size: clamp(0.95rem, 4.2vw, 1.25rem);
+    padding: 0.15rem 0.1rem;
+  }
+
   .club-cal-nav-btn {
-    width: 3rem;
-    height: 3rem;
+    width: 2.85rem;
+    height: 2.85rem;
   }
 
   .club-cal-nav-btn svg {
@@ -1181,12 +1225,15 @@ p,
   filter: brightness(1.05);
 }
 
-/* 일정 툴팁 (일정 있는 날 클릭 시) */
+/* 일정 툴팁 — 상단 닫기 행과 본문 분리로 버튼과 X 겹침 방지 */
 .club-schedule-tooltip {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   z-index: 70;
-  max-width: min(20rem, calc(100vw - 2rem));
-  padding: 1.15rem 0.85rem 0.65rem;
+  width: min(20rem, calc(100vw - 1.5rem));
+  max-width: calc(100vw - 1.5rem);
+  padding: 0;
   background-color: #ffffff;
   border: 1px solid rgba(0, 176, 240, 0.35);
   border-radius: 0.75rem;
@@ -1199,6 +1246,7 @@ p,
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
+  box-sizing: border-box;
 }
 
 .club-schedule-tooltip.is-visible {
@@ -1217,20 +1265,31 @@ p,
   pointer-events: none;
 }
 
+.club-schedule-tooltip__toolbar {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  min-height: 2.25rem;
+  padding: 0.45rem 0.4rem 0 0.5rem;
+  box-sizing: border-box;
+}
+
 .club-schedule-tooltip__close {
-  position: absolute;
-  top: 0.35rem;
-  right: 0.35rem;
+  position: relative;
+  top: auto;
+  right: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.65rem;
-  height: 1.65rem;
+  width: 2rem;
+  height: 2rem;
   padding: 0;
   border: none;
-  border-radius: 0.35rem;
-  background: transparent;
-  color: #9ca3af;
+  border-radius: 0.4rem;
+  background: rgba(248, 250, 252, 0.95);
+  color: #64748b;
   cursor: pointer;
   transition:
     color 0.2s ease,
@@ -1239,7 +1298,7 @@ p,
 
 .club-schedule-tooltip__close:hover {
   color: #00b0f0;
-  background-color: rgba(0, 176, 240, 0.08);
+  background-color: rgba(0, 176, 240, 0.1);
 }
 
 .club-schedule-tooltip__close:focus {
@@ -1254,9 +1313,24 @@ p,
 .club-schedule-tooltip__body {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.5rem;
   min-width: 0;
-  padding-right: 0.25rem;
+  width: 100%;
+  padding: 0 0.75rem 0.75rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 639px) {
+  .club-schedule-tooltip {
+    width: calc(100vw - 1.25rem);
+    max-width: calc(100vw - 1.25rem);
+  }
+
+  .club-schedule-tooltip__body {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+    padding-bottom: 0.85rem;
+  }
 }
 
 .club-schedule-tooltip__btn {
@@ -1264,11 +1338,18 @@ p,
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0.45rem 0.65rem;
-  font-size: 0.6875rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  font-size: clamp(0.75rem, 3.6vw, 0.8125rem);
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.02em;
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: auto;
   background: linear-gradient(135deg, #00b0f0 0%, #0095d4 100%);
   border: none;
   border-radius: 0.5rem;
@@ -1276,6 +1357,14 @@ p,
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .club-schedule-tooltip__btn {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.85rem;
+  }
 }
 
 .club-schedule-tooltip__btn:hover {

@@ -1017,14 +1017,16 @@
                         role="tooltip"
                         hidden
                     >
-                        <button
-                            type="button"
-                            id="clubScheduleTooltipClose"
-                            class="club-schedule-tooltip__close"
-                            aria-label="닫기"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                        </button>
+                        <div class="club-schedule-tooltip__toolbar">
+                            <button
+                                type="button"
+                                id="clubScheduleTooltipClose"
+                                class="club-schedule-tooltip__close"
+                                aria-label="닫기"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                            </button>
+                        </div>
                         <!-- 클릭한 날짜의 동호회별 상세 버튼만 JS로 채움 (같은 날 여러 건이면 버튼 여러 개) -->
                         <div id="clubScheduleTooltipBody" class="club-schedule-tooltip__body"></div>
                     </div>

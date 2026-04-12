@@ -887,12 +887,12 @@ function clubScheduleIsToday(y, m, day) {
 }
 
 function clubScheduleNavChevronSvg(direction) {
-  /* direction: 'left' | 'right' — 얇은 그레이 라인, hover는 CSS로 브랜드 컬러 */
+  /* direction: 'left' | 'right' — 가시성을 위해 스트로크 두께·크기 상향 */
   var path =
     direction === "left"
-      ? '<path d="M14 6L8 12l6 6" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>'
-      : '<path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>';
-  return '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">' + path + "</svg>";
+      ? '<path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>'
+      : '<path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>';
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">' + path + "</svg>";
 }
 
 /** 해당 날짜에 적용되는 일정 규칙 목록 (복수 가능) */
