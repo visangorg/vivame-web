@@ -985,6 +985,8 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
           '<span class="club-cal-chip' +
           variant +
           (emojiPart ? "" : " club-cal-chip--text-only") +
+          '" title="' +
+          escapeHtmlAttr(nm) +
           '">' +
           emojiPart +
           '<span class="club-cal-chip-name">' +
