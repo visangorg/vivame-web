@@ -293,7 +293,7 @@ p,
 .club-guide-card-head h3 {
   font-size: clamp(1.125rem, 2.8vw, 1.5rem);
   font-weight: 700;
-  margin: 0 0 0.5rem;
+  margin: 0 0 1rem;
   color: #1a1a1a;
   line-height: 1.35;
 }
@@ -321,12 +321,12 @@ p,
   align-items: center;
   width: 100%;
   min-height: 0;
-  padding-top: 1.125rem;
+  padding-top: 1.5rem;
 }
 
 @media (min-width: 640px) {
   .club-guide-card-main {
-    padding-top: 1.25rem;
+    padding-top: 1.625rem;
   }
 }
 

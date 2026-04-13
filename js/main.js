@@ -300,7 +300,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 * 📷 기종에 상관없이 사진 찍는 즐거움을 함께 나누고 싶은 분
 
 * ✨ 평범한 일상을 특별한 작품으로 남기고 싶은 감성 CP님`,
-    leaderInfo: "리더: 경영관리 Cell 김도이",
+    leaderInfo: "리더: 경영관리 Cell 김도이\\n총무: 통합실용2 Cell 최다솜",
     email: "kimdy3@visang.com",
     image: "./assets/club-focus-on.png",
     badge: "사진/출사",
@@ -1465,3 +1465,5 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
+
