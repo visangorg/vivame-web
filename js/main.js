@@ -204,7 +204,7 @@ CP님들이라면 주저 말고
 * 🌈 상상력을 자극하는 창의적인 휴식 시간을 선호하는 분
 
 * 🪐 시공간을 초월한 새로운 힐링 경험을 해보고 싶은 분`,
-    leaderInfo: "리더: 라키비움 Cell 안경영\n총무: 에듀테크플랫폼서비스기획 Cell 최윤영",
+    leaderInfo: "리더: 라키비움 Cell 안경영\n총무: 에듀테크플랫폼서비스기획 Cell 최문영",
     email: "ahnky1@visang.com",
     image: "./assets/club-picturebook-playground.png",
     badge: "힐링/독서",
@@ -1465,5 +1465,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
 
 
