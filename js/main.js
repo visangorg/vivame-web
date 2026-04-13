@@ -518,7 +518,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 같이 즐길 게임 친구를 구하고 있습니다.
 
 "먼저 겜 같이 하자고 적극적으로 파티원 모집할 용기가 있으신 분",
-"즐겜러보다 빡겜러를 추구하시는 분"
+"빡겜러보다 즐겜러를 추구하시는 분"
 모두 환영합니다!
 
 아보카도와 함께라면 지루할 틈 없는
@@ -1465,6 +1465,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
 
 
 
