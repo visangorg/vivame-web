@@ -258,7 +258,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 
 혼자 가기 쑥스러웠던 핫플들,
 이제 팝케팅 멤버들과 함께
-영감을 채우러 떠나보세요!
+영감을 채우러 떠나 보세요!
 
 ✨ 이런 CP님, 우리와 찰떡이에요!
 * 🙋‍♂️ 핫플 저장만 해두고 정작 같이 갈 사람이 없어 못 가본 분
@@ -1465,6 +1465,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
 
 
 
