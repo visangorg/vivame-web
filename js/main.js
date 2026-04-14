@@ -432,7 +432,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 
 * 🤝 함께의 가치를 아는 분: 혼자 연습장 가는 것보다, 부족해도 함께 라운딩하며 추억 쌓기를 즐기는 분.`,
     leaderInfo: "리더: 재무회계 Cell 이수양",
-    email: "vivame.clubs.15@visang.com",
+    email: "songyh@visang.com",
     image: "./assets/club-golf-beginners.png",
     badge: "골프/친목",
   },
@@ -570,7 +570,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 
 * 🙏 신앙생활을 시작해보고 싶거나, 바쁜 일상 때문에 잠시 멈췄던 분 (종교가 없어도 환영합니다! 😊)`,
     leaderInfo: "리더: CBS 기획운영 Cell 송윤호",
-    email: "vivame.clubs.15@visang.com",
+    email: "songyh@visang.com",
     image: "./assets/club-bisang-shinwoohoe.png",
     badge: "소통/힐링",
   },
@@ -1557,6 +1557,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
 
 
 
