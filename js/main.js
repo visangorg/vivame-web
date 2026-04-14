@@ -774,9 +774,15 @@ function renderClubCards() {
     return;
   }
 
+  var orderedClubs = clubs.slice().sort(function (a, b) {
+    var aFirst = a && a.name && a.name.indexOf("원모어") === 0 ? 1 : 0;
+    var bFirst = b && b.name && b.name.indexOf("원모어") === 0 ? 1 : 0;
+    return bFirst - aFirst;
+  });
+
   root.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8";
 
-  root.innerHTML = clubs.map(function (club, idx) {
+  root.innerHTML = orderedClubs.map(function (club, idx) {
     var badge = club.badge || "동호회";
     return (
       '<div class="group hover:-translate-y-2 transition-all duration-300">' +
@@ -815,7 +821,7 @@ function renderClubCards() {
   root.querySelectorAll(".club-portal-card").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var i = parseInt(btn.getAttribute("data-club-index") || "0", 10);
-      var club = clubs[i];
+      var club = orderedClubs[i];
       if (club) openClubModal(club);
     });
   });
@@ -1516,6 +1522,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
 
 
 
