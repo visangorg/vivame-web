@@ -958,6 +958,15 @@ var CLUB_SCHEDULE_RULES = [
     chipVariant: "pongdang",
     iconEmoji: "",
   },
+  {
+    nameMatch: "온니 플라워",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 3, day: 28 }],
+    shortLabel: "온니플라워",
+    chipName: "온니플라워",
+    chipVariant: "onniflower",
+    iconEmoji: "",
+  },
 ];
 
 /** 달력 좌우 이동: 2026년 1월 ~ 5월만 (5월 이후 이동 불가) */

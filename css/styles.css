@@ -1252,6 +1252,15 @@ p,
 .club-cal-chip--pongdang .club-cal-chip-name {
   color: #0e7490;
 }
+
+.club-cal-chip--onniflower {
+  background: rgba(236, 72, 153, 0.12);
+  border-color: rgba(236, 72, 153, 0.34);
+}
+
+.club-cal-chip--onniflower .club-cal-chip-name {
+  color: #be185d;
+}
 .club-cal-chip-emoji {
   flex-shrink: 0;
   font-size: 0.65rem;
