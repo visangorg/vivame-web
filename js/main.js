@@ -896,6 +896,27 @@ var CLUB_SCHEDULE_RULES = [
     chipVariant: "daramji",
     iconEmoji: "",
   },
+  {
+    nameMatch: "떼구르",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 3, day: 23 }],
+    shortLabel: "떼구르",
+    chipName: "떼구르",
+    chipVariant: "ttegureu",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "퐁당다이브클럽",
+    weekdays: [],
+    specificDates: [
+      { year: 2026, month: 4, day: 16 },
+      { year: 2026, month: 4, day: 17 },
+    ],
+    shortLabel: "퐁당",
+    chipName: "퐁당",
+    chipVariant: "pongdang",
+    iconEmoji: "",
+  },
 ];
 
 /** 달력 좌우 이동: 2026년 1월 ~ 5월만 (5월 이후 이동 불가) */
@@ -1495,6 +1516,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
+
 
 
 

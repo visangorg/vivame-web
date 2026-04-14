@@ -2553,3 +2553,26 @@ p,
 
 
 
+
+.club-cal-chip--ttegureu {
+  background: rgba(79, 70, 229, 0.12);
+  border-color: rgba(79, 70, 229, 0.34);
+}
+
+.club-cal-chip--ttegureu .club-cal-chip-name {
+  color: #4338ca;
+}
+
+.club-cal-chip--pongdang {
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.34);
+}
+
+.club-cal-chip--pongdang .club-cal-chip-name {
+  color: #0e7490;
+}
+
+.club-cal-chip--bisangdadok .club-cal-chip-name {
+  color: #6d28d9;
+}
+
