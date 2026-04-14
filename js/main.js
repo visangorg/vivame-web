@@ -887,6 +887,15 @@ var CLUB_SCHEDULE_RULES = [
     chipVariant: "fourseasons",
     iconEmoji: "",
   },
+  {
+    nameMatch: "다람지",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 3, day: 22 }],
+    shortLabel: "다람지",
+    chipName: "다람지",
+    chipVariant: "daramji",
+    iconEmoji: "",
+  },
 ];
 
 /** 달력 좌우 이동: 2026년 1월 ~ 5월만 (5월 이후 이동 불가) */
@@ -1486,6 +1495,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateButtons);
   updateButtons();
 });
+
+
 
 
 

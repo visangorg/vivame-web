@@ -1213,8 +1213,14 @@ p,
   border-color: rgba(139, 92, 246, 0.34);
 }
 
-.club-cal-chip--bisangdadok .club-cal-chip-name {
-  color: #6d28d9;
+
+.club-cal-chip--daramji {
+  background: rgba(16, 185, 129, 0.11);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.club-cal-chip--daramji .club-cal-chip-name {
+  color: #047857;
 }
 
 .club-cal-chip--fourseasons {
@@ -2543,6 +2549,7 @@ p,
   flex-shrink: 0;
   color: #00b0f0;
 }
+
 
 
 
