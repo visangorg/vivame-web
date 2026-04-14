@@ -1180,10 +1180,10 @@ p,
   padding: 0.12rem 0.34rem;
 }
 
-/* 동호회별 칩 색 (텍스트만, 이모지 없음 권장) */
+/* 동호회별 칩 색 (동호회별 고유 컬러, 겹치지 않도록 분리) */
 .club-cal-chip--wonmore {
-  background: rgba(0, 176, 240, 0.1);
-  border-color: rgba(0, 176, 240, 0.28);
+  background: rgba(14, 165, 233, 0.12);
+  border-color: rgba(14, 165, 233, 0.34);
 }
 
 .club-cal-chip--wonmore .club-cal-chip-name {
@@ -1191,12 +1191,12 @@ p,
 }
 
 .club-cal-chip--avocado {
-  background: rgba(16, 185, 129, 0.13);
-  border-color: rgba(16, 185, 129, 0.33);
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.34);
 }
 
 .club-cal-chip--avocado .club-cal-chip-name {
-  color: #047857;
+  color: #166534;
 }
 
 .club-cal-chip--popketing {
@@ -1209,18 +1209,12 @@ p,
 }
 
 .club-cal-chip--bisangdadok {
-  background: rgba(139, 92, 246, 0.12);
-  border-color: rgba(139, 92, 246, 0.34);
+  background: rgba(168, 85, 247, 0.13);
+  border-color: rgba(168, 85, 247, 0.35);
 }
 
-
-.club-cal-chip--daramji {
-  background: rgba(16, 185, 129, 0.11);
-  border-color: rgba(16, 185, 129, 0.3);
-}
-
-.club-cal-chip--daramji .club-cal-chip-name {
-  color: #047857;
+.club-cal-chip--bisangdadok .club-cal-chip-name {
+  color: #6d28d9;
 }
 
 .club-cal-chip--fourseasons {
@@ -1232,6 +1226,32 @@ p,
   color: #be123c;
 }
 
+.club-cal-chip--daramji {
+  background: rgba(132, 204, 22, 0.14);
+  border-color: rgba(132, 204, 22, 0.36);
+}
+
+.club-cal-chip--daramji .club-cal-chip-name {
+  color: #4d7c0f;
+}
+
+.club-cal-chip--ttegureu {
+  background: rgba(79, 70, 229, 0.12);
+  border-color: rgba(79, 70, 229, 0.34);
+}
+
+.club-cal-chip--ttegureu .club-cal-chip-name {
+  color: #4338ca;
+}
+
+.club-cal-chip--pongdang {
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.34);
+}
+
+.club-cal-chip--pongdang .club-cal-chip-name {
+  color: #0e7490;
+}
 .club-cal-chip-emoji {
   flex-shrink: 0;
   font-size: 0.65rem;
@@ -2548,31 +2568,5 @@ p,
 .quiz-result-cta-bird {
   flex-shrink: 0;
   color: #00b0f0;
-}
-
-
-
-
-
-.club-cal-chip--ttegureu {
-  background: rgba(79, 70, 229, 0.12);
-  border-color: rgba(79, 70, 229, 0.34);
-}
-
-.club-cal-chip--ttegureu .club-cal-chip-name {
-  color: #4338ca;
-}
-
-.club-cal-chip--pongdang {
-  background: rgba(6, 182, 212, 0.12);
-  border-color: rgba(6, 182, 212, 0.34);
-}
-
-.club-cal-chip--pongdang .club-cal-chip-name {
-  color: #0e7490;
-}
-
-.club-cal-chip--bisangdadok .club-cal-chip-name {
-  color: #6d28d9;
-}
+}`n
 
