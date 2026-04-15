@@ -967,6 +967,15 @@ var CLUB_SCHEDULE_RULES = [
     chipVariant: "onniflower",
     iconEmoji: "",
   },
+  {
+    nameMatch: "비상턴",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 3, day: 30 }],
+    shortLabel: "비상턴",
+    chipName: "비상턴",
+    chipVariant: "bisangturn",
+    iconEmoji: "",
+  },
 ];
 
 /** 달력 좌우 이동: 2026년 1월 ~ 5월만 (5월 이후 이동 불가) */
