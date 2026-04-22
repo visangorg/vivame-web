@@ -1279,6 +1279,16 @@ p,
 .club-cal-chip--grip .club-cal-chip-name {
   color: #92400e;
 }
+
+.club-cal-chip--bisanggol {
+  background: rgba(20, 184, 166, 0.12);
+  border-color: rgba(20, 184, 166, 0.34);
+}
+
+.club-cal-chip--bisanggol .club-cal-chip-name {
+  color: #0f766e;
+}
+
 .club-cal-chip-emoji {
   flex-shrink: 0;
   font-size: 0.65rem;

@@ -922,7 +922,10 @@ var CLUB_SCHEDULE_RULES = [
   {
     nameMatch: "포시즌스",
     weekdays: [],
-    specificDates: [{ year: 2026, month: 3, day: 9 }],
+    specificDates: [
+      { year: 2026, month: 3, day: 9 },
+      { year: 2026, month: 4, day: 27 },
+    ],
     shortLabel: "포시즌스",
     chipName: "포시즌스",
     chipVariant: "fourseasons",
@@ -983,6 +986,15 @@ var CLUB_SCHEDULE_RULES = [
     shortLabel: "그립",
     chipName: "그립",
     chipVariant: "grip",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "비상골린이들",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 4, day: 29 }],
+    shortLabel: "비상골",
+    chipName: "비상골",
+    chipVariant: "bisanggol",
     iconEmoji: "",
   },
 ];
