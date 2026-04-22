@@ -569,7 +569,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 * 💬 기쁜 일은 함께 축하하고, 힘든 일은 함께 나누며 위로받고 싶은 분
 
 * 🙏 신앙생활을 시작해보고 싶거나, 바쁜 일상 때문에 잠시 멈췄던 분 (종교가 없어도 환영합니다! 😊)`,
-    leaderInfo: "리더: CBS 기획운영 Cell 송윤호\n총무: 연수운영전략 Cell 김진수CP",
+    leaderInfo: "리더: CBS 기획운영 Cell 송윤호\n총무: 연수운영전략 Cell 김진수",
     email: "songyh@visang.com",
     image: "./assets/club-bisang-shinwoohoe.png",
     badge: "소통/힐링",
