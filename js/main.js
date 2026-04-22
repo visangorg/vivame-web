@@ -431,7 +431,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 * 👏 굿샷 요정: 동료의 멋진 샷에 진심 어린 박수와 "굿~샷!"을 외쳐줄 따뜻한 목소리를 가진 분.
 
 * 🤝 함께의 가치를 아는 분: 혼자 연습장 가는 것보다, 부족해도 함께 라운딩하며 추억 쌓기를 즐기는 분.`,
-    leaderInfo: "리더: 재무회계 Cell 이수양",
+    leaderInfo: "리더: 영업전략2 Cell 송병곤\n총무: 재무회계 Cell 이수양",
     email: "songyh@visang.com",
     image: "./assets/club-golf-beginners.png",
     badge: "골프/친목",
