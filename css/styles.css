@@ -2019,6 +2019,15 @@ p,
   backface-visibility: hidden;
 }
 
+/* 온니 플라워: 꽃이 사진 하단 — 상단(창·책상)을 덜 보이고 꽃 프레이밍 */
+.club-card-thumb-wrap .club-card-thumb[src*="club-only-flower"] {
+  object-position: center bottom;
+}
+
+#clubModalImage[src*="club-only-flower"] {
+  object-position: center bottom !important;
+}
+
 /*
  * 동호회 카드 본문 — 반응형 가독성 (중앙·폭 90%)
  * 비바미 활동 카드 본문은 .activities-section 아래에서 좌측 정렬로 덮어씀
