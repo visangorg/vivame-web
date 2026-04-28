@@ -437,11 +437,11 @@ SNS에서 난리 난 트렌디한 공간까지!
     badge: "골프/친목",
   },
   {
-    name: "온니 플라워",
+    name: "온리 플라워",
     tagline: "꽃과 함께 피어나는 일상의 힐링, 한 달에 한 번 나에게 주는 선물",
     summary:
       "월 참여도 90% 이상을 자랑하는 비상의 대표 힐링\u00A0모임! 직접 만든 꽃 작품으로 업무 스트레스는 해소하고, 사내 분위기까지 화사하게 업그레이드합니다.",
-    detail: `**"플라워 자체가 분위기!"** **'온니 플라워'**는
+    detail: `**"플라워 자체가 분위기!"** **'온리 플라워'**는
 꽃을 사랑하는 마음으로 모여
 월 1회 정기적인 활동을 이어가고 있습니다.
 
@@ -962,11 +962,11 @@ var CLUB_SCHEDULE_RULES = [
     iconEmoji: "",
   },
   {
-    nameMatch: "온니 플라워",
+    nameMatch: "온리 플라워",
     weekdays: [],
     specificDates: [{ year: 2026, month: 3, day: 28 }],
-    shortLabel: "온니플라워",
-    chipName: "온니플라워",
+    shortLabel: "온리플라워",
+    chipName: "온리플라워",
     chipVariant: "onniflower",
     iconEmoji: "",
   },
