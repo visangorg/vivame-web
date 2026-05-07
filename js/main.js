@@ -934,7 +934,10 @@ var CLUB_SCHEDULE_RULES = [
   {
     nameMatch: "다람지",
     weekdays: [],
-    specificDates: [{ year: 2026, month: 3, day: 22 }],
+    specificDates: [
+      { year: 2026, month: 3, day: 22 },
+      { year: 2026, month: 4, day: 14 },
+    ],
     shortLabel: "다람지",
     chipName: "다람지",
     chipVariant: "daramji",
