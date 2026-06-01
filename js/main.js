@@ -64,8 +64,8 @@ var CLUB_PORTAL_CLUBS = [
 * 🧗 "운동 좀 한다"는 소리를 듣고 싶은, 멋진 퍼포먼스를 꿈꾸는 분
 
 * 🤝 동료들과 함께 한계를 극복하며 끈끈한 팀워크를 느끼고 싶은 분`,
-    leaderInfo: "리더: 글로벌사업2 Cell 김현섭\n총무: 글로벌사업2 Cell 고수안",
-    email: "hskim5@visang.com",
+    leaderInfo: "리더: 경영관리 Cell 김주현\n총무: 글로벌사업2 Cell 고수안",
+    email: "kimjh20@visang.com",
     image: "./assets/club-grip.png",
     badge: "운동/퍼포먼스",
   },
