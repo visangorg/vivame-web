@@ -1002,9 +1002,9 @@ var CLUB_SCHEDULE_RULES = [
   },
 ];
 
-/** 달력 좌우 이동: 2026년 1월 ~ 5월만 (5월 이후 이동 불가) */
+/** 달력 좌우 이동: 2026년 1월 ~ 12월 */
 var CLUB_SCHED_VIEW_MIN = { year: 2026, month: 0 };
-var CLUB_SCHED_VIEW_MAX = { year: 2026, month: 4 };
+var CLUB_SCHED_VIEW_MAX = { year: 2026, month: 11 };
 
 var clubScheduleViewYear = /** @type {number | null} */ (null);
 var clubScheduleViewMonth = /** @type {number | null} */ (null);
