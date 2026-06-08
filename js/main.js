@@ -904,7 +904,10 @@ var CLUB_SCHEDULE_RULES = [
   {
     nameMatch: "팝케팅",
     weekdays: [],
-    specificDates: [{ year: 2026, month: 4, day: 15 }],
+    specificDates: [
+      { year: 2026, month: 4, day: 15 },
+      { year: 2026, month: 5, day: 20 },
+    ],
     shortLabel: "팝케팅",
     chipName: "팝케팅",
     chipVariant: "popketing",
@@ -925,6 +928,7 @@ var CLUB_SCHEDULE_RULES = [
     specificDates: [
       { year: 2026, month: 3, day: 9 },
       { year: 2026, month: 4, day: 27 },
+      { year: 2026, month: 5, day: 24 },
     ],
     shortLabel: "포시즌스",
     chipName: "포시즌스",
@@ -937,6 +941,7 @@ var CLUB_SCHEDULE_RULES = [
     specificDates: [
       { year: 2026, month: 3, day: 22 },
       { year: 2026, month: 4, day: 14 },
+      { year: 2026, month: 5, day: 25 },
     ],
     shortLabel: "다람지",
     chipName: "다람지",
@@ -946,7 +951,10 @@ var CLUB_SCHEDULE_RULES = [
   {
     nameMatch: "떼구르",
     weekdays: [],
-    specificDates: [{ year: 2026, month: 3, day: 23 }],
+    specificDates: [
+      { year: 2026, month: 3, day: 23 },
+      { year: 2026, month: 5, day: 23 },
+    ],
     shortLabel: "떼구르",
     chipName: "떼구르",
     chipVariant: "ttegureu",
@@ -976,7 +984,10 @@ var CLUB_SCHEDULE_RULES = [
   {
     nameMatch: "비상턴",
     weekdays: [],
-    specificDates: [{ year: 2026, month: 3, day: 30 }],
+    specificDates: [
+      { year: 2026, month: 3, day: 30 },
+      { year: 2026, month: 5, day: 11 },
+    ],
     shortLabel: "비상턴",
     chipName: "비상턴",
     chipVariant: "bisangturn",
@@ -998,6 +1009,15 @@ var CLUB_SCHEDULE_RULES = [
     shortLabel: "비상골",
     chipName: "비상골",
     chipVariant: "bisanggol",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "그림책 놀이터",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 5, day: 18 }],
+    shortLabel: "그림책",
+    chipName: "그림책",
+    chipVariant: "picturebook",
     iconEmoji: "",
   },
 ];

@@ -1289,6 +1289,15 @@ p,
   color: #0f766e;
 }
 
+.club-cal-chip--picturebook {
+  background: rgba(251, 146, 60, 0.14);
+  border-color: rgba(251, 146, 60, 0.36);
+}
+
+.club-cal-chip--picturebook .club-cal-chip-name {
+  color: #c2410c;
+}
+
 .club-cal-chip-emoji {
   flex-shrink: 0;
   font-size: 0.65rem;
