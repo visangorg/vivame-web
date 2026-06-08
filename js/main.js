@@ -1020,6 +1020,15 @@ var CLUB_SCHEDULE_RULES = [
     chipVariant: "picturebook",
     iconEmoji: "",
   },
+  {
+    nameMatch: "핸드메이드",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 5, day: 25 }],
+    shortLabel: "핸드메이드",
+    chipName: "핸드메이드",
+    chipVariant: "handmade",
+    iconEmoji: "",
+  },
 ];
 
 /** 달력 좌우 이동: 2026년 1월 ~ 12월 */

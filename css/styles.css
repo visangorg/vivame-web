@@ -1298,6 +1298,15 @@ p,
   color: #c2410c;
 }
 
+.club-cal-chip--handmade {
+  background: rgba(190, 24, 93, 0.12);
+  border-color: rgba(190, 24, 93, 0.34);
+}
+
+.club-cal-chip--handmade .club-cal-chip-name {
+  color: #9d174d;
+}
+
 .club-cal-chip-emoji {
   flex-shrink: 0;
   font-size: 0.65rem;
