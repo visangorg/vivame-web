@@ -26,26 +26,26 @@
 
                 <div class="hidden md:flex items-center gap-3 lg:gap-5 flex-1 justify-end min-w-0">
                     <div class="flex items-center gap-1 shrink-0" role="tablist" aria-label="사이트 주요 메뉴">
-                        <button type="button" class="site-tab site-tab--active px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="vivame" role="tab" aria-selected="true" aria-controls="tab-panel-vivame" id="tab-label-vivame">
+                        <button type="button" class="site-tab site-tab--active px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="vivame" role="tab" aria-selected="true" aria-controls="tab-panel-vivame" id="tab-label-vivame" onclick="setSiteTab('vivame')">
                             비바미
                         </button>
-                        <button type="button" class="site-tab px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="clubs" role="tab" aria-selected="false" aria-controls="tab-panel-clubs" id="tab-label-clubs">
+                        <button type="button" class="site-tab px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="clubs" role="tab" aria-selected="false" aria-controls="tab-panel-clubs" id="tab-label-clubs" onclick="setSiteTab('clubs')">
                             사내 동호회
                         </button>
-                        <button type="button" class="site-tab px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="interview" role="tab" aria-selected="false" aria-controls="tab-panel-interview" id="tab-label-interview">
+                        <button type="button" class="site-tab px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="interview" role="tab" aria-selected="false" aria-controls="tab-panel-interview" id="tab-label-interview" onclick="setSiteTab('interview')">
                             비바人터뷰
                         </button>
                     </div>
                 </div>
 
                 <div class="md:hidden flex items-center gap-1.5 shrink-0" role="tablist" aria-label="사이트 주요 메뉴">
-                    <button type="button" class="site-tab site-tab--active px-2 py-2 text-sm" data-site-tab="vivame" role="tab" aria-selected="true" aria-controls="tab-panel-vivame">
+                    <button type="button" class="site-tab site-tab--active px-2 py-2 text-sm" data-site-tab="vivame" role="tab" aria-selected="true" aria-controls="tab-panel-vivame" onclick="setSiteTab('vivame')">
                         비바미
                     </button>
-                    <button type="button" class="site-tab px-2 py-2 text-sm" data-site-tab="clubs" role="tab" aria-selected="false" aria-controls="tab-panel-clubs">
+                    <button type="button" class="site-tab px-2 py-2 text-sm" data-site-tab="clubs" role="tab" aria-selected="false" aria-controls="tab-panel-clubs" onclick="setSiteTab('clubs')">
                         동호회
                     </button>
-                    <button type="button" class="site-tab px-1.5 py-2 text-xs" data-site-tab="interview" role="tab" aria-selected="false" aria-controls="tab-panel-interview">
+                    <button type="button" class="site-tab px-1.5 py-2 text-xs" data-site-tab="interview" role="tab" aria-selected="false" aria-controls="tab-panel-interview" onclick="setSiteTab('interview')">
                         人터뷰
                     </button>
                 </div>
@@ -1401,7 +1401,7 @@
         </div>
     </footer>
 
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js?v=20260629"></script>
     <script src="./js/quiz.js"></script>
     <script>
         initQuizModal();

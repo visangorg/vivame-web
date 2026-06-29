@@ -1529,31 +1529,23 @@ function initClubPortal() {
  */
 function setSiteTab(name, opts) {
   opts = opts || {};
-  var vivamePanel = document.getElementById("tab-panel-vivame");
-  var clubsPanel = document.getElementById("tab-panel-clubs");
-  var interviewPanel = document.getElementById("tab-panel-interview");
-  if (!vivamePanel || !clubsPanel) return;
-
   var validTabs = ["vivame", "clubs", "interview"];
   if (validTabs.indexOf(name) === -1) name = "vivame";
 
-  var panels = [
-    { el: vivamePanel, key: "vivame" },
-    { el: clubsPanel, key: "clubs" },
-    { el: interviewPanel, key: "interview" },
-  ];
+  var panels = document.querySelectorAll("[data-site-panel]");
+  if (!panels.length) return;
 
-  panels.forEach(function (item) {
-    if (!item.el) return;
-    var active = item.key === name;
+  panels.forEach(function (panel) {
+    var panelName = panel.getAttribute("data-site-panel");
+    var active = panelName === name;
     if (active) {
-      item.el.classList.remove("hidden");
-      item.el.removeAttribute("hidden");
-      item.el.style.pointerEvents = "";
+      panel.classList.remove("hidden");
+      panel.removeAttribute("hidden");
+      panel.style.pointerEvents = "";
     } else {
-      item.el.classList.add("hidden");
-      item.el.setAttribute("hidden", "");
-      item.el.style.pointerEvents = "none";
+      panel.classList.add("hidden");
+      panel.setAttribute("hidden", "");
+      panel.style.pointerEvents = "none";
     }
   });
 
@@ -1574,7 +1566,19 @@ function setSiteTab(name, opts) {
   }
 }
 
+window.setSiteTab = setSiteTab;
+
+function ensureSiteTabPanelPlacement() {
+  var footer = document.querySelector("footer.site-footer");
+  var interviewPanel = document.getElementById("tab-panel-interview");
+  if (footer && interviewPanel && interviewPanel.parentElement !== document.body) {
+    document.body.insertBefore(interviewPanel, footer);
+  }
+}
+
 function initSiteTabs() {
+  ensureSiteTabPanelPlacement();
+
   document.querySelectorAll("[data-site-tab]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var tab = btn.getAttribute("data-site-tab");
