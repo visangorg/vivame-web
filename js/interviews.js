@@ -6,7 +6,7 @@ var INTERVIEW_ARTICLES = {
   "1": {
     title: '"도덕을 오도독 씹어먹다?!"',
     vol: "vol.1",
-    tag: "스터디",
+    tag: "비바코드",
     tagClass: "study",
     meta: "2025 | 비바코드 오도독 팀 · 최윤석 CP, 신예원 CP",
     thumb: "./assets/interview-vol1-hero.png",
@@ -16,7 +16,7 @@ var INTERVIEW_ARTICLES = {
   "2": {
     title: '"수를 풀며, 길을 만든다!"',
     vol: "vol.2",
-    tag: "스터디",
+    tag: "비바코드",
     tagClass: "study",
     meta: "2025 | 비바코드 수풀길 팀 · 유지인 CP, 정세연 CP",
     thumb: "./assets/interview-vol2-hero.png",
@@ -26,7 +26,7 @@ var INTERVIEW_ARTICLES = {
   "3": {
     title: '"가내수공업? 아니죠, 우리는 사내뮤공업!"',
     vol: "vol.3",
-    tag: "스터디",
+    tag: "비바코드",
     tagClass: "study",
     meta: "2025 | 비바코드 사내뮤공업 팀 · 최다솜 CP, 김현진 CP",
     thumb: "./assets/interview-vol3-mugong-hero.png",
@@ -36,7 +36,7 @@ var INTERVIEW_ARTICLES = {
   "4": {
     title: '🏆 "연속 3년, 혁신을 탭하다!" 기출탭탭 Cell의 이야기',
     vol: "vol.4",
-    tag: "업무",
+    tag: "비상의 소식",
     tagClass: "work",
     meta: "2025 | 기출탭탭 Cell · 박희순 CP, 허은실 CP, 김나래 CP",
     thumb: "./assets/interview-vol3-hero.png",
@@ -46,7 +46,7 @@ var INTERVIEW_ARTICLES = {
   "5": {
     title: '"국정을 준비한다는 것" 단 한 번의 실사를 위한 비상의 기록',
     vol: "vol.5",
-    tag: "업무",
+    tag: "비상의 소식",
     tagClass: "work",
     meta: "2025 | 국정교과서 발행사 선정 · 공아름 CP, 김욱 CP, 석진안 CP, 최윤석 CP",
     thumb: "./assets/interview-vol5-hero.png",
@@ -56,7 +56,7 @@ var INTERVIEW_ARTICLES = {
   "6": {
     title: '"우리는 어떤 기준으로 국어 교과서를 만들었을까"',
     vol: "vol.6",
-    tag: "업무",
+    tag: "비상의 소식",
     tagClass: "work",
     meta: "2025 | 중고등 국어 교과서 · 이장근 CP 외 5인",
     thumb: "./assets/interview-vol6-hero.png",

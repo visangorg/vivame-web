@@ -1937,7 +1937,8 @@ p,
 
 .interview-hero .interview-intro-body,
 .interview-hero .interview-tips-box,
-.interview-list-section {
+.interview-list-section,
+.interview-pitch-section {
   word-break: keep-all;
   overflow-wrap: break-word;
 }
@@ -2062,6 +2063,156 @@ p,
   .interview-list {
     gap: 1rem;
   }
+}
+
+/* 인터뷰 주제 제안 — 아카이브 하단 */
+.interview-pitch-section {
+  margin-top: 3rem;
+  padding: 2rem 1.5rem 2.25rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1px solid rgba(0, 181, 226, 0.12);
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .interview-pitch-section {
+    margin-top: 3.5rem;
+    padding: 2.5rem 2.25rem 2.75rem;
+    border-radius: 1.5rem;
+  }
+}
+
+.interview-pitch-heading {
+  margin: 0 0 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: #111827;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .interview-pitch-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+.interview-pitch-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: #4b5563;
+}
+
+@media (min-width: 640px) {
+  .interview-pitch-body {
+    font-size: 1rem;
+    gap: 1.2rem;
+  }
+}
+
+.interview-pitch-body p {
+  margin: 0;
+}
+
+.interview-pitch-scope,
+.interview-pitch-examples {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.interview-pitch-scope li,
+.interview-pitch-examples li {
+  position: relative;
+  padding-left: 1.1rem;
+  line-height: 1.75;
+}
+
+.interview-pitch-scope li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: #00b5e2;
+  font-weight: 700;
+}
+
+.interview-pitch-examples {
+  padding: 1.1rem 1.15rem;
+  border-radius: 0.875rem;
+  background: rgba(0, 181, 226, 0.06);
+  border: 1px solid rgba(0, 181, 226, 0.1);
+  gap: 0.65rem;
+}
+
+.interview-pitch-examples li {
+  padding-left: 0;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+@media (min-width: 640px) {
+  .interview-pitch-examples li {
+    font-size: 0.9375rem;
+  }
+}
+
+.interview-pitch-examples li::before {
+  content: none;
+}
+
+.interview-pitch-cta {
+  margin-top: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.interview-pitch-cta-lead {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+@media (min-width: 640px) {
+  .interview-pitch-cta-lead {
+    font-size: 1.0625rem;
+  }
+}
+
+.interview-pitch-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 9999px;
+  background: #00b5e2;
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 181, 226, 0.28);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.interview-pitch-cta-btn:hover {
+  background: #00c4f0;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 181, 226, 0.32);
 }
 
 .interview-card {
