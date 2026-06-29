@@ -2011,23 +2011,33 @@ p,
 }
 
 .interview-tips-list li {
-  display: inline-flex;
-  align-items: flex-start;
+  display: flex;
+  align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  max-width: 22rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
   padding: 0;
   font-size: 1.0625rem;
   line-height: 1.75;
   color: #374151;
   text-align: center;
+  white-space: nowrap;
 }
 
 @media (min-width: 640px) {
   .interview-tips-list li {
     font-size: 1.1875rem;
     line-height: 1.8;
-    max-width: 24rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .interview-tips-list li {
+    font-size: 0.9375rem;
+    white-space: normal;
+    width: 100%;
   }
 }
 
@@ -2044,6 +2054,7 @@ p,
   font-size: 1.0625rem;
   line-height: 1.8;
   text-align: center;
+  white-space: nowrap;
 }
 
 @media (min-width: 640px) {
