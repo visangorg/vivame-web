@@ -2273,14 +2273,12 @@
     </div>
 
         <!-- 인터뷰 상세 모달 -->
-    <div id="interviewModal" class="quiz-modal-overlay hidden fixed inset-0 z-[55] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="interviewModalTitle" hidden>
-        <div id="interviewModalBackdrop" class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
-        <div id="interviewModalContent" class="quiz-modal-popup interview-modal-shell relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-[24px]">
-            <div class="interview-modal-toolbar">
-                <button type="button" id="interviewModalClose" class="club-modal-close-btn" aria-label="닫기">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
-            </div>
+    <div id="interviewModal" class="quiz-modal-overlay interview-modal-overlay hidden fixed inset-0 z-[55] flex items-center justify-center p-3 sm:p-6 lg:p-10" role="dialog" aria-modal="true" aria-labelledby="interviewModalTitle" hidden>
+        <div id="interviewModalBackdrop" class="interview-modal-backdrop absolute inset-0" aria-hidden="true"></div>
+        <div id="interviewModalContent" class="quiz-modal-popup interview-modal-shell relative flex w-full max-h-[94vh] flex-col overflow-hidden">
+            <button type="button" id="interviewModalClose" class="interview-modal-close club-modal-close-btn" aria-label="닫기">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
             <div id="interviewModalBody" class="interview-modal-body"></div>
         </div>
     </div>
