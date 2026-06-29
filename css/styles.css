@@ -3,10 +3,42 @@
  */
 
 * {
-  font-family: "Pretendard Variable", Pretendard, "NanumSquare", "Nanum Square", "NanumSquareNeo",
-    -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
-    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", sans-serif;
+  font-family: "Pretendard Variable", Pretendard,
+    -apple-system, BlinkMacSystemFont, system-ui,
+    "Apple SD Gothic Neo", "Malgun Gothic", "Yu Gothic UI", "Meiryo",
+    "Noto Sans KR", "Noto Sans CJK KR",
+    "NanumSquare", "Nanum Square", "NanumSquareNeo",
+    Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+/* 비바人터뷰 브랜드 한자(人) — CJK 글리프·그라데이션 클립 호환 */
+.brand-han {
+  font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", "Yu Gothic UI",
+    "Microsoft YaHei", "Noto Sans CJK KR", "Noto Sans KR", sans-serif;
+  font-weight: inherit;
+  font-style: normal;
+}
+
+.brand-han--accent {
+  color: #00b5e2;
+  -webkit-text-fill-color: #00b5e2;
+}
+
+.vivame-brand-mark__grad {
+  background: linear-gradient(to right, #00b5e2, #2563eb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #00b5e2;
+  -webkit-text-fill-color: transparent;
+}
+
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .vivame-brand-mark__grad {
+    -webkit-text-fill-color: currentColor;
+    color: #00b5e2;
+    background: none;
+  }
 }
 
 html {
