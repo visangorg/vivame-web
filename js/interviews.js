@@ -18,9 +18,9 @@ var INTERVIEW_ARTICLES = {
     vol: "vol.2",
     tag: "스터디",
     tagClass: "study",
-    meta: "2025 | 비바코드 오도독 팀 · 최윤석 CP, 신예원 CP",
+    meta: "2025 | 비바코드 사내뮤공업 팀 · 최다솜 CP, 김현진 CP",
     thumb: "./assets/interview-vol2-hero.png",
-    thumbAlt: "오도독 팀 비바코드 스터디 현장 — 교과서를 함께 살펴보는 모습",
+    thumbAlt: "사내뮤공업 팀 콘텐츠 제작 현장 — 캡컷으로 음악 교육 영상을 편집하는 모습",
     templateId: "interview-article-vol2",
   },
 };
