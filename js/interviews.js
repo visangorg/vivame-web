@@ -53,6 +53,16 @@ var INTERVIEW_ARTICLES = {
     thumbAlt: "라키비움 실사 준비 공간 — 국정교과서 발행사 선정 평가를 위해 마련된 회의실",
     templateId: "interview-article-vol5",
   },
+  "6": {
+    title: '"우리는 어떤 기준으로 국어 교과서를 만들었을까"',
+    vol: "vol.6",
+    tag: "업무",
+    tagClass: "work",
+    meta: "2025 | 중고등 국어 교과서 · 이장근 CP 외 5인",
+    thumb: "./assets/interview-vol6-hero.png",
+    thumbAlt: "2022 개정 비상 중고등 국어 교과서 라인업",
+    templateId: "interview-article-vol6",
+  },
 };
 
 function openInterviewModal(id) {
