@@ -32,6 +32,9 @@
                         <button type="button" class="site-tab px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="clubs" role="tab" aria-selected="false" aria-controls="tab-panel-clubs" id="tab-label-clubs">
                             사내 동호회
                         </button>
+                        <button type="button" class="site-tab px-3 lg:px-4 py-2 text-base lg:text-lg" data-site-tab="interview" role="tab" aria-selected="false" aria-controls="tab-panel-interview" id="tab-label-interview">
+                            비바人터뷰
+                        </button>
                     </div>
                 </div>
 
@@ -41,6 +44,9 @@
                     </button>
                     <button type="button" class="site-tab px-2 py-2 text-sm" data-site-tab="clubs" role="tab" aria-selected="false" aria-controls="tab-panel-clubs">
                         동호회
+                    </button>
+                    <button type="button" class="site-tab px-1.5 py-2 text-xs" data-site-tab="interview" role="tab" aria-selected="false" aria-controls="tab-panel-interview">
+                        人터뷰
                     </button>
                 </div>
             </div>
@@ -1101,6 +1107,157 @@
             </div>
         </div>
     </div>
+    <!-- /tab-panel-clubs -->
+
+    <!-- Tab: 비바人터뷰 -->
+    <div id="tab-panel-interview" class="site-tab-panel hidden" role="tabpanel" aria-labelledby="tab-label-interview" data-site-panel="interview" hidden tabindex="-1">
+        <!-- 소개 섹션 -->
+        <section class="interview-hero relative overflow-hidden bg-gradient-to-b from-white via-blue-50/25 to-[#F8F9FA] pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pb-20" aria-labelledby="interview-hero-heading">
+            <div class="absolute inset-0 about-section-bg opacity-40 pointer-events-none" aria-hidden="true"></div>
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#00B5E2]/10 rounded-full border border-[#00B5E2]/20 mb-6">
+                    <span class="text-sm font-medium text-[#00B5E2]">사내 뉴스레터 · 인터뷰</span>
+                </div>
+                <h1 id="interview-hero-heading" class="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight text-content">
+                    🎙️ 비바人터뷰, 우리의 이야기로 채워집니다!
+                </h1>
+                <div class="interview-intro-body space-y-5 sm:space-y-6 text-base sm:text-lg text-gray-700 leading-relaxed text-content max-w-3xl mx-auto">
+                    <p>
+                        비바人터뷰는 비상의 곳곳에서 피어나는 배움과 협업, 그리고 문화의 순간들을 담는 인터뷰 형식의 사내 뉴스레터 콘텐츠입니다.
+                    </p>
+                    <p>
+                        우리 Core/Cell의 소소한 이야기, 자랑하고 싶은 에피소드, 요즘 새롭게 배우고 있는 것들까지! 우리 안의 다양한 이야기를 전사에 전하고자 합니다.
+                    </p>
+                </div>
+
+                <div class="interview-tips-box mt-10 sm:mt-12 text-left max-w-2xl mx-auto">
+                    <ul class="interview-tips-list">
+                        <li>우리 Cell/Core 소식 자랑하고 싶어요💝~!</li>
+                        <li>요즘 이런 주제로 스터디하고 있어요!</li>
+                        <li>이 이야기, 전사에도 공유하면 좋을 것 같아요!🤓</li>
+                        <li>동호회 활동 소식도 공유하고 싶어요!</li>
+                    </ul>
+                    <p class="interview-tips-footer text-content">
+                        <span class="font-bold text-gray-900">네! 다 됩니다! 아주 환영입니다. 😊</span>
+                        <span class="block sm:inline sm:ml-1 text-gray-600">(제보/문의: 교육기획 Cell)</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 인터뷰 목록 -->
+        <section class="interview-list-section bg-[#F8F9FA] pb-14 sm:pb-20 lg:pb-24" aria-labelledby="interview-list-heading">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="interview-list-heading text-center mb-10 sm:mb-12">
+                    <h2 id="interview-list-heading" class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 text-content">
+                        인터뷰 아카이브
+                    </h2>
+                    <p class="mt-3 text-sm sm:text-base text-gray-600 text-content">
+                        비상 곳곳의 이야기를 만나보세요
+                    </p>
+                </div>
+
+                <div class="interview-list" id="interviewList">
+                    <a href="#" class="interview-card" data-interview-id="1" aria-label="인터뷰: Core 팀이 만든 협업 루틴 이야기">
+                        <div class="interview-card-thumb-wrap">
+                            <div class="interview-card-thumb interview-card-thumb--1" role="img" aria-label="썸네일 placeholder"></div>
+                        </div>
+                        <div class="interview-card-body">
+                            <span class="interview-card-tag interview-card-tag--work">업무/협업</span>
+                            <h3 class="interview-card-title">"매주 30분, 우리 팀만의 싱크업이 일을 바꿨어요"</h3>
+                            <p class="interview-card-summary">바쁜 일정 속에서도 팀의 방향을 맞추기 위해 시작한 짧은 미팅이, 어떻게 협업 문화의 출발점이 되었는지 들어봤습니다.</p>
+                            <p class="interview-card-meta">2026.04 | 교육기획Cell 홍길동 CP</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="interview-card" data-interview-id="2" aria-label="인터뷰: 사내 문화 에피소드">
+                        <div class="interview-card-thumb-wrap">
+                            <div class="interview-card-thumb interview-card-thumb--2" role="img" aria-label="썸네일 placeholder"></div>
+                        </div>
+                        <div class="interview-card-body">
+                            <span class="interview-card-tag interview-card-tag--culture">사내 문화</span>
+                            <h3 class="interview-card-title">복도 한 켠, CP님들이 직접 꾸민 '작은 전시 공간'</h3>
+                            <p class="interview-card-summary">업무 공간에 작은 즐거움을 더한 사내 문화 프로젝트. 누구나 참여할 수 있었던 이야기를 담았습니다.</p>
+                            <p class="interview-card-meta">2026.03 | 브랜드Cell 김비상 CP</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="interview-card" data-interview-id="3" aria-label="인터뷰: 스터디 모임">
+                        <div class="interview-card-thumb-wrap">
+                            <div class="interview-card-thumb interview-card-thumb--3" role="img" aria-label="썸네일 placeholder"></div>
+                        </div>
+                        <div class="interview-card-body">
+                            <span class="interview-card-tag interview-card-tag--study">스터디</span>
+                            <h3 class="interview-card-title">점심시간 AI 스터디, 8주차 CP님들의 솔직한 후기</h3>
+                            <p class="interview-card-summary">"업무에 바로 써먹을 수 있을까?"에서 시작해, 팀 단위로 확장된 학습 여정을 공유합니다.</p>
+                            <p class="interview-card-meta">2026.03 | 디지털혁신Cell 이학습 CP</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="interview-card" data-interview-id="4" aria-label="인터뷰: 동호회 활동">
+                        <div class="interview-card-thumb-wrap">
+                            <div class="interview-card-thumb interview-card-thumb--4" role="img" aria-label="썸네일 placeholder"></div>
+                        </div>
+                        <div class="interview-card-body">
+                            <span class="interview-card-tag interview-card-tag--club">동호회</span>
+                            <h3 class="interview-card-title">봄맞이 등산 후, 팀즈 채팅이 뜨거워진 이유</h3>
+                            <p class="interview-card-summary">동호회 활동이 일터의 관계를 어떻게 바꾸는지, 함께 걸었던 CP님들의 에피소드를 모았습니다.</p>
+                            <p class="interview-card-meta">2026.02 | 사내 동호회 '원모어' 리더 박산 CP</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="interview-card" data-interview-id="5" aria-label="인터뷰: Core 소식">
+                        <div class="interview-card-thumb-wrap">
+                            <div class="interview-card-thumb interview-card-thumb--5" role="img" aria-label="썸네일 placeholder"></div>
+                        </div>
+                        <div class="interview-card-body">
+                            <span class="interview-card-tag interview-card-tag--work">업무/협업</span>
+                            <h3 class="interview-card-title">신규 프로젝트 킥오프, 처음부터 끝까지 협업 노하우</h3>
+                            <p class="interview-card-summary">서로 다른 Cell이 한 테이블에 앉았을 때 필요한 것들. 현장의 목소리로 정리한 협업 체크리스트.</p>
+                            <p class="interview-card-meta">2026.02 | 콘텐츠기획Cell 최협업 CP</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="interview-card" data-interview-id="6" aria-label="인터뷰: 사내 문화">
+                        <div class="interview-card-thumb-wrap">
+                            <div class="interview-card-thumb interview-card-thumb--6" role="img" aria-label="썸네일 placeholder"></div>
+                        </div>
+                        <div class="interview-card-body">
+                            <span class="interview-card-tag interview-card-tag--culture">사내 문화</span>
+                            <h3 class="interview-card-title">"오늘의 한 줄 감사" 채널이 만든 따뜻한 변화</h3>
+                            <p class="interview-card-summary">짧은 메시지 하나가 팀 분위기를 바꿀 수 있을까? 직접 운영해 본 CP님의 이야기입니다.</p>
+                            <p class="interview-card-meta">2026.01 | 인사Cell 정감사 CP</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="interview-card" data-interview-id="7" aria-label="인터뷰: 스터디">
+                        <div class="interview-card-thumb-wrap">
+                            <div class="interview-card-thumb interview-card-thumb--7" role="img" aria-label="썸네일 placeholder"></div>
+                        </div>
+                        <div class="interview-card-body">
+                            <span class="interview-card-tag interview-card-tag--study">스터디</span>
+                            <h3 class="interview-card-title">독서 토론 스터디 12권을 읽고 나서</h3>
+                            <p class="interview-card-summary">책 한 권이 업무 관점을 어떻게 넓혀 주는지, 스터디 멤버들의 변화를 인터뷰했습니다.</p>
+                            <p class="interview-card-meta">2026.01 | 경영지원Cell 한독서 CP</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="interview-card" data-interview-id="8" aria-label="인터뷰: 비바미 활동">
+                        <div class="interview-card-thumb-wrap">
+                            <div class="interview-card-thumb interview-card-thumb--8" role="img" aria-label="썸네일 placeholder"></div>
+                        </div>
+                        <div class="interview-card-body">
+                            <span class="interview-card-tag interview-card-tag--vivame">비바미</span>
+                            <h3 class="interview-card-title">비바미 19기, '비상 식구들'의 첫 프로젝트 이야기</h3>
+                            <p class="interview-card-summary">새롭게 출범한 19기가 어떤 마음으로 첫 활동을 준비했는지, 길잡이 CP와 함께 들어봤습니다.</p>
+                            <p class="interview-card-meta">2026.04 | 비바미 19기 황항연 CP</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- /tab-panel-interview -->
 
     <!-- Quiz Modal -->
     <div id="quizModal" class="quiz-modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">

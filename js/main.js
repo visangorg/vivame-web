@@ -1,6 +1,6 @@
 /**
  * VIVAME 랜딩 페이지 메인 스크립트
- * - 사이트 탭(비바미 / 사내 동호회) 전환
+ * - 사이트 탭(비바미 / 사내 동호회 / 비바人터뷰) 전환
  * - 부드러운 스크롤 (고정 헤더 오프셋)
  * - 후기 캐러셀 네비게이션
  * - 사내 동호회 카드 및 모달
@@ -1524,32 +1524,42 @@ function initClubPortal() {
 }
 
 /**
- * @param {'vivame' | 'clubs'} name
+ * @param {'vivame' | 'clubs' | 'interview'} name
  * @param {{ skipHash?: boolean }} [opts]
  */
 function setSiteTab(name, opts) {
   opts = opts || {};
   var vivamePanel = document.getElementById("tab-panel-vivame");
   var clubsPanel = document.getElementById("tab-panel-clubs");
+  var interviewPanel = document.getElementById("tab-panel-interview");
   if (!vivamePanel || !clubsPanel) return;
 
-  var isVivame = name === "vivame";
+  var validTabs = ["vivame", "clubs", "interview"];
+  if (validTabs.indexOf(name) === -1) name = "vivame";
 
-  if (isVivame) {
-    vivamePanel.classList.remove("hidden");
-    vivamePanel.removeAttribute("hidden");
-    clubsPanel.classList.add("hidden");
-    clubsPanel.setAttribute("hidden", "");
-  } else {
-    clubsPanel.classList.remove("hidden");
-    clubsPanel.removeAttribute("hidden");
-    vivamePanel.classList.add("hidden");
-    vivamePanel.setAttribute("hidden", "");
-  }
+  var panels = [
+    { el: vivamePanel, key: "vivame" },
+    { el: clubsPanel, key: "clubs" },
+    { el: interviewPanel, key: "interview" },
+  ];
+
+  panels.forEach(function (item) {
+    if (!item.el) return;
+    var active = item.key === name;
+    if (active) {
+      item.el.classList.remove("hidden");
+      item.el.removeAttribute("hidden");
+      item.el.style.pointerEvents = "";
+    } else {
+      item.el.classList.add("hidden");
+      item.el.setAttribute("hidden", "");
+      item.el.style.pointerEvents = "none";
+    }
+  });
 
   document.querySelectorAll("[data-site-tab]").forEach(function (btn) {
     var tab = btn.getAttribute("data-site-tab");
-    var active = (tab === "vivame" && isVivame) || (tab === "clubs" && !isVivame);
+    var active = tab === name;
     btn.setAttribute("aria-selected", active ? "true" : "false");
     btn.classList.toggle("site-tab--active", active);
   });
@@ -1557,17 +1567,10 @@ function setSiteTab(name, opts) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 
   if (!opts.skipHash && window.history && window.history.replaceState) {
-    var hash = isVivame ? "#vivame" : "#clubs";
+    var hash = "#" + name;
     if (window.location.hash !== hash) {
       window.history.replaceState(null, "", hash);
     }
-  }
-
-  try {
-    vivamePanel.style.pointerEvents = isVivame ? "" : "none";
-    clubsPanel.style.pointerEvents = isVivame ? "none" : "";
-  } catch (e) {
-    /* noop */
   }
 }
 
@@ -1575,22 +1578,40 @@ function initSiteTabs() {
   document.querySelectorAll("[data-site-tab]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var tab = btn.getAttribute("data-site-tab");
-      if (tab === "vivame" || tab === "clubs") setSiteTab(tab);
+      if (tab === "vivame" || tab === "clubs" || tab === "interview") {
+        setSiteTab(tab);
+      }
     });
   });
 
   window.addEventListener("hashchange", function () {
     var h = (window.location.hash || "").replace(/^#/, "");
-    if (h === "clubs") setSiteTab("clubs", { skipHash: true });
-    else setSiteTab("vivame", { skipHash: true });
+    if (h === "clubs" || h === "interview") {
+      setSiteTab(h, { skipHash: true });
+    } else {
+      setSiteTab("vivame", { skipHash: true });
+    }
   });
 
-  var initial = (window.location.hash || "").replace(/^#/, "") === "clubs" ? "clubs" : "vivame";
+  var initialHash = (window.location.hash || "").replace(/^#/, "");
+  var initial =
+    initialHash === "clubs" || initialHash === "interview"
+      ? initialHash
+      : "vivame";
   setSiteTab(initial, { skipHash: true });
+}
+
+function initInterviewCards() {
+  document.querySelectorAll(".interview-card").forEach(function (card) {
+    card.addEventListener("click", function (e) {
+      e.preventDefault();
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   initSiteTabs();
+  initInterviewCards();
   initClubPortal();
   initClubScheduleCalendar();
 

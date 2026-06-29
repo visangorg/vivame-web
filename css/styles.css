@@ -1914,6 +1914,305 @@ p,
   }
 }
 
+/* ========================================
+   비바人터뷰 탭
+   ======================================== */
+
+.interview-hero .interview-intro-body,
+.interview-hero .interview-tips-box,
+.interview-list-section {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.interview-tips-box {
+  padding: 1.35rem 1.25rem 1.5rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(
+    145deg,
+    rgba(224, 242, 254, 0.85) 0%,
+    rgba(240, 249, 255, 0.95) 45%,
+    rgba(254, 249, 231, 0.55) 100%
+  );
+  border: 1px solid rgba(0, 181, 226, 0.14);
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
+}
+
+@media (min-width: 640px) {
+  .interview-tips-box {
+    padding: 1.5rem 1.75rem 1.65rem;
+    border-radius: 1.5rem;
+  }
+}
+
+.interview-tips-list {
+  list-style: none;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.interview-tips-list li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #374151;
+}
+
+@media (min-width: 640px) {
+  .interview-tips-list li {
+    font-size: 1rem;
+  }
+}
+
+.interview-tips-list li::before {
+  content: "💬";
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.interview-tips-footer {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+/* 인터뷰 목록 — 세로 1열 */
+.interview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .interview-list {
+    gap: 1rem;
+  }
+}
+
+.interview-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .interview-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.15rem 1.25rem;
+    border-radius: 1.125rem;
+  }
+}
+
+.interview-card:hover {
+  background-color: rgba(0, 181, 226, 0.04);
+  border-color: rgba(0, 181, 226, 0.18);
+  box-shadow: 0 10px 28px rgba(0, 181, 226, 0.08);
+  transform: translateX(5px);
+}
+
+.interview-card-thumb-wrap {
+  flex-shrink: 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background-color: #f3f4f6;
+}
+
+@media (min-width: 640px) {
+  .interview-card-thumb-wrap {
+    width: 11.5rem;
+    height: 7.25rem;
+    border-radius: 0.65rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .interview-card-thumb-wrap {
+    width: 12.5rem;
+    height: 7.75rem;
+  }
+}
+
+.interview-card-thumb {
+  width: 100%;
+  height: 10rem;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.25s ease;
+}
+
+@media (min-width: 640px) {
+  .interview-card-thumb {
+    height: 100%;
+    min-height: 7.25rem;
+  }
+}
+
+.interview-card:hover .interview-card-thumb {
+  transform: scale(1.04);
+}
+
+.interview-card-thumb--1 {
+  background-image: linear-gradient(135deg, #e0f2fe 0%, #7dd3fc 55%, #38bdf8 100%);
+}
+
+.interview-card-thumb--2 {
+  background-image: linear-gradient(135deg, #ede9fe 0%, #c4b5fd 55%, #a78bfa 100%);
+}
+
+.interview-card-thumb--3 {
+  background-image: linear-gradient(135deg, #dcfce7 0%, #86efac 55%, #4ade80 100%);
+}
+
+.interview-card-thumb--4 {
+  background-image: linear-gradient(135deg, #ffedd5 0%, #fdba74 55%, #fb923c 100%);
+}
+
+.interview-card-thumb--5 {
+  background-image: linear-gradient(135deg, #dbeafe 0%, #93c5fd 55%, #60a5fa 100%);
+}
+
+.interview-card-thumb--6 {
+  background-image: linear-gradient(135deg, #fce7f3 0%, #f9a8d4 55%, #f472b6 100%);
+}
+
+.interview-card-thumb--7 {
+  background-image: linear-gradient(135deg, #ccfbf1 0%, #5eead4 55%, #2dd4bf 100%);
+}
+
+.interview-card-thumb--8 {
+  background-image: linear-gradient(135deg, #e0f2fe 0%, #00b5e2 50%, #0284c7 100%);
+}
+
+.interview-card-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.interview-card-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+@media (min-width: 640px) {
+  .interview-card-tag {
+    font-size: 0.75rem;
+  }
+}
+
+.interview-card-tag--work {
+  color: #0369a1;
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.22);
+}
+
+.interview-card-tag--culture {
+  color: #6d28d9;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.22);
+}
+
+.interview-card-tag--study {
+  color: #166534;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.22);
+}
+
+.interview-card-tag--club {
+  color: #c2410c;
+  background: rgba(251, 146, 60, 0.14);
+  border: 1px solid rgba(251, 146, 60, 0.28);
+}
+
+.interview-card-tag--vivame {
+  color: #0e7490;
+  background: rgba(0, 181, 226, 0.12);
+  border: 1px solid rgba(0, 181, 226, 0.28);
+}
+
+.interview-card-title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+@media (min-width: 640px) {
+  .interview-card-title {
+    font-size: 1.125rem;
+  }
+}
+
+.interview-card-summary {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #4b5563;
+}
+
+@media (min-width: 640px) {
+  .interview-card-summary {
+    font-size: 0.9375rem;
+  }
+}
+
+.interview-card-meta {
+  margin: 0.15rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #9ca3af;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interview-card,
+  .interview-card-thumb {
+    transition: none;
+  }
+
+  .interview-card:hover {
+    transform: none;
+  }
+
+  .interview-card:hover .interview-card-thumb {
+    transform: none;
+  }
+}
+
 /* About Section - soft flow background, dissolved in light (atmosphere-elevating) */
 .about-section-bg {
   background: 
