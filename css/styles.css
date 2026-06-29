@@ -1879,6 +1879,41 @@ p,
   }
 }
 
+/* 비바미 19기 소개 — About 섹션과 동일한 타이포·색상 체계 */
+.vivame-19-section .vivame-19-body,
+.vivame-19-section .vivame-19-body p {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.vivame-19-figure {
+  margin: 0 auto 2rem;
+  max-width: 42rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .vivame-19-figure {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.vivame-19-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.25rem;
+  box-shadow:
+    0 16px 48px rgba(15, 23, 42, 0.08),
+    0 4px 16px rgba(0, 181, 226, 0.06);
+}
+
+@media (min-width: 1024px) {
+  .vivame-19-image {
+    border-radius: 1.5rem;
+  }
+}
+
 /* About Section - soft flow background, dissolved in light (atmosphere-elevating) */
 .about-section-bg {
   background: 
@@ -2632,5 +2667,5 @@ p,
 .quiz-result-cta-bird {
   flex-shrink: 0;
   color: #00b0f0;
-}`n
+}
 

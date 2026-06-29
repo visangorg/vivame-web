@@ -1,6 +1,7 @@
 import { Navigation } from "../components/navigation";
 import { HeroSection } from "../components/hero-section";
 import { AboutSection } from "../components/about-section";
+import { Vivame19Section } from "../components/vivame-19-section";
 import { VisionSection } from "../components/vision-section";
 import { ActivitiesSection } from "../components/activities-section";
 import { BenefitsSection } from "../components/benefits-section";
@@ -12,6 +13,7 @@ export function LandingPage() {
       <Navigation />
       <HeroSection />
       <AboutSection />
+      <Vivame19Section />
       <VisionSection />
       <ActivitiesSection />
       <BenefitsSection />

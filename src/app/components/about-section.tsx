@@ -41,7 +41,7 @@ export function AboutSection() {
 
             <p className="text-lg text-gray-700 leading-relaxed">
               <span className="font-semibold text-gray-900">
-                2006년 1기를 시작으로 현재 18기까지 비바미가 운영되었습니다.
+                2006년 1기를 시작으로 현재 19기까지 비바미가 운영되었습니다.
               </span>
               <br />
               비상교육 내부에서 기획되는 활동은 비바미로 선별된 조직원들이<br />
