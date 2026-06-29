@@ -13,11 +13,11 @@ export function Vivame19Section() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-10"
+          className="flex flex-col items-center text-center mb-8 sm:mb-10"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="vivame-19-title text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight text-content max-w-4xl mx-auto text-center">
             비바미 19기{" "}
-            <span className="text-[#00B5E2]">'비상 식구들'</span>을 소개합니다! 🏠
+            <span className="text-[#00B5E2]">'비상 식구들'</span>을 소개합니다!
           </h2>
         </motion.div>
 

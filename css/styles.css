@@ -1880,6 +1880,13 @@ p,
 }
 
 /* 비바미 19기 소개 — About 섹션과 동일한 타이포·색상 체계 */
+.vivame-19-section .vivame-19-title {
+  width: 100%;
+  text-align: center;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 .vivame-19-section .vivame-19-body,
 .vivame-19-section .vivame-19-body p {
   word-break: keep-all;
