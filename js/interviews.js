@@ -43,6 +43,16 @@ var INTERVIEW_ARTICLES = {
     thumbAlt: "기출탭탭 AES KOREA Awards 2025 최고 혁신상 수상",
     templateId: "interview-article-vol4",
   },
+  "5": {
+    title: '"국정을 준비한다는 것" 단 한 번의 실사를 위한 비상의 기록',
+    vol: "vol.5",
+    tag: "업무",
+    tagClass: "work",
+    meta: "2025 | 국정교과서 발행사 선정 · 공아름 CP, 김욱 CP, 석진안 CP, 최윤석 CP",
+    thumb: "./assets/interview-vol5-hero.png",
+    thumbAlt: "라키비움 실사 준비 공간 — 국정교과서 발행사 선정 평가를 위해 마련된 회의실",
+    templateId: "interview-article-vol5",
+  },
 };
 
 function openInterviewModal(id) {

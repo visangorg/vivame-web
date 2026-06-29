@@ -2255,6 +2255,14 @@ p,
   letter-spacing: -0.02em;
 }
 
+.interview-article-section-subtitle {
+  margin: -0.5rem 0 1.1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #00B5E2;
+  letter-spacing: -0.01em;
+}
+
 .interview-qa {
   margin-bottom: 1.5rem;
 }
