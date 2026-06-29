@@ -13,6 +13,16 @@ var INTERVIEW_ARTICLES = {
     thumbAlt: "오도독 팀 비바코드 스터디 현장",
     templateId: "interview-article-vol1",
   },
+  "2": {
+    title: '"수를 풀며, 길을 만든다!"',
+    vol: "vol.2",
+    tag: "스터디",
+    tagClass: "study",
+    meta: "2025 | 비바코드 오도독 팀 · 최윤석 CP, 신예원 CP",
+    thumb: "./assets/interview-vol2-hero.png",
+    thumbAlt: "오도독 팀 비바코드 스터디 현장 — 교과서를 함께 살펴보는 모습",
+    templateId: "interview-article-vol2",
+  },
 };
 
 function openInterviewModal(id) {
