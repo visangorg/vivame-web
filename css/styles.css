@@ -1936,9 +1936,34 @@ p,
   overflow-wrap: break-word;
 }
 
+.interview-intro-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .interview-intro-body {
+    gap: 2rem;
+  }
+}
+
+.interview-intro-body p {
+  margin: 0;
+  line-height: 1.85;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+  .interview-intro-body p {
+    line-height: 1.9;
+  }
+}
+
 .interview-tips-box {
-  padding: 1.35rem 1.25rem 1.5rem;
+  padding: 1.65rem 1.5rem 1.85rem;
   border-radius: 1.25rem;
+  text-align: center;
   background: linear-gradient(
     145deg,
     rgba(224, 242, 254, 0.85) 0%,
@@ -1951,47 +1976,62 @@ p,
 
 @media (min-width: 640px) {
   .interview-tips-box {
-    padding: 1.5rem 1.75rem 1.65rem;
+    padding: 1.85rem 2rem 2rem;
     border-radius: 1.5rem;
   }
 }
 
 .interview-tips-list {
   list-style: none;
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.35rem;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .interview-tips-list {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
 }
 
 .interview-tips-list li {
-  position: relative;
-  padding-left: 1.35rem;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.35rem;
+  max-width: 22rem;
+  padding: 0;
   font-size: 0.9375rem;
-  line-height: 1.65;
+  line-height: 1.75;
   color: #374151;
+  text-align: center;
 }
 
 @media (min-width: 640px) {
   .interview-tips-list li {
     font-size: 1rem;
+    line-height: 1.8;
+    max-width: 24rem;
   }
 }
 
 .interview-tips-list li::before {
   content: "💬";
-  position: absolute;
-  left: 0;
-  top: 0.05rem;
+  flex-shrink: 0;
+  position: static;
   font-size: 0.85rem;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 .interview-tips-footer {
   margin: 0;
   font-size: 0.9375rem;
-  line-height: 1.65;
+  line-height: 1.8;
+  text-align: center;
 }
 
 /* 인터뷰 목록 — 세로 1열 */
