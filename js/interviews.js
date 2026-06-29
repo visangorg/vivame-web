@@ -23,6 +23,16 @@ var INTERVIEW_ARTICLES = {
     thumbAlt: "사내뮤공업 팀 콘텐츠 제작 현장 — 캡컷으로 음악 교육 영상을 편집하는 모습",
     templateId: "interview-article-vol2",
   },
+  "3": {
+    title: '"올해도 기출탭탭이 해냈습니다!"',
+    vol: "vol.3",
+    tag: "업무",
+    tagClass: "work",
+    meta: "2025 | 기출탭탭 Cell · 박희순 CP, 허은실 CP, 김나래 CP",
+    thumb: "./assets/interview-vol3-hero.png",
+    thumbAlt: "기출탭탭 AES KOREA Awards 2025 최고 혁신상 수상",
+    templateId: "interview-article-vol3",
+  },
 };
 
 function openInterviewModal(id) {
