@@ -1605,17 +1605,9 @@ function initSiteTabs() {
   setSiteTab(initial, { skipHash: true });
 }
 
-function initInterviewCards() {
-  document.querySelectorAll(".interview-card").forEach(function (card) {
-    card.addEventListener("click", function (e) {
-      e.preventDefault();
-    });
-  });
-}
-
 document.addEventListener("DOMContentLoaded", function () {
   initSiteTabs();
-  initInterviewCards();
+  if (typeof initInterviewCards === "function") initInterviewCards();
   initClubPortal();
   initClubScheduleCalendar();
 

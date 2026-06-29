@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -1160,15 +1160,15 @@
                 </div>
 
                 <div class="interview-list" id="interviewList">
-                    <a href="#" class="interview-card" data-interview-id="1" aria-label="인터뷰: Core 팀이 만든 협업 루틴 이야기">
+                    <a href="#" class="interview-card" data-interview-id="1" aria-label="비바人터뷰 vol.1: 오도독 팀 인터뷰">
                         <div class="interview-card-thumb-wrap">
-                            <div class="interview-card-thumb interview-card-thumb--1" role="img" aria-label="썸네일 placeholder"></div>
+                            <img src="./assets/interview-vol1-hero.png" alt="오도독 팀 비바코드 스터디 현장" class="interview-card-thumb-img" loading="lazy" />
                         </div>
                         <div class="interview-card-body">
-                            <span class="interview-card-tag interview-card-tag--work">업무/협업</span>
-                            <h3 class="interview-card-title">"매주 30분, 우리 팀만의 싱크업이 일을 바꿨어요"</h3>
-                            <p class="interview-card-summary">바쁜 일정 속에서도 팀의 방향을 맞추기 위해 시작한 짧은 미팅이, 어떻게 협업 문화의 출발점이 되었는지 들어봤습니다.</p>
-                            <p class="interview-card-meta">2026.04 | 교육기획Cell 홍길동 CP</p>
+                            <span class="interview-card-tag interview-card-tag--study">스터디</span>
+                            <h3 class="interview-card-title">📰 vol.1 | "도덕을 오도독 씹어먹다?!"</h3>
+                            <p class="interview-card-summary">22 개정 도덕 교과서 개발을 주제로, 서로 다른 팀원들이 모여 배움을 나누고 협업한 비바코드 오도독 팀의 이야기를 생생하게 담았습니다.</p>
+                            <p class="interview-card-meta">2025 | 비바코드 오도독 팀 · 최윤석 CP, 신예원 CP</p>
                         </div>
                     </a>
 
@@ -1260,6 +1260,129 @@
         </section>
     </div>
     <!-- /tab-panel-interview -->
+
+    <!-- 인터뷰 본문 (모달에 주입) -->
+    <div id="interview-article-vol1" hidden aria-hidden="true" class="hidden">
+<article class="interview-article text-content">
+    <header class="interview-article-header">
+        <p class="interview-article-vol">📰 비바人터뷰 vol.1</p>
+        <h2 class="interview-article-title">"도덕을 오도독 씹어먹다?!"</h2>
+    </header>
+
+    <figure class="interview-article-figure">
+        <img src="./assets/interview-vol1-hero.png" alt="오도독 팀 비바코드 스터디 현장 — 팀원들이 교과서 자료를 보며 토론하는 모습" loading="lazy" />
+        <figcaption>2025 비바人터뷰 오도독 팀 멤버들의 생생한 스터디 현장</figcaption>
+    </figure>
+
+    <div class="interview-article-lead">
+        <p>비바코드는 단순한 스터디를 넘어 자율적이고 창의적인 ‘우리만의 배움’을 실험하는 시간입니다. 그 중심엔 늘 멋진 사람들이 있습니다.</p>
+        <p>비바人터뷰는 비상 곳곳의 배움과 협업, 그리고 문화의 순간을 담는 인터뷰 형식의 뉴스레터 콘텐츠입니다.</p>
+        <p>이번 비바人터뷰의 주인공은 바로 비바코드 <strong class="text-[#00B5E2]">&lt;오도독&gt;</strong> 팀입니다! "도덕을 씹고 뜯고 맛보고 즐기자!" 이름부터 범상치 않은 오도독 팀.</p>
+        <p>22 개정 도덕 교과서 개발을 주제로 서로 다른 팀원들이 모여 배움을 나누고 협업한 과정을 생생하게 담았습니다.</p>
+        <p>“비바코드 팀들은 어떻게 학습하고 있을까?” 궁금했던 CP님들께 작은 참고가 되길 바랍니다. : )</p>
+    </div>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">1. 오도독 팀의 시작</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 먼저, 비바코드를 어떻게 시작하시게 되었는지 궁금합니다.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">최윤석 CP</span> 저는 사실 국정 교과서 개발을 할 때부터 비바코드(구 학습조)를 꾸준히 진행했습니다. 특히 저희 디자인팀은 과목별로 모형 교과서를 실험적으로 제작하는 작업을 지속해 왔고요. 이번에는 국어, 수학, 통합신체활동, 그리고 도덕까지 총 4개 과목의 모형 교과서를 기획하게 되었고, 그중 저희 팀은 2022 개정 도덕 교과서를 맡게 되었습니다.</p>
+            <p class="interview-qa-a">기존 2015 개정 도덕 교과서는 타사(지학사)에서 개발했고, 2022 개정판은 비상에서 새롭게 만든 교과서입니다. 다른 과목들은 기존 교과서를 기반으로 새로운 형식의 모형 교과서를 제작했지만, 도덕은 이번에 저희가 직접 개발한 신간이기 때문에 별도로 모형 교과서를 제작하기보다는, 2015 개정과 2022 개정 도덕 교과서를 비교·분석한 디자인 중심의 연구물을 만들자는 방향으로 비바코드 주제를 설정하게 되었습니다. 이를 통해 저희가 새롭게 개발한 교과서의 강점과 개선 포인트를 되짚고, 향후 더 나은 교과서 기획을 위한 인사이트를 얻고자 했습니다.</p>
+        </div>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. ‘오도독’ 팀은 이름부터 너무 흥미로운데요. 팀 이름 ‘오도독’은 어떤 의미를 담고 있나요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">신예원 CP</span> 팀 네이밍에 진심이었습니다ㅎㅎ 네이밍 후보가 10개 가까이 정말 많았고, 심지어 챗GPT에 추천도 받았어요. 최종적으로 인간이 낸 아이디어인 ‘오도독’이 낙점되었어요. ‘오도독’은 말 그대로 도덕을 함께 씹고 맛보자!는 의미예요. 도덕책을 단순히 개발하는 걸 넘어, 깊이 있게 훑어보고 더 나은 방향으로 만들자는 의지가 담겨 있습니다. “오! 도덕!”이라는 중의적인 표현도 있고요. “이름 공모전 해야 하는 거 아닌가?" 농담도 하며 이름 하나에 정성이 가득했습니다.</p>
+        </div>
+    </section>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">2. 어떻게 운영되었나요?</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 스터디는 언제부터 어떻게 진행되었나요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">최윤석 CP</span> 저희 스터디는 4월 16일에 시작했어요. 모형 교과서 개발 일정이 있었기 때문에 빠르게 출발했지만, 중간에 주제가 변경되면서 한 차례 멈췄고, 이후 새로운 주제로 다시 시작하게 되었어요. 2주 간격으로 운영하고 있고, 시피님들의 내근일에 맞춰 목요일에 진행하고 있습니다. 팀 구성은 디자인팀 8명, 개발팀 4명 등 총 12명이에요.</p>
+        </div>
+
+        <figure class="interview-article-figure interview-article-figure--inline">
+            <img src="./assets/interview-vol1-study.png" alt="오도독 팀 스터디 발표 화면 — 국정도덕 교과서 개요 및 교육과정 비교" loading="lazy" />
+        </figure>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 리더로서 준비하실 때 가장 어려웠던 점은 무엇이었나요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">최윤석 CP</span> 비바코드 리딩은 저도 처음이라, 통 이끄는 역할이 생각보다 쉽지 않더라고요. 사전에 계획이 잘 서 있지 않으면 서로 오해도 생기고, 통에서 뭘 준비해야 할지 혼선이 있었어요. 12명이다 보니 L층엔 인원이 앉을 자리가 부족해서 매번 통실을 찾아다니는 것도 작은 고민거리였고요.</p>
+            <p class="interview-qa-a">그럼에도 불구하고 디자인뿐만 아니라 개발 부서와 인문융합 Cell, 국정교과서 Cell까지 함께하고 있어 다양한 관점이 만나는 자리인 것 같아요. 또, 통을 진행하며 무엇보다 대면이 비대면보다 훨씬 효과적이라는 걸 느꼈어요. 특히 저희는 모형 교과서 샘플을 함께 보며 의견을 나눠야 하다 보니, 자유롭게 상호작용을 할 수 있는 협력적 구조가 중요하더라요.</p>
+        </div>
+    </section>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">3. 비바코드를 하며 좋았던 점은?</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 활동하시면서 ‘비바코드 하길 잘했다!’고 느끼신 순간이 있었을까요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">신예원 CP</span> 네, 이번 비바코드는 저희 팀 업무와도 밀접한 주제이긴 한데요, 학습을 목적으로 모이다 보니 평소보다 훨씬 가벼운 마음으로 팀 간 교류가 가능했던 것 같아요. 딱딱한 회의가 아니라 함께 배우는 자리여서 오히려 업무와는 다른 환기되는 시간이었달까요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">최윤석 CP</span> 저는 살짝 반대인 거 같아요! 비바코드 리더 역할을 하다 보니, 리딩 부담을 느낄 때도 있었고요. 프로젝트 주제 자체가 워낙 본업과 연결돼 있다 보니, 업무처럼 다가오기도 했던 게 사실입니다 (껄껄). 그래도 그 와중에 평소 교류가 많지 않았던 팀들과 함께 작업할 수 있었고, 서로 다른 시각에서 아이디어를 나누는 경험은 분명 의미 있는 시간이었어요.</p>
+        </div>
+    </section>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">4. 무엇을 배웠나요?</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 지금까지의 비바코드 활동을 통해 얻은 배움이나 변화가 있다면 말씀해 주세요! 혹시 실제 업무에 도움이 된 순간도 있으셨을까요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">최윤석 CP</span> 이번 스터디는 특히 22 개정 도덕 교과서를 다시 들여다보며 이전 15 개정과 어떤 점이 달라졌는지 비교하고, 학생들의 학습 경험이 어떻게 더 나아졌는지를 확인하는 데 초점을 뒀어요. 이런 과정을 통해 다음 개정 교과서 개발 때는 어떻게 개선할 수 있을지에 대한 인사이트도 얻을 수 있었고요.</p>
+            <p class="interview-qa-a">단순한 리뷰를 넘어, 실험적으로 다양한 아이디어를 시도해 볼 수 있었던 점이 정말 좋았습니다. 모형 교과서를 여러 권 제작하며 느꼈던 건, 교과서의 미래를 새로운 형식으로 제안할 수 있다는 가능성이었어요. 기존의 판형과 구조를 넘어, 학습자 입장에서 더 직관적이고 흥미로운 디자인을 시도하고 있고, 이런 창의적인 실험이 해외 디자인 어워드 수상으로도 이어졌었습니다.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">신예원 CP</span> 저도 공감해요. 저는 이번 국정 도덕 교과서 개발에는 직접 참여하지 않았었는데요, 이번 비바코드를 통해 단순히 예쁘게 디자인하는 걸 넘어, 내용 개선을 위한 깊은 고민이 있었다는 걸 알게 되었고, 덕분에 개발팀의 관점과 고민을 더 깊이 이해하게 됐어요. 단순히 결과물을 만드는 걸 넘어서, 서로의 노고를 인정하고 공유할 수 있었던 시간이었다고 생각합니다. :)</p>
+        </div>
+    </section>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">5. 우리 팀만의 차별점은?</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 오도독 팀만의 소통 방식이나 학습 분위기에서 다른 팀과 차별화되는 점이 있다면 어떤 게 있을까요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">신예원 CP</span> 통 진행 후 꼭 ‘통록’을 자세히 정리해서 공유하고 있어요. 2주 간격으로 모이다 보니, 팀원도 10명이 넘고, 기억이 흐려질 수 있잖아요. 그래서 다음 모임 때 무엇을 개발하고 어떤 준비가 필요한지를 명확히 기록하고, 그 내용을 바탕으로 자연스럽게 팔로업이 이어질 수 있도록 했습니다. 특히 네이버 클로바노트와 ChatGPT를 적극 활용해서 정리와 자료 공유의 효율을 높였습니다. : )</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">최윤석 CP</span> 한 가지 자랑하고 싶은 건, 비바코드를 2주에 한 번, 정말 성실하게 3회 이상 진행해 왔다는 점이에요. 업무와 병행하며 이 정도의 집중도와 지속성을 유지하기 쉽지 않은데, 그만큼 팀원 모두가 진심으로 참여하고 있다는 뜻이겠죠? (껄껄) 열심히 토의중인 오도독 팀 멤버들 : )</p>
+        </div>
+    </section>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">마지막 한마디</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 비바코드 활동을 마무리하며 느낀 점이나, 앞으로 참여할 분들에게 전하고 싶은 메시지가 있다면 부탁드립니다!</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">최윤석 CP</span> 업무가 많고, 비바코드까지 병행하다 보니 아무래도 신경을 100% 쏟기 어려운 게 사실이에요. 하지만 그런 와중에도 우리가 목표한 것을 비바코드로 설정했고, 끝까지 잘 해내서 값진 결과물로 남았으면 하는 바람입니다. 업무 외의 시간을 내어 무언가를 ‘또’ 해낸다는 게 쉬운 일은 아니잖아요. 그래도 이왕 시작한 만큼, 마지막엔 웃으면서 마무리할 수 있었으면 좋겠다는 바람이에요. 내년에도 또 비바코드 하고 싶어요! 라는 말이 나올 수 있도록 하고 싶습니다. (껄껄)</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">신예원 CP</span> 저도 비슷한 생각이에요. 이번 비바코드는 저희 부서에서 2년 넘게 개발해 온 국정 도덕 교과서를 가지고 진행하는 프로젝트예요. 그러다 보니 애초에 다루는 ‘원재료’ 자체가 귀합니다. 🙂 디자인팀이 손수 만든 결과물을 다시 함께 들여다보며 서로의 노고를 되새기는… 정말, 뜻깊은 비바코드로 마무리되었으면 합니다.</p>
+        </div>
+
+        <div class="interview-qa interview-qa--closing">
+            <p class="interview-qa-q">Q. 인터뷰 감사합니다, CP님들! 덕분에 오도독 팀의 따뜻하고 진정성 있는 학습 이야기를 들을 수 있었어요. 이 이야기가 다른 팀들에게도 좋은 자극이 되고, 비상 안에 배움의 문화가 더 단단히 자리 잡는 계기가 될 거라고 믿습니다. : )</p>
+        </div>
+    </section>
+
+    <footer class="interview-article-footer">
+        <h3 class="interview-article-section-title">비바人터뷰를 마치며…</h3>
+        <p>비상에는 다양한 배움이 존재합니다. 오늘도 묵묵히, 그러나 실험적으로 ‘더 나은 내일’을 만드는 사람들이 있습니다. 오도독 팀처럼요.</p>
+        <p>이번 인터뷰를 함께 만들어주신 최윤석 CP님, 신예원 CP님, 그리고 오도독 팀 모두에게 진심으로 감사드립니다. 비바코드는 계속됩니다. : )</p>
+    </footer>
+</article>
+
+    </div>
+
+
+    <!-- 인터뷰 상세 모달 -->
+    <div id="interviewModal" class="quiz-modal-overlay hidden fixed inset-0 z-[55] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="interviewModalTitle" hidden>
+        <div id="interviewModalBackdrop" class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+        <div id="interviewModalContent" class="quiz-modal-popup interview-modal-shell relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-[24px]">
+            <div class="interview-modal-toolbar">
+                <button type="button" id="interviewModalClose" class="club-modal-close-btn" aria-label="닫기">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div id="interviewModalBody" class="interview-modal-body"></div>
+        </div>
+    </div>
 
     <!-- Quiz Modal -->
     <div id="quizModal" class="quiz-modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
@@ -1403,6 +1526,7 @@
         </div>
     </footer>
 
+    <script src="./js/interviews.js?v=20260629"></script>
     <script src="./js/main.js?v=20260629"></script>
     <script src="./js/quiz.js"></script>
     <script>
