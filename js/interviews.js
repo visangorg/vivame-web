@@ -63,6 +63,16 @@ var INTERVIEW_ARTICLES = {
     thumbAlt: "2022 개정 비상 중고등 국어 교과서 라인업",
     templateId: "interview-article-vol6",
   },
+  "7": {
+    title: '"시피님의 퇴근길은 어떤 색인가요?"',
+    vol: "vol.7",
+    tag: "동호회",
+    tagClass: "club",
+    meta: "2026 | 원모어·비상턴·다람지 · 홍현우 CP, 이소민 CP, 박준영 CP, 이병주 CP",
+    thumb: "./assets/interview-vol7-hero.png",
+    thumbAlt: "원모어·비상턴·다람지 — 비상 사내 동호회 세 팀 소개",
+    templateId: "interview-article-vol7",
+  },
 };
 
 function openInterviewModal(id) {

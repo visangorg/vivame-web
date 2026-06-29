@@ -49,6 +49,12 @@ html {
   display: block;
 }
 
+/* 모달 주입용 인터뷰 본문 — 목록 아래 노출 방지 */
+#interview-article-templates,
+[id^="interview-article-vol"] {
+  display: none !important;
+}
+
 /* 텍스트 줄바꿈 품질 향상 - 단어가 잘리지 않고 띄어쓰기 단위로 줄바꿈 */
 p,
 .text-content {
