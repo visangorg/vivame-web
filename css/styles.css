@@ -1936,7 +1936,6 @@ p,
    ======================================== */
 
 .interview-hero .interview-intro-body,
-.interview-hero .interview-tips-box,
 .interview-list-section,
 .interview-pitch-section {
   word-break: keep-all;
@@ -2019,26 +2018,17 @@ p,
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
-  font-size: 1.0625rem;
+  font-size: clamp(0.875rem, 2.8vw, 1.1875rem);
   line-height: 1.75;
   color: #374151;
   text-align: center;
   white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
-@media (min-width: 640px) {
-  .interview-tips-list li {
-    font-size: 1.1875rem;
-    line-height: 1.8;
-  }
-}
-
-@media (max-width: 380px) {
-  .interview-tips-list li {
-    font-size: 0.9375rem;
-    white-space: normal;
-    width: 100%;
-  }
+.interview-tips-list li > span {
+  white-space: nowrap;
 }
 
 .interview-tips-list li::before {
