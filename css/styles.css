@@ -1942,6 +1942,11 @@ p,
   overflow-wrap: break-word;
 }
 
+.interview-hero .hero-slogan {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 .interview-intro-body {
   display: flex;
   flex-direction: column;
