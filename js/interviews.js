@@ -64,6 +64,16 @@ var INTERVIEW_ARTICLES = {
     thumbAlt: "2022 개정 비상 중고등 국어 교과서 라인업",
     templateId: "interview-article-vol6",
   },
+  "8": {
+    title: '🐟 "AI로 붕어빵을 굽는다?!" \'아트바나나\' 팀이 말하는 AI 시대의 인간 기획자',
+    vol: "vol.8",
+    tag: "비바코드",
+    tagClass: "study",
+    meta: "2026 | 비바코드 아트바나나 팀 · 노연교 CP, 김태연 CP, 김내영 CP, 박해인 CP",
+    thumb: "./assets/interview-vol8-hero.png",
+    thumbAlt: "아트바나나 팀 — 통합실용1 Cell 미팅룸에서 AI 기반 미술 콘텐츠 기획 회의",
+    templateId: "interview-article-vol8",
+  },
   "7": {
     title: '"시피님의 퇴근길은 어떤 색인가요?"',
     vol: "vol.7",

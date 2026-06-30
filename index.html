@@ -1185,6 +1185,18 @@
 
                 <div class="interview-list" id="interviewList">
                     <!-- 최신 호수가 위로 (신규 호는 이 블록 맨 위에 추가) -->
+                    <a href="#" class="interview-card" data-interview-id="8" aria-label="비바人터뷰 vol.8: 아트바나나 팀 인터뷰">
+                        <div class="interview-card-thumb-wrap">
+                            <img src="./assets/interview-vol8-hero.png" alt="아트바나나 팀 — 통합실용1 Cell AI 미술 콘텐츠 기획 회의" class="interview-card-thumb-img" loading="lazy" />
+                        </div>
+                        <div class="interview-card-body">
+                            <span class="interview-card-tag interview-card-tag--study">비바코드</span>
+                            <h3 class="interview-card-title">📰 vol.8 | 🐟 "AI로 붕어빵을 굽는다?!" '아트바나나' 팀이 말하는 AI 시대의 인간 기획자</h3>
+                            <p class="interview-card-summary">생성형 AI로 미술 수업 자료·영상을 실험하는 아트바나나 팀. '붕어빵' 프로세스로 만드는 만능 미술 키트를 향한 창의적인 비바코드 여정.</p>
+                            <p class="interview-card-meta">2026 | 비바코드 아트바나나 팀 · 노연교 CP, 김태연 CP, 김내영 CP, 박해인 CP</p>
+                        </div>
+                    </a>
+
                     <a href="#" class="interview-card" data-interview-id="7" aria-label="비바人터뷰 vol.7: 사내 동호회 인터뷰">
                         <div class="interview-card-thumb-wrap">
                             <img src="./assets/interview-vol7-hero.png" alt="원모어·비상턴·다람지 — 비상 사내 동호회 세 팀 소개" class="interview-card-thumb-img" loading="lazy" />
@@ -2285,6 +2297,131 @@
 </article>
     </div>
 
+    <!-- 인터뷰 vol.8 본문 (모달에 주입) -->
+    <div id="interview-article-vol8" hidden aria-hidden="true" class="hidden">
+<article class="interview-article text-content">
+    <header class="interview-article-header">
+        <p class="interview-article-vol">📰 비바人터뷰 vol.8</p>
+        <h2 class="interview-article-title">🐟 "AI로 붕어빵을 굽는다?!" '아트바나나' 팀이 말하는 AI 시대의 인간 기획자</h2>
+    </header>
+
+    <figure class="interview-article-figure">
+        <img src="./assets/interview-vol8-hero.png" alt="아트바나나 팀 — 통합실용1 Cell 미팅룸에서 AI 기반 미술 콘텐츠 기획 회의" loading="lazy" />
+        <figcaption>기술과 예술의 경계를 넘나드는 아트바나나 팀의 스터디 현장</figcaption>
+    </figure>
+
+    <div class="interview-article-lead">
+        <p>비바인의 일하는 이야기를 담는 ‘비바人터뷰’가 이번에는 &lt;비바코드 편&gt;으로 찾아왔습니다. 현재 비상에서 무려 42개의 비바코드 팀이 뜨거운 열정으로 참여하고 있는데요. 그중에서도 기술과 예술의 경계를 허물며 아주 흥미로운 실험을 이어가고 있는 팀을 만나보았습니다.</p>
+        <p>이름부터 상큼하고 귀여운 <strong class="text-[#00B5E2]">아트바나나</strong> 팀! 🍌🍌🍌 점점 빠르게 변해가는 콘텐츠 제작 환경 속에서 막연히 기술을 받아들이기보다, 미술 콘텐츠 개발 업무에 생성형 AI를 어떻게 활용할 수 있을지 직접 부딪히며 연구하는 비바코드 팀입니다.</p>
+        <p>단순히 AI 툴을 체험해 보는 것을 넘어, 실제 교실에서 쓰일 수업 자료와 영상 개발에 적용하며 우리만의 워크플로우를 찾아가고 있는 이들의 창의적인 여정. 아트바나나 팀의 비바코드 스토리, 지금 함께 만나보시죠!</p>
+    </div>
+
+    <div class="interview-article-lead interview-article-lead--speakers">
+        <p><span class="interview-qa-speaker">노연교 CP</span> (🍌 통합실용1 Cell) — AI를 조련하려다 오히려 AI에게 조련(?)당하는 날도 있지만, 끝내 원하는 결과를 얻기 위해 끈질기게 프롬프트를 다듬고 있습니다. 초·중·고 미술 교과서 책임을 맡고 있습니다.</p>
+        <p><span class="interview-qa-speaker">김태연 CP</span> (🍌 통합실용1 Cell) — 오늘도 내일도 프롬프트를 다듬는 AI 실험자입니다. 고등 미술 교과서 개발을 담당하고 있습니다.</p>
+        <p><span class="interview-qa-speaker">김내영 CP</span> (🍌 통합실용1 Cell) — 올해는 꼭 생성형 AI와 친해지고 싶은 CP입니다. 중등 미술 교과서 개발을 담당하고 있습니다.</p>
+        <p><span class="interview-qa-speaker">박해인 CP</span> (🍌 통합실용1 Cell) — AI 활용에 성공하는 날까지 실패를 즐기는 AI 러너입니다. 초등 미술 교과서 개발을 담당하고 있습니다.</p>
+    </div>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">1. 아트바나나 팀의 시작과 정체성</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 먼저 ‘아트바나나’가 어떤 팀인지 소개 부탁드려요. 팀명도 정말 귀엽고 직관적인데 어떤 기획 의도가 담겨 있나요? : )</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">태연 CP</span> 아트바나나는 미술 콘텐츠 개발 업무에 생성형 AI를 어떻게 활용할 수 있을지 함께 실험하고 학습하는 비바코드 팀입니다. 단순히 AI 툴을 체험해보는 데서 그치지 않고, 실제 수업 자료 중 특히 영상 자료 개발에 적용해 보면서 업무에 도움이 되는 방식을 찾아가고 있어요.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">내영 CP</span> ‘아트바나나’는 미술을 뜻하는 ‘아트’와 저희가 실험해 보고 싶었던 AI ‘나노바나나’를 결합한 이름이에요. 어쩌다 가볍게 나왔던 팀명이었는데 나름 귀엽고 재미있는 이름이라는 생각이 들더라고요. 그래서 미술 콘텐츠를 AI와 함께 더 새롭게 만들어보자는 의미를 듬뿍 담아보았습니다.</p>
+        </div>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 이번 비바코드를 시작하게 된 특별한 계기가 있으셨을까요? 그리고 수많은 AI 중 왜 ‘Nano Banana’를 주제로 선정하셨는지도 궁금합니다.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">해인 CP</span> 점점 콘텐츠 제작 환경이 빠르게 바뀌고 있다고 느끼고 있어요. 특히 생성형 AI의 발전 속도가 너무 빨라서 콘텐츠 제작 업무에 활용될 수 있는 범위도 계속 넓어지고 있다고 느꼈습니다. 막연히 AI를 받아들이는 것보다, 여러 방식으로 실험해 보고 우리만의 워크플로우를 찾아보자는 생각으로 비바코드에 참여하게 되었습니다.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">연교 CP</span> 미술 교과 수업 자료들은 대부분 만들기/그리기 제작 과정, 작가/작품 감상 등 실물 이미지나 영상 등 시각적인 요소가 많은 편이에요. 그렇기 때문에 Nano Banana는 생성형 AI 중 가장 고도화되었다고 생각하여 이미지와 영상 기반의 콘텐츠 제작 흐름을 실험해 보기에 적합하다고 생각했습니다. 특히 수업용 영상이나 제작 과정 안내 자료를 만들 때 AI가 어느 정도까지 도움을 줄 수 있는지 확인해 보고 싶었어요.</p>
+        </div>
+    </section>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">2. 생성형 AI와 함께 일한다는 것</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 현업에서 생성형 AI와 함께 일한다는 건 아트바나나 팀에게 어떤 의미인가요? 업무 방식에는 구체적으로 어떤 변화가 생겼는지도 알려주세요.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">태연 CP</span> 얼마 전만 해도 이미지 생성 하나에 많은 시간을 소모했던 AI가 어느새 몇 초 만에 간단한 프롬프트만으로도 시각화가 가능해졌어요. 각 AI의 이미지 생성 능력이 전체적으로 향상하여 초안 작업이나 아이디어 시각화에 손색이 없고, 생성형 AI가 없는 과거의 워크플로는 떠오르지 않을 정도입니다. 생성형 AI와 함께 일한다는 의미는 앞으로도 많은 방향으로 발전하거나 확장할 수 있는 여지가 많다고 생각해요. 하지만 ‘일관성’ 측면에서 놓고 보면, 아직은 보완해야 할 점들이 남아 있다고 생각하기도 합니다.</p>
+        </div>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 맞아요, 과거의 워크플로우가 떠오르지 않을 정도라니 대단하네요! 그럼 AI를 통해 업무 효율도 많이 높아졌겠어요.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">내영 CP</span> 그럼요. 이전에는 아이디어를 구체화하기까지 기획 단계에서 시간이 오래 걸렸다면, AI를 활용하면서 초안이나 예상 시안을 훨씬 빠르게 시각화하여 확인할 수 있게 되었습니다. 예를 들어 영상 장면을 기획할 때도 비슷한 레퍼런스를 찾느라 온종일 시간을 허비하거나 텍스트로 모호하게 표현했던 부분들을 빠르게 시각화하여 전달할 수 있어요. 유형별 분석, 수정 방향에 대한 아이디어도 빠르게 적용할 수 있어서 기획 단계에서 더 다양한 시도를 해볼 수 있었습니다.</p>
+        </div>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 조금 전 태연 CP님이 과거의 워크플로우로 돌아갈 수 없을 정도라고 하셨는데, 비바코드 활동이 끝난 이후에도 아트바나나 팀이 최종적으로 AI를 활용해 도달하고 싶은 '궁극의 미술 콘텐츠'는 어떤 모습인가요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">태연 CP</span> 최종적으로 도달하고 싶은 미술 콘텐츠는 교사의 수업 준비 부담은 줄이고, 더 쉽고 즐겁게 참여할 수 있는 '만능 미술 키트'입니다. 미술 수업의 목표와 학생 수준에 맞춰 PPT, 도안, 제작 영상, 활동 안내가 자연스럽게 연결되고 언제 어디서나 유용하게 활용될 수 있는 형태를 지향하고 있습니다.</p>
+        </div>
+    </section>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">3. 실제 업무 적용과 '붕어빵' 프로세스</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 실제 업무에 AI를 적용해 보시면서 특히 인상 깊었던 경험이나 새롭게 발견한 점이 있다면 무엇인가요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">해인 CP</span> 가장 인상 깊었던 점은 AI가 생각보다 좋은 결과를 주기도 하지만, 아직 미술 교육 콘텐츠에서는 AI가 대신하지 못하는 부분이 있다는 것을 확인하기도 했다는 점이에요. 특히 영상 생성에서 도안의 위치 지정, 가위로 자르기, 풀칠하기 등 정확한 공작 표현은 거의 불가능에 가까워 실패한 부분도 많습니다. AI가 만든 결과물을 보면서 오히려 우리가 어떤 장면을 더 명확하게 기획해야 하는지 알게 된 점이 새로웠습니다.</p>
+        </div>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 그렇다면 미술 콘텐츠 개발에서 AI는 구체적으로 어느 단계까지 활용될 수 있고, 사람의 역할은 어디서부터 중요해질까요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">연교 CP</span> 미술 콘텐츠 개발에서는 아이디어 발상, 시안 개발, 이미지 참고, 영상 장면 구성, 프롬프트 작성, 수업 자료 소개 문구 작성 등 다양하게 활용할 수 있습니다. 특히 만들기 활동은 과정 설명이 중요한데, AI를 활용하면 제작 순서를 시각적으로 정리하거나 영상 콘티를 구성하는 데 도움이 됩니다. 다만 최종적으로는 학습 목표, 발달 단계, 안전성, 교실 적용 가능성을 기준으로 사람이 다시 판단해야 합니다.</p>
+        </div>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 미술 콘텐츠 개발 시 '학습 목표와 발달 단계'를 기준으로 사람이 다시 판단해야 한다고 하셨는데, 초등/중등 등 학생들의 발달 단계에 따라 AI가 만든 이미지나 영상의 톤앤매너를 다르게 조절하기도 하셨나요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">해인 CP</span> 현재 제작 중인 초등 1~2학년 통합 수업 콘텐츠는 한 장면에 하나의 행동만 담아 학생들이 쉽게 따라 할 수 있도록 프롬프트를 조절했습니다. 또한 밝은 색감과 따뜻한 교실 분위기를 적용해 쉽고 친근한 톤앤매너로 구성해 일관성을 확보하고 있습니다.</p>
+        </div>
+
+        <figure class="interview-article-figure interview-article-figure--inline">
+            <img src="./assets/interview-vol8-puppets.png" alt="초등 미술 수업용 손가락 인형 도안 — 아트바나나 팀이 제작한 활동 자료 예시" loading="lazy" />
+            <figcaption>초등 미술 수업을 위한 손가락 인형 — 학생 발달 단계에 맞춘 친근한 톤앤매너</figcaption>
+        </figure>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 미술 교과 영상 자료를 제작하는 전반적인 과정과 기획부터 적용까지의 '아트바나나 팀만의 방식'을 소개해 주세요.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">내영 CP</span> 먼저 수업 자료의 학습 목표와 활동 내용 등 원고를 검토하고, 학생들이 어떤 순서로 활동을 이해해야 하는지 제작 과정을 나눕니다. 그다음 장면별로 필요한 손동작, 준비물, 도안의 위치, 카메라 구도 등을 정리해 콘티를 만듭니다. AI를 활용할 때는 이 콘티의 초안을 만들거나 프롬프트를 작성하고 예시 이미지를 생성합니다. 다시 생성된 이미지를 바탕으로 영상을 제작하는 방식으로 진행합니다.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">연교 CP</span> 저희는 기획부터 제작, 적용까지의 과정을 일종의 ‘붕어빵 만들기’처럼 진행하고 있습니다. 기획 단계에서는 수업 자료를 분석하여 제작할 영상 콘텐츠 톤과 분위기, 전체적인 ‘틀’을 기획합니다. 몇 가지 키워드로 시작해 구조화하면 AI가 아이디어 도출부터 콘티 정리까지 붕어빵의 모양을 만들고, 제작 단계에서는 장면별 프롬프트와 시안을 만들어 찍어 낼 재료를 충분히 준비합니다. 그리고 이 재료(컷별 프롬프트, 이미지 소스)와 편집 능력을 가미하여 영상을 완성하여 만드는 방식을 취하고 있습니다. 적용 단계에서는 결과물이 교사와 학생이 이해하기 쉬운지, 실제 수업에서 바로 사용할 수 있는지 검토하면서 보완합니다.</p>
+        </div>
+    </section>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">4. 아트바나나 팀이 성장하는 방식</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 이번 비바코드를 진행하면서 팀원으로서, 또 업무적으로 좋았던 점은 무엇이었나요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">태연 CP</span> 혼자서는 미뤄두기 쉬운 AI 학습을 팀원들과 함께 공통된 업무로 꾸준히 시도해 볼 수 있었다는 점이 좋았습니다. 또 각자 실험한 내용을 공유하다 보니, 같은 툴을 사용해도 업무에 적용하는 방식이 다양하다는 것을 알 수 있어 많은 도움이 되었습니다.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">해인 CP</span> 영상 자료를 기획하거나 제작 방향을 잡을 때 생각을 구조화하는 데 도움이 되었습니다. 또 프롬프트를 작성하는 과정에서 장면을 더 구체적으로 설명하게 되다 보니, 콘텐츠 기획 자체도 더 명확해졌다고 생각합니다.</p>
+        </div>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 이야기를 나눌수록 아트바나나 팀만의 특별함이 돋보입니다. 팀의 특별한 점과 분위기도 자랑해 주세요! 완성도보다 '실패를 편하게 공유하는 문화'가 정말 인상적인데, 처음에는 실패작을 보여주기 부끄러울 수도 있었을 것 같아요. 이러한 심리적 장벽을 깨뜨린 결정적인 계기나 순간이 있었나요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">연교 CP</span> 아트바나나 팀은 단순히 기술을 배우는 팀이라기보다, 미술 콘텐츠라는 실제 업무 안에서 AI를 어떻게 쓸 수 있을지 계속 실험하는 팀입니다. 각자 만든 결과물을 공유하면서 “이건 수업에 쓸 수 있겠다”, “이 부분은 아직 어렵다”처럼 현실적인 피드백을 주고받는 점이 특별하다고 생각합니다.</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">내영 CP</span> 팀 분위기는 비교적 유연하고, 편안하고 실험적인 편입니다. 아쉽게도 장벽을 깨뜨린 결정적인 계기는 따로 없습니다만, 저희 팀 분위기 자체가 워낙 유연한 편입니다. 그리고 AI에 대해서는 우리 모두 '도화지'같은 상태였기 때문에 가능한 일이었던 것 같습니다. 망쳐도 좋으니 실패하더라도 계속해서 새로운 그림을 그려 보고 서로 공유하다 보면 의외의 결실을 보기도 하니깐요.</p>
+        </div>
+    </section>
+
+    <section class="interview-article-section">
+        <h3 class="interview-article-section-title">마지막 한마디</h3>
+
+        <div class="interview-qa">
+            <p class="interview-qa-q">Q. 어느덧 인터뷰의 마지막이네요. 비바코드를 하고 있는 다른 비상인에게 소개해주고 싶은 노하우나 전하고 싶은 한마디가 있다면요?</p>
+            <p class="interview-qa-a"><span class="interview-qa-speaker">태연 CP</span> 비바코드를 하면서 AI를 도구로써 최대한 활용할 줄 아는 능력을 기르는 것이 경쟁력이라는 생각이 들었습니다. 처음부터 완벽한 결과물을 기대하기보다, 실제 업무 중 작은 부분 하나에 AI를 적용해 보는 것을 추천하고 싶습니다. 사소한 업무부터 시작하다 보면 어느새 업무 방식에 맞게 커스터마이징한 자동화 도구를 뚝딱 만드는 날이 올 수도 있다고 생각합니다. 아트바나나 팀 모두 끝까지 파이팅입니다!</p>
+        </div>
+    </section>
+
+    <footer class="interview-article-footer">
+        <h3 class="interview-article-section-title">비바人터뷰를 마치며…</h3>
+        <p>새하얀 도화지 같은 상태에서 출발해, 망치는 것을 두려워하지 않고 서로의 실패까지 유쾌하게 공유하며 성장해 온 아트바나나 팀. 그들이 빚어낸 붕어빵 틀 속에서 앞으로 얼마나 더 다양하고 유용한 '만능 미술 키트'가 찍혀 나올지 벌써 기대가 됩니다.</p>
+        <p>AI라는 붓을 쥐고 미술 교육 콘텐츠의 새로운 패러다임을 그려나갈 아트바나나 팀의 다음 여정도 진심으로 응원합니다!</p>
+        <p>이번 인터뷰를 함께해주신 노연교 CP님, 김태연 CP님, 김내영 CP님, 박해인 CP님, 그리고 아트바나나 팀 모두에게 진심으로 감사드립니다.</p>
+    </footer>
+</article>
+    </div>
+
     </div>
 
         <!-- 인터뷰 상세 모달 -->
@@ -2440,7 +2577,7 @@
         </div>
     </footer>
 
-    <script src="./js/interviews.js?v=20260701b"></script>
+    <script src="./js/interviews.js?v=20260701c"></script>
     <script src="./js/main.js?v=20260629"></script>
     <script src="./js/quiz.js"></script>
     <script>
