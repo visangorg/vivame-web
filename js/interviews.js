@@ -1,5 +1,6 @@
 /**
  * 비바人터뷰 아티클 데이터 및 모달
+ * 목록 표시 순서: 최신 호수가 위 (HTML #interviewList — 신규 호는 맨 위에 추가)
  */
 
 var INTERVIEW_ARTICLES = {
