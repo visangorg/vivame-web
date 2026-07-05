@@ -1349,6 +1349,24 @@ p,
   color: #9d174d;
 }
 
+.club-cal-chip--sinuho {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.34);
+}
+
+.club-cal-chip--sinuho .club-cal-chip-name {
+  color: #4338ca;
+}
+
+.club-cal-chip--mojong {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.34);
+}
+
+.club-cal-chip--mojong .club-cal-chip-name {
+  color: #15803d;
+}
+
 .club-cal-chip-emoji {
   flex-shrink: 0;
   font-size: 0.65rem;
