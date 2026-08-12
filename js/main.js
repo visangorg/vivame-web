@@ -600,8 +600,8 @@ AI 활용 기획부터 실제 영상 제작까지,
 * 📈 노력한 만큼 성과를 동료들과 함께 쌓아 가고 싶은 분
 
 * 🤝 막막한 순간을 함께 다독이며 끝까지 완주하고 싶은 분`,
-    leaderInfo: "리더: CMS개발2 Cell 현가람\n총무: AX추진 Cell 이은우",
-    email: "garame@visang.com",
+    leaderInfo: "리더: CMS개발2 Cell 현가람 (hyeongr@visang.com)\n총무: AX추진 Cell 이은우 (leeew1@visang.com)",
+    email: "hyeongr@visang.com",
     image: "./assets/club-vtube.png",
     badge: "유튜브/콘텐츠",
   },
