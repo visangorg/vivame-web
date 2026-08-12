@@ -921,6 +921,7 @@ var CLUB_SCHEDULE_RULES = [
     specificDates: [
       { year: 2026, month: 3, day: 16 },
       { year: 2026, month: 6, day: 2 },
+      { year: 2026, month: 7, day: 27 },
     ],
     shortLabel: "비상다독",
     chipName: "비상다독",
@@ -935,6 +936,7 @@ var CLUB_SCHEDULE_RULES = [
       { year: 2026, month: 4, day: 27 },
       { year: 2026, month: 5, day: 24 },
       { year: 2026, month: 6, day: 15 },
+      { year: 2026, month: 7, day: 19 },
     ],
     shortLabel: "포시즌스",
     chipName: "포시즌스",
@@ -948,6 +950,7 @@ var CLUB_SCHEDULE_RULES = [
       { year: 2026, month: 3, day: 22 },
       { year: 2026, month: 4, day: 14 },
       { year: 2026, month: 5, day: 25 },
+      { year: 2026, month: 7, day: 27 },
     ],
     shortLabel: "다람지",
     chipName: "다람지",
@@ -973,6 +976,7 @@ var CLUB_SCHEDULE_RULES = [
     specificDates: [
       { year: 2026, month: 4, day: 16 },
       { year: 2026, month: 4, day: 17 },
+      { year: 2026, month: 7, day: 18 },
     ],
     shortLabel: "퐁당",
     chipName: "퐁당",
@@ -995,6 +999,7 @@ var CLUB_SCHEDULE_RULES = [
       { year: 2026, month: 3, day: 30 },
       { year: 2026, month: 5, day: 11 },
       { year: 2026, month: 6, day: 16 },
+      { year: 2026, month: 7, day: 13 },
     ],
     shortLabel: "비상턴",
     chipName: "비상턴",
@@ -1037,7 +1042,10 @@ var CLUB_SCHEDULE_RULES = [
   {
     nameMatch: "핸드메이드",
     weekdays: [],
-    specificDates: [{ year: 2026, month: 5, day: 25 }],
+    specificDates: [
+      { year: 2026, month: 5, day: 25 },
+      { year: 2026, month: 7, day: 27 },
+    ],
     shortLabel: "핸드메이드",
     chipName: "핸드메이드",
     chipVariant: "handmade",
@@ -1046,7 +1054,10 @@ var CLUB_SCHEDULE_RULES = [
   {
     nameMatch: "비상 신우회",
     weekdays: [],
-    specificDates: [{ year: 2026, month: 6, day: 16 }],
+    specificDates: [
+      { year: 2026, month: 6, day: 16 },
+      { year: 2026, month: 7, day: 20 },
+    ],
     shortLabel: "신우회",
     chipName: "신우회",
     chipVariant: "sinuho",
@@ -1059,6 +1070,15 @@ var CLUB_SCHEDULE_RULES = [
     shortLabel: "모종",
     chipName: "모종",
     chipVariant: "mojong",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "Vtube",
+    weekdays: [],
+    specificDates: [{ year: 2026, month: 7, day: 6 }],
+    shortLabel: "Vtube",
+    chipName: "Vtube",
+    chipVariant: "vtube",
     iconEmoji: "",
   },
 ];

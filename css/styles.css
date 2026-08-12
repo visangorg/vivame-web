@@ -1367,6 +1367,15 @@ p,
   color: #15803d;
 }
 
+.club-cal-chip--vtube {
+  background: rgba(236, 72, 153, 0.12);
+  border-color: rgba(236, 72, 153, 0.34);
+}
+
+.club-cal-chip--vtube .club-cal-chip-name {
+  color: #be185d;
+}
+
 .club-cal-chip-emoji {
   flex-shrink: 0;
   font-size: 0.65rem;
