@@ -574,6 +574,37 @@ SNS에서 난리 난 트렌디한 공간까지!
     image: "./assets/club-bisang-shinwoohoe.png",
     badge: "소통/힐링",
   },
+  {
+    name: "VTube",
+    tagline: "각자의 채널로 함께 배우고 성장하는 유튜브 동호회",
+    summary:
+      "각자 유튜브 채널을 운영하며 어려운 순간을 함께 다독이고, 끝까지 완주할 수 있도록 서로를 돕는 모임입니다. 유튜브에 도전하고 싶은 CP님을 환영합니다!",
+    detail: `유튜브, 세상 모든 콘텐츠가 모이는 곳.
+
+**'VTube'**는 각자의 채널을 운영하면서
+기획부터 촬영·편집까지 함께 배우고
+성과를 나누며 성장하는 동호회입니다.
+
+혼자 하면 막막했던 업로드,
+동료들과 함께하면 작은 습관이
+채널 완주로 이어집니다.
+
+AI 활용 기획부터 실제 영상 제작까지,
+부담 없이 도전해 보세요!
+
+✨ 이런 CP님, 우리와 찰떡이에요!
+* 📺 세상 모~~~든 콘텐츠가 모이는 유튜브에 도전하고 싶은 분
+
+* 🤖 AI를 활용한 기획부터 실제 영상 제작까지 함께 배워 보고 싶은 분
+
+* 📈 노력한 만큼 성과를 동료들과 함께 쌓아 가고 싶은 분
+
+* 🤝 막막한 순간을 함께 다독이며 끝까지 완주하고 싶은 분`,
+    leaderInfo: "리더: CMS개발2 Cell 현가람\n총무: AX추진 Cell 이은우",
+    email: "garame@visang.com",
+    image: "./assets/club-vtube.png",
+    badge: "유튜브/콘텐츠",
+  },
 ];
 
 function escapeHtmlText(s) {
@@ -1073,11 +1104,11 @@ var CLUB_SCHEDULE_RULES = [
     iconEmoji: "",
   },
   {
-    nameMatch: "Vtube",
+    nameMatch: "VTube",
     weekdays: [],
     specificDates: [{ year: 2026, month: 7, day: 6 }],
-    shortLabel: "Vtube",
-    chipName: "Vtube",
+    shortLabel: "VTube",
+    chipName: "VTube",
     chipVariant: "vtube",
     iconEmoji: "",
   },
