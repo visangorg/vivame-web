@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -2649,6 +2649,73 @@
         </div>
     </div>
 
+    <!-- 동호회 일정 등록: 리더 인증 -->
+    <div id="clubScheduleAuthModal" class="quiz-modal-overlay club-schedule-register-modal hidden fixed inset-0 z-[65] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="clubScheduleAuthModalTitle" hidden>
+        <div id="clubScheduleAuthModalBackdrop" class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+        <div id="clubScheduleAuthModalContent" class="quiz-modal-popup club-schedule-register-shell relative w-full max-w-md overflow-hidden rounded-[24px]">
+            <div class="club-modal-toolbar">
+                <button type="button" id="clubScheduleAuthModalClose" class="club-modal-close-btn" aria-label="닫기">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="club-schedule-register-body">
+                <h3 id="clubScheduleAuthModalTitle" class="club-schedule-register-title text-content">리더 인증</h3>
+                <p class="club-schedule-register-desc text-content">동호회 일정 등록은 리더 전용입니다. 공통 비밀번호를 입력해 주세요.</p>
+                <form id="clubScheduleAuthForm" class="club-schedule-register-form" novalidate>
+                    <label class="club-schedule-register-label text-content" for="clubScheduleAuthPassword">리더 인증 비밀번호</label>
+                    <input type="password" id="clubScheduleAuthPassword" class="club-schedule-register-input" autocomplete="off" placeholder="비밀번호 입력" required />
+                    <p id="clubScheduleAuthError" class="club-schedule-register-error hidden" role="alert"></p>
+                    <button type="submit" class="club-schedule-register-submit">인증하기</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 동호회 일정 등록: 입력 폼 -->
+    <div id="clubScheduleFormModal" class="quiz-modal-overlay club-schedule-register-modal hidden fixed inset-0 z-[65] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="clubScheduleFormModalTitle" hidden>
+        <div id="clubScheduleFormModalBackdrop" class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+        <div id="clubScheduleFormModalContent" class="quiz-modal-popup club-schedule-register-shell relative w-full max-w-lg overflow-hidden rounded-[24px]">
+            <div class="club-modal-toolbar">
+                <button type="button" id="clubScheduleFormModalClose" class="club-modal-close-btn" aria-label="닫기">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="club-schedule-register-body">
+                <h3 id="clubScheduleFormModalTitle" class="club-schedule-register-title text-content">동호회 일정 등록</h3>
+                <p class="club-schedule-register-desc text-content">등록한 일정은 달력에 바로 반영됩니다.</p>
+                <form id="clubScheduleRegisterForm" class="club-schedule-register-form" novalidate>
+                    <div class="club-schedule-register-field">
+                        <label class="club-schedule-register-label text-content" for="clubScheduleFormClub">동호회 선택 <span class="club-schedule-register-required">*</span></label>
+                        <select id="clubScheduleFormClub" class="club-schedule-register-input club-schedule-register-select" required>
+                            <option value="">동호회를 선택하세요</option>
+                        </select>
+                    </div>
+                    <div class="club-schedule-register-row">
+                        <div class="club-schedule-register-field">
+                            <label class="club-schedule-register-label text-content" for="clubScheduleFormDate">날짜 <span class="club-schedule-register-required">*</span></label>
+                            <input type="date" id="clubScheduleFormDate" class="club-schedule-register-input" required />
+                        </div>
+                        <div class="club-schedule-register-field">
+                            <label class="club-schedule-register-label text-content" for="clubScheduleFormTime">시간 <span class="club-schedule-register-required">*</span></label>
+                            <input type="time" id="clubScheduleFormTime" class="club-schedule-register-input" required />
+                        </div>
+                    </div>
+                    <div class="club-schedule-register-field">
+                        <label class="club-schedule-register-label text-content" for="clubScheduleFormTitle">모임명 / 활동 내용 <span class="club-schedule-register-required">*</span></label>
+                        <input type="text" id="clubScheduleFormTitle" class="club-schedule-register-input" placeholder="예) [원모어] 정기 모임 &amp; 굿즈 수령" required maxlength="120" />
+                    </div>
+                    <div class="club-schedule-register-field">
+                        <label class="club-schedule-register-label text-content" for="clubScheduleFormAuthor">작성자 <span class="club-schedule-register-optional">(선택)</span></label>
+                        <input type="text" id="clubScheduleFormAuthor" class="club-schedule-register-input" placeholder="예) 유지수 CP" maxlength="40" />
+                    </div>
+                    <p id="clubScheduleFormError" class="club-schedule-register-error hidden" role="alert"></p>
+                    <p id="clubScheduleFormSuccess" class="club-schedule-register-success hidden" role="status"></p>
+                    <button type="submit" class="club-schedule-register-submit">등록하기</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- 동호회 상세 모달 -->
     <div id="clubModal" class="quiz-modal-overlay hidden fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="clubModalTitle">
         <div id="clubModalBackdrop" class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
@@ -2737,7 +2804,7 @@
     </footer>
 
     <script src="./js/interviews.js?v=20260701c"></script>
-    <script src="./js/main.js?v=20260629"></script>
+    <script src="./js/main.js?v=20260829"></script>
     <script src="./js/quiz.js"></script>
     <script>
         initQuizModal();
