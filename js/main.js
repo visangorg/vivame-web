@@ -1009,8 +1009,8 @@ var CLUB_SCHEDULE_RULES = [
       { year: 2026, month: 4, day: 17 },
       { year: 2026, month: 7, day: 18 },
     ],
-    shortLabel: "퐁당",
-    chipName: "퐁당",
+    shortLabel: "퐁당다이브클럽",
+    chipName: "퐁당다이브클럽",
     chipVariant: "pongdang",
     iconEmoji: "",
   },
@@ -1053,8 +1053,8 @@ var CLUB_SCHEDULE_RULES = [
       { year: 2026, month: 4, day: 29 },
       { year: 2026, month: 6, day: 14 },
     ],
-    shortLabel: "비상골",
-    chipName: "비상골",
+    shortLabel: "비상골린이들",
+    chipName: "비상골린이들",
     chipVariant: "bisanggol",
     iconEmoji: "",
   },
@@ -1117,17 +1117,43 @@ var CLUB_SCHEDULE_RULES = [
 /** 리더 전용 일정 등록 — 공통 비밀번호 */
 var CLUB_LEADER_SCHEDULE_PASSWORD = "visang!";
 var CLUB_LEADER_EVENTS_STORAGE_KEY = "vivame-club-leader-events";
-var CLUB_LEADER_PASSWORD_MISMATCH_MSG = "비밀번호가 일치하지 않습니다.";
+var CLUB_LEADER_PASSWORD_MISMATCH_MSG = "비밀번호가 올바르지 않습니다. (리더 전용)";
+var CLUB_SCHEDULE_NAME_MATCH_ALIASES = {
+  퐁당: "퐁당다이브클럽",
+  비상골: "비상골린이들",
+};
 
 var clubScheduleRegisterBound = false;
 var clubScheduleFormMode = /** @type {'create' | 'edit'} */ ("create");
+
+function normalizeClubScheduleNameMatch(nameMatch) {
+  if (!nameMatch) return nameMatch;
+  return CLUB_SCHEDULE_NAME_MATCH_ALIASES[nameMatch] || nameMatch;
+}
+
+function migrateClubLeaderCustomEvents(events) {
+  var changed = false;
+  var migrated = events.map(function (ev) {
+    var normalized = normalizeClubScheduleNameMatch(ev.nameMatch);
+    if (normalized !== ev.nameMatch) {
+      changed = true;
+      return Object.assign({}, ev, { nameMatch: normalized });
+    }
+    return ev;
+  });
+  if (changed) {
+    saveClubLeaderCustomEvents(migrated);
+  }
+  return migrated;
+}
 
 function loadClubLeaderCustomEvents() {
   try {
     var raw = localStorage.getItem(CLUB_LEADER_EVENTS_STORAGE_KEY);
     if (!raw) return [];
     var parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    var events = Array.isArray(parsed) ? parsed : [];
+    return migrateClubLeaderCustomEvents(events);
   } catch (err) {
     return [];
   }
@@ -1138,8 +1164,9 @@ function saveClubLeaderCustomEvents(events) {
 }
 
 function findScheduleRuleByNameMatch(nameMatch) {
+  var normalized = normalizeClubScheduleNameMatch(nameMatch);
   for (var i = 0; i < CLUB_SCHEDULE_RULES.length; i++) {
-    if (CLUB_SCHEDULE_RULES[i].nameMatch === nameMatch) {
+    if (CLUB_SCHEDULE_RULES[i].nameMatch === normalized) {
       return CLUB_SCHEDULE_RULES[i];
     }
   }
@@ -1150,7 +1177,7 @@ function getClubScheduleRegisterOptions() {
   return CLUB_SCHEDULE_RULES.map(function (rule) {
     return {
       nameMatch: rule.nameMatch,
-      label: rule.chipName || rule.shortLabel || rule.nameMatch,
+      label: rule.nameMatch,
     };
   }).sort(function (a, b) {
     return a.label.localeCompare(b.label, "ko");
@@ -1171,8 +1198,8 @@ function findClubLeaderCustomEventById(id) {
 
 function clubScheduleClubDisplayName(nameMatch) {
   var meta = findScheduleRuleByNameMatch(nameMatch);
-  if (meta) return meta.chipName || meta.shortLabel || nameMatch;
-  return nameMatch;
+  if (meta) return meta.nameMatch;
+  return normalizeClubScheduleNameMatch(nameMatch);
 }
 
 function clubScheduleDisplayLabel(ev) {
@@ -1831,18 +1858,15 @@ function clearClubScheduleFormPassword() {
 
 function verifyClubScheduleLeaderPassword() {
   var pwdInput = document.getElementById("clubScheduleFormPassword");
-  var err = document.getElementById("clubScheduleFormError");
-  if (!pwdInput) return false;
-  if (pwdInput.value === CLUB_LEADER_SCHEDULE_PASSWORD) {
-    return true;
+  if (!pwdInput || pwdInput.value !== CLUB_LEADER_SCHEDULE_PASSWORD) {
+    window.alert(CLUB_LEADER_PASSWORD_MISMATCH_MSG);
+    if (pwdInput) {
+      pwdInput.focus();
+      pwdInput.select();
+    }
+    return false;
   }
-  if (err) {
-    err.textContent = CLUB_LEADER_PASSWORD_MISMATCH_MSG;
-    err.classList.remove("hidden");
-  }
-  pwdInput.focus();
-  pwdInput.select();
-  return false;
+  return true;
 }
 
 function openClubScheduleFormModal(mode, eventId) {
@@ -1992,13 +2016,14 @@ function validateClubScheduleFormValues(values, errEl) {
 
 function handleClubScheduleRegisterSubmit(e) {
   e.preventDefault();
+  if (!verifyClubScheduleLeaderPassword()) return;
+
   var err = document.getElementById("clubScheduleFormError");
   var ok = document.getElementById("clubScheduleFormSuccess");
   var eventIdInput = document.getElementById("clubScheduleFormEventId");
   if (!err || !ok) return;
 
   resetClubScheduleFormMessages();
-  if (!verifyClubScheduleLeaderPassword()) return;
 
   var values = readClubScheduleFormValues();
   if (!validateClubScheduleFormValues(values, err)) return;
@@ -2067,12 +2092,13 @@ function handleClubScheduleRegisterSubmit(e) {
 }
 
 function handleClubScheduleDelete() {
+  if (!verifyClubScheduleLeaderPassword()) return;
+
   var eventIdInput = document.getElementById("clubScheduleFormEventId");
   var err = document.getElementById("clubScheduleFormError");
   if (!eventIdInput || !eventIdInput.value) return;
 
   resetClubScheduleFormMessages();
-  if (!verifyClubScheduleLeaderPassword()) return;
 
   var existing = findClubLeaderCustomEventById(eventIdInput.value);
   if (!existing) {
