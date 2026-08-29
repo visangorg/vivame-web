@@ -64,6 +64,16 @@ var INTERVIEW_ARTICLES = {
     thumbAlt: "2022 개정 비상 중고등 국어 교과서 라인업",
     templateId: "interview-article-vol6",
   },
+  "9": {
+    title: "비바샘을 더 '비바샘답게'! VIVA LAB 팀의 BX 탐구 일기 🎨",
+    vol: "vol.9",
+    tag: "비바코드",
+    tagClass: "study",
+    meta: "2026 | 비바코드 VIVA LAB 팀 · 정세연 CP, 차민진 CP, 신유선 CP",
+    thumb: "./assets/interview-vol9-hero.png",
+    thumbAlt: "VIVA LAB 팀 — BX디자인 Cell 비바코드 스터디 현장",
+    templateId: "interview-article-vol9",
+  },
   "8": {
     title: '🐟 "AI로 붕어빵을 굽는다?!" \'아트바나나\' 팀이 말하는 AI 시대의 인간 기획자',
     vol: "vol.8",
