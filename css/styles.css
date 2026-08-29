@@ -3861,6 +3861,13 @@ button.club-cal-chip--interactive:focus-visible {
   gap: 0.4rem;
 }
 
+.club-schedule-register-field--secure {
+  padding: 0.75rem 0.875rem;
+  border-radius: 12px;
+  background: rgba(0, 181, 226, 0.06);
+  border: 1px solid rgba(0, 181, 226, 0.18);
+}
+
 .club-schedule-register-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
