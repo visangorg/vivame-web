@@ -1266,6 +1266,36 @@ p,
   border-radius: 0.35rem;
   background: rgba(0, 176, 240, 0.07);
   border: 1px solid rgba(0, 176, 240, 0.12);
+  font: inherit;
+  text-align: left;
+}
+
+button.club-cal-chip {
+  cursor: pointer;
+}
+
+span.club-cal-chip--interactive,
+button.club-cal-chip--interactive {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+span.club-cal-chip--interactive:hover,
+button.club-cal-chip--interactive:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+}
+
+span.club-cal-chip--interactive:focus,
+button.club-cal-chip--interactive:focus {
+  outline: none;
+}
+
+span.club-cal-chip--interactive:focus-visible,
+button.club-cal-chip--interactive:focus-visible {
+  outline: 2px solid #00b5e2;
+  outline-offset: 1px;
 }
 
 /* 이모지 없이 텍스트만 — 좌우 여백 균형 */
@@ -3938,5 +3968,80 @@ p,
 .club-schedule-register-submit:focus-visible {
   outline: 2px solid #00b5e2;
   outline-offset: 2px;
+}
+
+.club-schedule-register-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.club-schedule-register-actions--edit {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.club-schedule-register-actions--edit .club-schedule-register-cancel,
+.club-schedule-register-actions--edit .club-schedule-register-delete,
+.club-schedule-register-actions--edit .club-schedule-register-submit--edit {
+  flex: 1 1 0;
+  min-width: 6.5rem;
+  margin-top: 0;
+}
+
+.club-schedule-register-cancel,
+.club-schedule-register-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border-radius: 0.85rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.club-schedule-register-cancel {
+  color: #374151;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+}
+
+.club-schedule-register-cancel:hover {
+  border-color: #9ca3af;
+  background: #f9fafb;
+}
+
+.club-schedule-register-delete {
+  color: #ffffff;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border: none;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.22);
+}
+
+.club-schedule-register-delete:hover {
+  opacity: 0.95;
+}
+
+.club-schedule-register-cancel:focus,
+.club-schedule-register-delete:focus {
+  outline: none;
+}
+
+.club-schedule-register-cancel:focus-visible,
+.club-schedule-register-delete:focus-visible {
+  outline: 2px solid #00b5e2;
+  outline-offset: 2px;
+}
+
+.club-schedule-tooltip__btn--edit {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
 }
 

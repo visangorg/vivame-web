@@ -1120,6 +1120,8 @@ var CLUB_LEADER_EVENTS_STORAGE_KEY = "vivame-club-leader-events";
 var CLUB_LEADER_AUTH_SESSION_KEY = "vivame-club-leader-auth";
 
 var clubScheduleRegisterBound = false;
+var clubScheduleAuthPendingAction = /** @type {'register' | { type: 'edit', id: string } | null} */ (null);
+var clubScheduleFormMode = /** @type {'create' | 'edit'} */ ("create");
 
 function loadClubLeaderCustomEvents() {
   try {
@@ -1160,22 +1162,43 @@ function generateClubLeaderEventId() {
   return "cle-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
 }
 
-function clubScheduleTruncateChipLabel(text, maxLen) {
-  var s = String(text || "").trim();
-  if (!s) return "";
-  if (s.length <= maxLen) return s;
-  return s.slice(0, maxLen) + "…";
+function findClubLeaderCustomEventById(id) {
+  var events = loadClubLeaderCustomEvents();
+  for (var i = 0; i < events.length; i++) {
+    if (events[i].id === id) return events[i];
+  }
+  return null;
+}
+
+function clubScheduleClubDisplayName(nameMatch) {
+  var meta = findScheduleRuleByNameMatch(nameMatch);
+  if (meta) return meta.chipName || meta.shortLabel || nameMatch;
+  return nameMatch;
+}
+
+function clubScheduleDisplayLabel(ev) {
+  var clubName = ev.shortLabel || ev.chipName || ev.nameMatch;
+  if (ev.source === "custom") {
+    clubName = clubScheduleClubDisplayName(ev.nameMatch);
+    var time = String(ev.time || "").trim();
+    return time ? time + " " + clubName : clubName;
+  }
+  return ev.chipName || ev.shortLabel || ev.nameMatch;
 }
 
 function clubScheduleEventPayloadForDay(events) {
   return events.map(function (ev) {
-    return {
+    var payload = {
       source: ev.source,
       nameMatch: ev.nameMatch,
-      title: ev.title || "",
       time: ev.time || "",
       author: ev.author || "",
+      label: clubScheduleDisplayLabel(ev),
     };
+    if (ev.source === "custom" && ev.customId) {
+      payload.customId = ev.customId;
+    }
+    return payload;
   });
 }
 
@@ -1298,11 +1321,10 @@ function clubScheduleEventsForDay(year, monthIndex, day) {
         customId: custom.id,
         nameMatch: custom.nameMatch,
         shortLabel: meta ? meta.shortLabel : custom.nameMatch,
-        chipName: clubScheduleTruncateChipLabel(custom.title, 10) || (meta ? meta.chipName : custom.nameMatch),
+        chipName: meta ? meta.chipName || meta.shortLabel : custom.nameMatch,
         chipVariant: meta ? meta.chipVariant : "",
         iconEmoji: meta ? meta.iconEmoji : "",
-        title: custom.title,
-        time: custom.time,
+        time: custom.time || "",
         author: custom.author || "",
       });
     }
@@ -1334,7 +1356,7 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
       chipsHtml = '<div class="club-cal-chips-row">';
       for (var ei = 0; ei < events.length; ei++) {
         var ev = events[ei];
-        var nm = ev.chipName || ev.shortLabel || ev.nameMatch;
+        var displayLabel = clubScheduleDisplayLabel(ev);
         var variant = ev.chipVariant ? " club-cal-chip--" + ev.chipVariant : "";
         var customClass = ev.source === "custom" ? " club-cal-chip--leader-added" : "";
         var emojiPart = "";
@@ -1344,29 +1366,47 @@ function clubScheduleRenderMonthHtml(year, monthIndex) {
             ev.iconEmoji +
             "</span>";
         }
-        chipsHtml +=
-          '<span class="club-cal-chip' +
-          variant +
-          customClass +
-          (emojiPart ? "" : " club-cal-chip--text-only") +
-          '" title="' +
-          escapeHtmlAttr(ev.source === "custom" && ev.title ? ev.title : nm) +
-          '">' +
+        var chipInner =
           emojiPart +
           '<span class="club-cal-chip-name">' +
-          escapeHtmlText(nm) +
-          "</span></span>";
+          escapeHtmlText(displayLabel) +
+          "</span>";
+        var chipClass =
+          "club-cal-chip" +
+          variant +
+          customClass +
+          (emojiPart ? "" : " club-cal-chip--text-only");
+        if (ev.source === "custom" && ev.customId) {
+          chipsHtml +=
+            '<span role="button" tabindex="0" class="' +
+            chipClass +
+            ' club-cal-chip--interactive" data-club-custom-id="' +
+            escapeHtmlAttr(ev.customId) +
+            '" title="' +
+            escapeHtmlAttr(displayLabel + " — 클릭하여 수정/삭제") +
+            '" aria-label="' +
+            escapeHtmlAttr(displayLabel + " 일정 수정/삭제") +
+            '">' +
+            chipInner +
+            "</span>";
+        } else {
+          chipsHtml +=
+            '<span class="' +
+            chipClass +
+            '" title="' +
+            escapeHtmlAttr(displayLabel) +
+            '">' +
+            chipInner +
+            "</span>";
+        }
       }
       chipsHtml += "</div>";
     }
-    var nameMatches = events.map(function (ev) {
-      return ev.nameMatch;
-    });
     var eventPayload = clubScheduleEventPayloadForDay(events);
     var ariaLabel = monthLabel + " " + d + "일";
     if (has) {
       ariaLabel += ", " + events.map(function (ev) {
-        return ev.shortLabel;
+        return clubScheduleDisplayLabel(ev);
       }).join(", ");
     }
     if (isToday) ariaLabel += ", 오늘";
@@ -1513,23 +1553,19 @@ function showClubScheduleTooltip(anchorBtn) {
   tipBody.innerHTML = events
     .map(function (ev) {
       var nameMatch = ev.nameMatch || "";
-      if (ev.source === "custom" && ev.title) {
+      if (ev.source === "custom" && ev.customId) {
         var metaParts = [];
-        if (ev.time) metaParts.push(ev.time);
+        if (ev.label) metaParts.push(ev.label);
+        else if (ev.time) metaParts.push(ev.time);
         if (ev.author) metaParts.push(ev.author);
         return (
           '<div class="club-schedule-tooltip__event">' +
-          '<p class="club-schedule-tooltip__event-title">' +
-          escapeHtmlText(ev.title) +
-          "</p>" +
           (metaParts.length
-            ? '<p class="club-schedule-tooltip__event-meta">' + escapeHtmlText(metaParts.join(" · ")) + "</p>"
+            ? '<p class="club-schedule-tooltip__event-title">' + escapeHtmlText(metaParts.join(" · ")) + "</p>"
             : "") +
-          '<button type="button" class="club-schedule-tooltip__btn" data-club-schedule-detail="' +
-          escapeHtmlAttr(nameMatch) +
-          '">' +
-          escapeHtmlText(nameMatch) +
-          " 동호회 상세 보기</button></div>"
+          '<button type="button" class="club-schedule-tooltip__btn club-schedule-tooltip__btn--edit" data-club-custom-id="' +
+          escapeHtmlAttr(ev.customId) +
+          '">일정 수정/삭제</button></div>'
         );
       }
       return (
@@ -1615,6 +1651,15 @@ function onClubScheduleRootClick(e) {
   var root = document.getElementById("clubScheduleCalendarsRoot");
   if (!root || !root.contains(e.target)) return;
 
+  var customChip = e.target.closest("[data-club-custom-id]");
+  if (customChip && root.contains(customChip) && !customChip.closest(".club-schedule-tooltip")) {
+    e.preventDefault();
+    e.stopPropagation();
+    var customId = customChip.getAttribute("data-club-custom-id");
+    if (customId) openClubScheduleEditFlow(customId);
+    return;
+  }
+
   var addBtn = e.target.closest("#clubScheduleAddBtn");
   if (addBtn) {
     e.preventDefault();
@@ -1693,6 +1738,13 @@ function bindClubScheduleInteractions() {
       var btn = e.target.closest(".club-schedule-tooltip__btn");
       if (!btn || !tip.contains(btn)) return;
       e.stopPropagation();
+      var customId = btn.getAttribute("data-club-custom-id");
+      if (customId) {
+        clearClubScheduleSelection(document.getElementById("clubScheduleCalendarsRoot"));
+        hideClubScheduleTooltipImmediate();
+        openClubScheduleEditFlow(customId);
+        return;
+      }
       var nameMatch = btn.getAttribute("data-club-schedule-detail");
       if (!nameMatch) return;
       var club = findClubForScheduleNameMatch(nameMatch);
@@ -1756,6 +1808,7 @@ function closeClubScheduleAuthModal() {
   if (!modal) return;
   modal.classList.add("hidden");
   modal.setAttribute("hidden", "");
+  clubScheduleAuthPendingAction = null;
   if (!isClubScheduleFormModalOpen()) {
     document.body.style.overflow = "";
   }
@@ -1769,6 +1822,32 @@ function isClubScheduleFormModalOpen() {
 function isClubScheduleAuthModalOpen() {
   var modal = document.getElementById("clubScheduleAuthModal");
   return !!(modal && !modal.classList.contains("hidden") && !modal.hasAttribute("hidden"));
+}
+
+function setClubScheduleFormMode(mode) {
+  clubScheduleFormMode = mode === "edit" ? "edit" : "create";
+  var titleEl = document.getElementById("clubScheduleFormModalTitle");
+  var descEl = document.querySelector("#clubScheduleFormModal .club-schedule-register-desc");
+  var createActions = document.getElementById("clubScheduleFormActionsCreate");
+  var editActions = document.getElementById("clubScheduleFormActionsEdit");
+  if (titleEl) {
+    titleEl.textContent =
+      clubScheduleFormMode === "edit" ? "동호회 일정 수정/삭제" : "동호회 일정 등록";
+  }
+  if (descEl) {
+    descEl.textContent =
+      clubScheduleFormMode === "edit"
+        ? "등록된 일정을 수정하거나 삭제할 수 있습니다."
+        : "등록한 일정은 달력에 바로 반영됩니다.";
+  }
+  if (createActions) {
+    createActions.classList.toggle("hidden", clubScheduleFormMode === "edit");
+    createActions.setAttribute("aria-hidden", clubScheduleFormMode === "edit" ? "true" : "false");
+  }
+  if (editActions) {
+    editActions.classList.toggle("hidden", clubScheduleFormMode !== "edit");
+    editActions.setAttribute("aria-hidden", clubScheduleFormMode !== "edit" ? "true" : "false");
+  }
 }
 
 function populateClubScheduleFormClubOptions() {
@@ -1803,47 +1882,65 @@ function resetClubScheduleFormMessages() {
   }
 }
 
-function openClubScheduleFormModal() {
+function openClubScheduleFormModal(mode, eventId) {
   var modal = document.getElementById("clubScheduleFormModal");
   var form = document.getElementById("clubScheduleRegisterForm");
   if (!modal || !form) return;
 
+  setClubScheduleFormMode(mode || "create");
   populateClubScheduleFormClubOptions();
   resetClubScheduleFormMessages();
 
   var dateInput = document.getElementById("clubScheduleFormDate");
   var timeInput = document.getElementById("clubScheduleFormTime");
-  var titleInput = document.getElementById("clubScheduleFormTitle");
   var authorInput = document.getElementById("clubScheduleFormAuthor");
+  var eventIdInput = document.getElementById("clubScheduleFormEventId");
+  var clubSelect = document.getElementById("clubScheduleFormClub");
 
-  if (dateInput) {
-    var y = clubScheduleViewYear;
-    var m = clubScheduleViewMonth;
-    if (y !== null && m !== null) {
-      var today = new Date();
-      var day =
-        y === today.getFullYear() && m === today.getMonth()
-          ? today.getDate()
-          : 1;
-      dateInput.value =
-        y +
-        "-" +
-        String(m + 1).padStart(2, "0") +
-        "-" +
-        String(day).padStart(2, "0");
+  if (clubScheduleFormMode === "edit" && eventId) {
+    var existing = findClubLeaderCustomEventById(eventId);
+    if (!existing) {
+      alert("일정을 찾을 수 없습니다. 페이지를 새로고침해 주세요.");
+      return;
     }
+    if (eventIdInput) eventIdInput.value = existing.id;
+    if (clubSelect) clubSelect.value = existing.nameMatch;
+    if (dateInput) {
+      dateInput.value =
+        existing.year +
+        "-" +
+        String(existing.month + 1).padStart(2, "0") +
+        "-" +
+        String(existing.day).padStart(2, "0");
+    }
+    if (timeInput) timeInput.value = existing.time || "";
+    if (authorInput) authorInput.value = existing.author || "";
+  } else {
+    if (eventIdInput) eventIdInput.value = "";
+    if (dateInput) {
+      var y = clubScheduleViewYear;
+      var m = clubScheduleViewMonth;
+      if (y !== null && m !== null) {
+        var today = new Date();
+        var day =
+          y === today.getFullYear() && m === today.getMonth() ? today.getDate() : 1;
+        dateInput.value =
+          y +
+          "-" +
+          String(m + 1).padStart(2, "0") +
+          "-" +
+          String(day).padStart(2, "0");
+      }
+    }
+    if (timeInput) timeInput.value = "";
+    if (authorInput) authorInput.value = "";
+    if (clubSelect) clubSelect.value = "";
   }
-  if (timeInput && !timeInput.value) {
-    timeInput.value = "18:00";
-  }
-  if (titleInput) titleInput.value = "";
-  if (authorInput) authorInput.value = "";
 
   modal.classList.remove("hidden");
   modal.removeAttribute("hidden");
   document.body.style.overflow = "hidden";
 
-  var clubSelect = document.getElementById("clubScheduleFormClub");
   if (clubSelect) {
     setTimeout(function () {
       clubSelect.focus();
@@ -1853,21 +1950,45 @@ function openClubScheduleFormModal() {
 
 function closeClubScheduleFormModal() {
   var modal = document.getElementById("clubScheduleFormModal");
+  var eventIdInput = document.getElementById("clubScheduleFormEventId");
   if (!modal) return;
   modal.classList.add("hidden");
   modal.setAttribute("hidden", "");
+  if (eventIdInput) eventIdInput.value = "";
+  setClubScheduleFormMode("create");
   if (!isClubScheduleAuthModalOpen()) {
     document.body.style.overflow = "";
   }
 }
 
-function openClubScheduleRegisterFlow() {
-  clubScheduleDismissPopup();
-  if (isClubLeaderAuthenticated()) {
-    openClubScheduleFormModal();
+function completeClubLeaderAuthAction(action) {
+  if (action === "register") {
+    openClubScheduleFormModal("create");
     return;
   }
+  if (action && action.type === "edit" && action.id) {
+    openClubScheduleFormModal("edit", action.id);
+  }
+}
+
+function requestClubLeaderAuth(action) {
+  if (isClubLeaderAuthenticated()) {
+    completeClubLeaderAuthAction(action);
+    return;
+  }
+  clubScheduleAuthPendingAction = action;
   openClubScheduleAuthModal();
+}
+
+function openClubScheduleRegisterFlow() {
+  clubScheduleDismissPopup();
+  requestClubLeaderAuth("register");
+}
+
+function openClubScheduleEditFlow(eventId) {
+  if (!eventId) return;
+  clubScheduleDismissPopup();
+  requestClubLeaderAuth({ type: "edit", id: eventId });
 }
 
 function handleClubScheduleAuthSubmit(e) {
@@ -1878,8 +1999,10 @@ function handleClubScheduleAuthSubmit(e) {
 
   if (input.value === CLUB_LEADER_SCHEDULE_PASSWORD) {
     setClubLeaderAuthenticated(true);
+    var action = clubScheduleAuthPendingAction || "register";
+    clubScheduleAuthPendingAction = null;
     closeClubScheduleAuthModal();
-    openClubScheduleFormModal();
+    completeClubLeaderAuthAction(action);
     return;
   }
 
@@ -1900,74 +2023,109 @@ function parseClubScheduleFormDateValue(value) {
   return { year: year, month: month, day: day };
 }
 
-function handleClubScheduleRegisterSubmit(e) {
-  e.preventDefault();
+function readClubScheduleFormValues() {
   var clubSelect = document.getElementById("clubScheduleFormClub");
   var dateInput = document.getElementById("clubScheduleFormDate");
   var timeInput = document.getElementById("clubScheduleFormTime");
-  var titleInput = document.getElementById("clubScheduleFormTitle");
   var authorInput = document.getElementById("clubScheduleFormAuthor");
+  return {
+    nameMatch: clubSelect ? clubSelect.value : "",
+    dateParts: dateInput ? parseClubScheduleFormDateValue(dateInput.value) : null,
+    time: timeInput ? String(timeInput.value || "").trim() : "",
+    author: authorInput ? String(authorInput.value || "").trim() : "",
+  };
+}
+
+function validateClubScheduleFormValues(values, errEl) {
+  if (!values.nameMatch) {
+    if (errEl) {
+      errEl.textContent = "동호회를 선택해 주세요.";
+      errEl.classList.remove("hidden");
+    }
+    return false;
+  }
+  if (!values.dateParts) {
+    if (errEl) {
+      errEl.textContent = "날짜를 올바르게 선택해 주세요.";
+      errEl.classList.remove("hidden");
+    }
+    return false;
+  }
+  var clamped = clubScheduleClampView(values.dateParts.year, values.dateParts.month);
+  if (clamped.year !== values.dateParts.year || clamped.month !== values.dateParts.month) {
+    if (errEl) {
+      errEl.textContent = "2026년 1월~12월 범위의 날짜만 등록할 수 있습니다.";
+      errEl.classList.remove("hidden");
+    }
+    return false;
+  }
+  return true;
+}
+
+function handleClubScheduleRegisterSubmit(e) {
+  e.preventDefault();
   var err = document.getElementById("clubScheduleFormError");
   var ok = document.getElementById("clubScheduleFormSuccess");
-  if (!clubSelect || !dateInput || !timeInput || !titleInput || !err || !ok) return;
+  var eventIdInput = document.getElementById("clubScheduleFormEventId");
+  if (!err || !ok) return;
 
   resetClubScheduleFormMessages();
-
-  var nameMatch = clubSelect.value;
-  var title = String(titleInput.value || "").trim();
-  var time = String(timeInput.value || "").trim();
-  var author = authorInput ? String(authorInput.value || "").trim() : "";
-  var dateParts = parseClubScheduleFormDateValue(dateInput.value);
-
-  if (!nameMatch) {
-    err.textContent = "동호회를 선택해 주세요.";
-    err.classList.remove("hidden");
-    clubSelect.focus();
-    return;
-  }
-  if (!dateParts) {
-    err.textContent = "날짜를 올바르게 선택해 주세요.";
-    err.classList.remove("hidden");
-    dateInput.focus();
-    return;
-  }
-  if (!time) {
-    err.textContent = "시간을 선택해 주세요.";
-    err.classList.remove("hidden");
-    timeInput.focus();
-    return;
-  }
-  if (!title) {
-    err.textContent = "모임명 또는 활동 내용을 입력해 주세요.";
-    err.classList.remove("hidden");
-    titleInput.focus();
-    return;
-  }
-
-  var clamped = clubScheduleClampView(dateParts.year, dateParts.month);
-  if (clamped.year !== dateParts.year || clamped.month !== dateParts.month) {
-    err.textContent = "2026년 1월~12월 범위의 날짜만 등록할 수 있습니다.";
-    err.classList.remove("hidden");
-    dateInput.focus();
-    return;
-  }
+  var values = readClubScheduleFormValues();
+  if (!validateClubScheduleFormValues(values, err)) return;
 
   var events = loadClubLeaderCustomEvents();
+
+  if (clubScheduleFormMode === "edit") {
+    var editId = eventIdInput ? eventIdInput.value : "";
+    var idx = -1;
+    for (var i = 0; i < events.length; i++) {
+      if (events[i].id === editId) {
+        idx = i;
+        break;
+      }
+    }
+    if (idx === -1) {
+      err.textContent = "수정할 일정을 찾을 수 없습니다.";
+      err.classList.remove("hidden");
+      return;
+    }
+    events[idx] = {
+      id: events[idx].id,
+      nameMatch: values.nameMatch,
+      year: values.dateParts.year,
+      month: values.dateParts.month,
+      day: values.dateParts.day,
+      time: values.time,
+      author: values.author,
+      updatedAt: new Date().toISOString(),
+      createdAt: events[idx].createdAt || new Date().toISOString(),
+    };
+    saveClubLeaderCustomEvents(events);
+    clubScheduleViewYear = values.dateParts.year;
+    clubScheduleViewMonth = values.dateParts.month;
+    renderClubScheduleCalendars();
+    ok.textContent = "일정이 수정되었습니다.";
+    ok.classList.remove("hidden");
+    setTimeout(function () {
+      closeClubScheduleFormModal();
+    }, 600);
+    return;
+  }
+
   events.push({
     id: generateClubLeaderEventId(),
-    nameMatch: nameMatch,
-    year: dateParts.year,
-    month: dateParts.month,
-    day: dateParts.day,
-    time: time,
-    title: title,
-    author: author,
+    nameMatch: values.nameMatch,
+    year: values.dateParts.year,
+    month: values.dateParts.month,
+    day: values.dateParts.day,
+    time: values.time,
+    author: values.author,
     createdAt: new Date().toISOString(),
   });
   saveClubLeaderCustomEvents(events);
 
-  clubScheduleViewYear = dateParts.year;
-  clubScheduleViewMonth = dateParts.month;
+  clubScheduleViewYear = values.dateParts.year;
+  clubScheduleViewMonth = values.dateParts.month;
   renderClubScheduleCalendars();
 
   ok.textContent = "일정이 등록되었습니다. 달력에 반영되었어요!";
@@ -1976,6 +2134,48 @@ function handleClubScheduleRegisterSubmit(e) {
   setTimeout(function () {
     closeClubScheduleFormModal();
   }, 700);
+}
+
+function handleClubScheduleDelete() {
+  var eventIdInput = document.getElementById("clubScheduleFormEventId");
+  var err = document.getElementById("clubScheduleFormError");
+  if (!eventIdInput || !eventIdInput.value) return;
+
+  var existing = findClubLeaderCustomEventById(eventIdInput.value);
+  if (!existing) {
+    if (err) {
+      err.textContent = "삭제할 일정을 찾을 수 없습니다.";
+      err.classList.remove("hidden");
+    }
+    return;
+  }
+
+  var label = clubScheduleDisplayLabel({
+    source: "custom",
+    nameMatch: existing.nameMatch,
+    time: existing.time || "",
+  });
+  var dateLabel =
+    existing.year +
+    "년 " +
+    (existing.month + 1) +
+    "월 " +
+    existing.day +
+    "일";
+  if (
+    !window.confirm(
+      "등록한 일정을 삭제할까요?\n\n" + dateLabel + " · " + label
+    )
+  ) {
+    return;
+  }
+
+  var events = loadClubLeaderCustomEvents().filter(function (ev) {
+    return ev.id !== existing.id;
+  });
+  saveClubLeaderCustomEvents(events);
+  closeClubScheduleFormModal();
+  renderClubScheduleCalendars();
 }
 
 function bindClubScheduleRegisterModals() {
@@ -1991,11 +2191,15 @@ function bindClubScheduleRegisterModals() {
   var authClose = document.getElementById("clubScheduleAuthModalClose");
   var formBackdrop = document.getElementById("clubScheduleFormModalBackdrop");
   var formClose = document.getElementById("clubScheduleFormModalClose");
+  var formCancel = document.getElementById("clubScheduleFormCancel");
+  var formDelete = document.getElementById("clubScheduleFormDelete");
 
   if (authBackdrop) authBackdrop.addEventListener("click", closeClubScheduleAuthModal);
   if (authClose) authClose.addEventListener("click", closeClubScheduleAuthModal);
   if (formBackdrop) formBackdrop.addEventListener("click", closeClubScheduleFormModal);
   if (formClose) formClose.addEventListener("click", closeClubScheduleFormModal);
+  if (formCancel) formCancel.addEventListener("click", closeClubScheduleFormModal);
+  if (formDelete) formDelete.addEventListener("click", handleClubScheduleDelete);
 
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;

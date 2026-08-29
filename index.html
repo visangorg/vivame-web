@@ -2660,7 +2660,7 @@
             </div>
             <div class="club-schedule-register-body">
                 <h3 id="clubScheduleAuthModalTitle" class="club-schedule-register-title text-content">리더 인증</h3>
-                <p class="club-schedule-register-desc text-content">동호회 일정 등록은 리더 전용입니다. 공통 비밀번호를 입력해 주세요.</p>
+                <p class="club-schedule-register-desc text-content">동호회 일정 등록·수정은 리더 전용입니다. 공통 비밀번호를 입력해 주세요.</p>
                 <form id="clubScheduleAuthForm" class="club-schedule-register-form" novalidate>
                     <label class="club-schedule-register-label text-content" for="clubScheduleAuthPassword">리더 인증 비밀번호</label>
                     <input type="password" id="clubScheduleAuthPassword" class="club-schedule-register-input" autocomplete="off" placeholder="비밀번호 입력" required />
@@ -2696,21 +2696,25 @@
                             <input type="date" id="clubScheduleFormDate" class="club-schedule-register-input" required />
                         </div>
                         <div class="club-schedule-register-field">
-                            <label class="club-schedule-register-label text-content" for="clubScheduleFormTime">시간 <span class="club-schedule-register-required">*</span></label>
-                            <input type="time" id="clubScheduleFormTime" class="club-schedule-register-input" required />
+                            <label class="club-schedule-register-label text-content" for="clubScheduleFormTime">시간 <span class="club-schedule-register-optional">(선택)</span></label>
+                            <input type="time" id="clubScheduleFormTime" class="club-schedule-register-input" />
                         </div>
-                    </div>
-                    <div class="club-schedule-register-field">
-                        <label class="club-schedule-register-label text-content" for="clubScheduleFormTitle">모임명 / 활동 내용 <span class="club-schedule-register-required">*</span></label>
-                        <input type="text" id="clubScheduleFormTitle" class="club-schedule-register-input" placeholder="예) [원모어] 정기 모임 &amp; 굿즈 수령" required maxlength="120" />
                     </div>
                     <div class="club-schedule-register-field">
                         <label class="club-schedule-register-label text-content" for="clubScheduleFormAuthor">작성자 <span class="club-schedule-register-optional">(선택)</span></label>
                         <input type="text" id="clubScheduleFormAuthor" class="club-schedule-register-input" placeholder="예) 유지수 CP" maxlength="40" />
                     </div>
+                    <input type="hidden" id="clubScheduleFormEventId" value="" />
                     <p id="clubScheduleFormError" class="club-schedule-register-error hidden" role="alert"></p>
                     <p id="clubScheduleFormSuccess" class="club-schedule-register-success hidden" role="status"></p>
-                    <button type="submit" class="club-schedule-register-submit">등록하기</button>
+                    <div id="clubScheduleFormActionsCreate" class="club-schedule-register-actions">
+                        <button type="submit" class="club-schedule-register-submit">등록하기</button>
+                    </div>
+                    <div id="clubScheduleFormActionsEdit" class="club-schedule-register-actions club-schedule-register-actions--edit hidden" aria-hidden="true">
+                        <button type="button" id="clubScheduleFormCancel" class="club-schedule-register-cancel">취소</button>
+                        <button type="button" id="clubScheduleFormDelete" class="club-schedule-register-delete">삭제하기</button>
+                        <button type="submit" class="club-schedule-register-submit club-schedule-register-submit--edit">수정 완료</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -2804,7 +2808,7 @@
     </footer>
 
     <script src="./js/interviews.js?v=20260701c"></script>
-    <script src="./js/main.js?v=20260829"></script>
+    <script src="./js/main.js?v=20260829b"></script>
     <script src="./js/quiz.js"></script>
     <script>
         initQuizModal();
