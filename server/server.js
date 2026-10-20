@@ -1,24 +1,39 @@
 /**
- * VIVAME 19기 지원서 수집 서버
+ * VIVAME 서버
  * - POST /api/apply : 지원서 저장
  * - GET /api/applications/csv?key=ADMIN_SECRET : 전체 CSV 다운로드 (운영자용)
+ * - /api/club-events : 동호회 일정 공용 저장 (GET 공개, 변경은 리더 비밀번호)
  */
 import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createClubEventService } from './application/club-event-service.js';
+import { createFileClubEventRepository } from './infrastructure/file-club-event-repository.js';
+import { createClubEventRouter } from './interfaces/http/club-event-routes.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'applications.json');
+const CLUB_EVENTS_FILE = path.join(DATA_DIR, 'club-events.json');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 const ADMIN_SECRET = process.env.ADMIN_SECRET || 'vivame-admin-secret-change-me';
+const CLUB_LEADER_PASSWORD = process.env.CLUB_LEADER_PASSWORD || 'visang!';
+const clubEventService = createClubEventService({
+  repository: createFileClubEventRepository(CLUB_EVENTS_FILE),
+  leaderPassword: CLUB_LEADER_PASSWORD,
+});
 
-app.use(cors({ origin: true }));
+app.use(cors({
+  origin: true,
+  allowedHeaders: ['Content-Type', 'X-Club-Leader-Password'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+}));
 app.use(express.json());
+app.use('/api/club-events', createClubEventRouter(clubEventService));
 
 function ensureDataDir() {
   if (!fs.existsSync(DATA_DIR)) {
@@ -97,7 +112,19 @@ app.get('/api/applications/csv', (req, res) => {
   res.send(bom + csvContent);
 });
 
+const staticRoot = path.resolve(__dirname, '..');
+if (process.env.SERVE_STATIC !== 'false' && fs.existsSync(path.join(staticRoot, 'index.html'))) {
+  app.use((req, res, next) => {
+    if (req.path.startsWith('/server/data')) {
+      return res.status(404).end();
+    }
+    next();
+  });
+  app.use(express.static(staticRoot));
+}
+
 app.listen(PORT, () => {
-  console.log(`VIVAME apply server running at http://localhost:${PORT}`);
+  console.log(`VIVAME server running at http://localhost:${PORT}`);
+  console.log(`Club events: GET /api/club-events`);
   console.log(`CSV download: GET /api/applications/csv?key=YOUR_ADMIN_SECRET`);
 });

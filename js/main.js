@@ -1116,7 +1116,6 @@ var CLUB_SCHEDULE_RULES = [
 
 /** 리더 전용 일정 등록 — 공통 비밀번호 */
 var CLUB_LEADER_SCHEDULE_PASSWORD = "visang!";
-var CLUB_LEADER_EVENTS_STORAGE_KEY = "vivame-club-leader-events";
 var CLUB_LEADER_PASSWORD_MISMATCH_MSG = "비밀번호가 올바르지 않습니다. (리더 전용)";
 var CLUB_SCHEDULE_NAME_MATCH_ALIASES = {
   퐁당: "퐁당다이브클럽",
@@ -1125,42 +1124,63 @@ var CLUB_SCHEDULE_NAME_MATCH_ALIASES = {
 
 var clubScheduleRegisterBound = false;
 var clubScheduleFormMode = /** @type {'create' | 'edit'} */ ("create");
+var clubLeaderCustomEventsCache = [];
+var clubScheduleSyncError = "";
 
 function normalizeClubScheduleNameMatch(nameMatch) {
   if (!nameMatch) return nameMatch;
   return CLUB_SCHEDULE_NAME_MATCH_ALIASES[nameMatch] || nameMatch;
 }
 
-function migrateClubLeaderCustomEvents(events) {
-  var changed = false;
-  var migrated = events.map(function (ev) {
-    var normalized = normalizeClubScheduleNameMatch(ev.nameMatch);
-    if (normalized !== ev.nameMatch) {
-      changed = true;
-      return Object.assign({}, ev, { nameMatch: normalized });
-    }
-    return ev;
-  });
-  if (changed) {
-    saveClubLeaderCustomEvents(migrated);
-  }
-  return migrated;
-}
-
 function loadClubLeaderCustomEvents() {
-  try {
-    var raw = localStorage.getItem(CLUB_LEADER_EVENTS_STORAGE_KEY);
-    if (!raw) return [];
-    var parsed = JSON.parse(raw);
-    var events = Array.isArray(parsed) ? parsed : [];
-    return migrateClubLeaderCustomEvents(events);
-  } catch (err) {
-    return [];
-  }
+  return clubLeaderCustomEventsCache.slice();
 }
 
-function saveClubLeaderCustomEvents(events) {
-  localStorage.setItem(CLUB_LEADER_EVENTS_STORAGE_KEY, JSON.stringify(events));
+function setClubLeaderCustomEventsCache(events) {
+  clubLeaderCustomEventsCache = Array.isArray(events)
+    ? events.map(function (ev) {
+        return Object.assign({}, ev, {
+          nameMatch: normalizeClubScheduleNameMatch(ev.nameMatch),
+        });
+      })
+    : [];
+}
+
+function refreshClubLeaderCustomEvents() {
+  if (!window.ClubScheduleApi || typeof window.ClubScheduleApi.listEvents !== "function") {
+    clubScheduleSyncError = "공용 달력 서버 설정을 찾을 수 없습니다.";
+    setClubLeaderCustomEventsCache([]);
+    return Promise.resolve();
+  }
+  return window.ClubScheduleApi
+    .listEvents()
+    .then(function (events) {
+      setClubLeaderCustomEventsCache(events);
+      clubScheduleSyncError = "";
+    })
+    .catch(function (err) {
+      clubScheduleSyncError =
+        (err && err.message) ||
+        "공용 달력 서버에 연결하지 못했습니다. 서버를 실행한 뒤 새로고침해 주세요.";
+      setClubLeaderCustomEventsCache([]);
+    });
+}
+
+function getClubScheduleFormPasswordValue() {
+  var pwdInput = document.getElementById("clubScheduleFormPassword");
+  return pwdInput ? pwdInput.value : "";
+}
+
+function showClubScheduleApiError(err, errEl) {
+  if (err && err.status === 401) {
+    window.alert(CLUB_LEADER_PASSWORD_MISMATCH_MSG);
+    return;
+  }
+  if (errEl) {
+    errEl.textContent =
+      (err && err.message) || "일정을 저장하지 못했습니다. 잠시 후 다시 시도해 주세요.";
+    errEl.classList.remove("hidden");
+  }
 }
 
 function findScheduleRuleByNameMatch(nameMatch) {
@@ -1776,9 +1796,16 @@ function renderClubScheduleCalendars() {
     clubScheduleViewMonth = iv.month;
   }
 
+  var syncNotice = clubScheduleSyncError
+    ? '<p class="club-schedule-sync-error" role="alert">' +
+      escapeHtmlText(clubScheduleSyncError) +
+      "</p>"
+    : "";
+
   root.innerHTML =
     '<div class="club-schedule-calendars-grid">' +
     '<div class="club-cal-toolbar">' +
+    syncNotice +
     '<button type="button" id="clubScheduleAddBtn" class="club-cal-add-btn">' +
     "+ 일정 등록 (리더 전용)" +
     "</button></div>" +
@@ -2027,68 +2054,51 @@ function handleClubScheduleRegisterSubmit(e) {
 
   var values = readClubScheduleFormValues();
   if (!validateClubScheduleFormValues(values, err)) return;
-
-  var events = loadClubLeaderCustomEvents();
-
-  if (clubScheduleFormMode === "edit") {
-    var editId = eventIdInput ? eventIdInput.value : "";
-    var idx = -1;
-    for (var i = 0; i < events.length; i++) {
-      if (events[i].id === editId) {
-        idx = i;
-        break;
-      }
-    }
-    if (idx === -1) {
-      err.textContent = "수정할 일정을 찾을 수 없습니다.";
-      err.classList.remove("hidden");
-      return;
-    }
-    events[idx] = {
-      id: events[idx].id,
-      nameMatch: values.nameMatch,
-      year: values.dateParts.year,
-      month: values.dateParts.month,
-      day: values.dateParts.day,
-      time: values.time,
-      author: values.author,
-      updatedAt: new Date().toISOString(),
-      createdAt: events[idx].createdAt || new Date().toISOString(),
-    };
-    saveClubLeaderCustomEvents(events);
-    clubScheduleViewYear = values.dateParts.year;
-    clubScheduleViewMonth = values.dateParts.month;
-    renderClubScheduleCalendars();
-    ok.textContent = "일정이 수정되었습니다.";
-    ok.classList.remove("hidden");
-    setTimeout(function () {
-      closeClubScheduleFormModal();
-    }, 600);
+  if (!window.ClubScheduleApi) {
+    err.textContent = "공용 달력 서버 설정을 찾을 수 없습니다.";
+    err.classList.remove("hidden");
     return;
   }
 
-  events.push({
-    id: generateClubLeaderEventId(),
+  var password = getClubScheduleFormPasswordValue();
+  var payload = {
     nameMatch: values.nameMatch,
     year: values.dateParts.year,
     month: values.dateParts.month,
     day: values.dateParts.day,
     time: values.time,
     author: values.author,
-    createdAt: new Date().toISOString(),
-  });
-  saveClubLeaderCustomEvents(events);
+  };
 
-  clubScheduleViewYear = values.dateParts.year;
-  clubScheduleViewMonth = values.dateParts.month;
-  renderClubScheduleCalendars();
+  var request =
+    clubScheduleFormMode === "edit"
+      ? window.ClubScheduleApi.updateEvent(
+          password,
+          eventIdInput ? eventIdInput.value : "",
+          payload
+        )
+      : window.ClubScheduleApi.createEvent(password, payload);
 
-  ok.textContent = "일정이 등록되었습니다. 달력에 반영되었어요!";
-  ok.classList.remove("hidden");
-
-  setTimeout(function () {
-    closeClubScheduleFormModal();
-  }, 700);
+  request
+    .then(function () {
+      return refreshClubLeaderCustomEvents();
+    })
+    .then(function () {
+      clubScheduleViewYear = values.dateParts.year;
+      clubScheduleViewMonth = values.dateParts.month;
+      renderClubScheduleCalendars();
+      ok.textContent =
+        clubScheduleFormMode === "edit"
+          ? "일정이 수정되었습니다."
+          : "일정이 등록되었습니다. 달력에 반영되었어요!";
+      ok.classList.remove("hidden");
+      setTimeout(function () {
+        closeClubScheduleFormModal();
+      }, 600);
+    })
+    .catch(function (apiErr) {
+      showClubScheduleApiError(apiErr, err);
+    });
 }
 
 function handleClubScheduleDelete() {
@@ -2129,12 +2139,26 @@ function handleClubScheduleDelete() {
     return;
   }
 
-  var events = loadClubLeaderCustomEvents().filter(function (ev) {
-    return ev.id !== existing.id;
-  });
-  saveClubLeaderCustomEvents(events);
-  closeClubScheduleFormModal();
-  renderClubScheduleCalendars();
+  if (!window.ClubScheduleApi) {
+    if (err) {
+      err.textContent = "공용 달력 서버 설정을 찾을 수 없습니다.";
+      err.classList.remove("hidden");
+    }
+    return;
+  }
+
+  window.ClubScheduleApi
+    .deleteEvent(getClubScheduleFormPasswordValue(), existing.id)
+    .then(function () {
+      return refreshClubLeaderCustomEvents();
+    })
+    .then(function () {
+      closeClubScheduleFormModal();
+      renderClubScheduleCalendars();
+    })
+    .catch(function (apiErr) {
+      showClubScheduleApiError(apiErr, err);
+    });
 }
 
 function bindClubScheduleRegisterModals() {
@@ -2165,6 +2189,9 @@ function bindClubScheduleRegisterModals() {
 function initClubScheduleCalendar() {
   bindClubScheduleRegisterModals();
   renderClubScheduleCalendars();
+  refreshClubLeaderCustomEvents().then(function () {
+    renderClubScheduleCalendars();
+  });
 }
 
 function initClubPortal() {

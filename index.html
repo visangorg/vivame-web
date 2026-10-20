@@ -2789,8 +2789,14 @@
         </div>
     </footer>
 
+    <script>
+        // 정적 호스팅(GitHub Pages 등)이라면 배포한 서버 주소를 넣으세요.
+        // 예: window.CLUB_SCHEDULE_API_BASE = "https://your-server.example.com";
+        window.CLUB_SCHEDULE_API_BASE = window.CLUB_SCHEDULE_API_BASE || "";
+    </script>
     <script src="./js/interviews.js?v=20260701c"></script>
-    <script src="./js/main.js?v=20260829b"></script>
+    <script src="./js/club-schedule-api.js?v=20261019a"></script>
+    <script src="./js/main.js?v=20261019a"></script>
     <script src="./js/quiz.js"></script>
     <script>
         initQuizModal();

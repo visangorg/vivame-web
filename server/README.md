@@ -6,6 +6,8 @@
 
 - **POST /api/apply** — 지원서 제출 시 프론트에서 이 주소로 전송. `data/applications.json`에 누적 저장.
 - **GET /api/applications/csv?key=ADMIN_SECRET** — 운영자만 접근. 저장된 전체 제출을 CSV 파일로 다운로드.
+- **GET /api/club-events** — 동호회 리더가 등록한 일정을 모두 조회(공개).
+- **POST /api/club-events**, **PUT /api/club-events/:id**, **DELETE /api/club-events/:id** — 리더 비밀번호(`X-Club-Leader-Password`)가 맞을 때만 등록/수정/삭제. 결과는 `data/club-events.json`에 공용 저장됩니다.
 
 ## 로컬 실행
 
@@ -35,4 +37,6 @@ npm run dev
 - **Render**: New Web Service → Repository 연결, Root Directory `server`, Build: `npm install`, Start: `npm start`.
 - 둘 다 환경 변수에 `ADMIN_SECRET`(및 필요 시 `PORT`) 설정.
 
-배포 후 나온 URL을 프론트의 `BACKEND_URL`에 넣으면 지원서가 해당 서버에 쌓이고, 위 CSV 주소로 전체 다운로드할 수 있습니다.
+배포 후 나온 URL을 프론트의 `window.CLUB_SCHEDULE_API_BASE`에 넣으면 동호회 일정이 해당 서버에 쌓여 모든 브라우저에서 같이 보입니다.
+
+같은 서버로 사이트까지 열려면 저장소 루트에서 `node server/server.js`를 실행하세요. `index.html`을 정적 파일로 함께 제공합니다.
