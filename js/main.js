@@ -1116,6 +1116,7 @@ var CLUB_SCHEDULE_RULES = [
 
 /** 리더 전용 일정 등록 — 공통 비밀번호 */
 var CLUB_LEADER_SCHEDULE_PASSWORD = "visang!";
+var CLUB_LEADER_EVENTS_STORAGE_KEY = "vivame-club-leader-events";
 var CLUB_LEADER_PASSWORD_MISMATCH_MSG = "비밀번호가 올바르지 않습니다. (리더 전용)";
 var CLUB_SCHEDULE_NAME_MATCH_ALIASES = {
   퐁당: "퐁당다이브클럽",
@@ -1136,6 +1137,29 @@ function loadClubLeaderCustomEvents() {
   return clubLeaderCustomEventsCache.slice();
 }
 
+function isClubScheduleRemoteApiEnabled() {
+  return !!(
+    window.ClubScheduleApi &&
+    typeof window.ClubScheduleApi.isRemoteApiEnabled === "function" &&
+    window.ClubScheduleApi.isRemoteApiEnabled()
+  );
+}
+
+function readLocalClubLeaderEvents() {
+  try {
+    var raw = localStorage.getItem(CLUB_LEADER_EVENTS_STORAGE_KEY);
+    if (!raw) return [];
+    var parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    return [];
+  }
+}
+
+function writeLocalClubLeaderEvents(events) {
+  localStorage.setItem(CLUB_LEADER_EVENTS_STORAGE_KEY, JSON.stringify(events));
+}
+
 function setClubLeaderCustomEventsCache(events) {
   clubLeaderCustomEventsCache = Array.isArray(events)
     ? events.map(function (ev) {
@@ -1147,22 +1171,19 @@ function setClubLeaderCustomEventsCache(events) {
 }
 
 function refreshClubLeaderCustomEvents() {
-  if (!window.ClubScheduleApi || typeof window.ClubScheduleApi.listEvents !== "function") {
-    clubScheduleSyncError = "공용 달력 서버 설정을 찾을 수 없습니다.";
-    setClubLeaderCustomEventsCache([]);
+  clubScheduleSyncError = "";
+  if (!isClubScheduleRemoteApiEnabled()) {
+    setClubLeaderCustomEventsCache(readLocalClubLeaderEvents());
     return Promise.resolve();
   }
-  return window.ClubScheduleApi
-    .listEvents()
+  return window.ClubScheduleApi.listEvents()
     .then(function (events) {
       setClubLeaderCustomEventsCache(events);
       clubScheduleSyncError = "";
     })
-    .catch(function (err) {
-      clubScheduleSyncError =
-        (err && err.message) ||
-        "공용 달력 서버에 연결하지 못했습니다. 서버를 실행한 뒤 새로고침해 주세요.";
-      setClubLeaderCustomEventsCache([]);
+    .catch(function () {
+      setClubLeaderCustomEventsCache(readLocalClubLeaderEvents());
+      clubScheduleSyncError = "";
     });
 }
 
@@ -1206,6 +1227,56 @@ function getClubScheduleRegisterOptions() {
 
 function generateClubLeaderEventId() {
   return "cle-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+}
+
+function persistClubLeaderEventLocally(payload, editId) {
+  var events = readLocalClubLeaderEvents();
+  if (clubScheduleFormMode === "edit") {
+    var idx = -1;
+    for (var i = 0; i < events.length; i++) {
+      if (events[i].id === editId) {
+        idx = i;
+        break;
+      }
+    }
+    if (idx === -1) {
+      return Promise.reject(new Error("수정할 일정을 찾을 수 없습니다."));
+    }
+    events[idx] = {
+      id: events[idx].id,
+      nameMatch: payload.nameMatch,
+      year: payload.year,
+      month: payload.month,
+      day: payload.day,
+      time: payload.time,
+      author: payload.author,
+      updatedAt: new Date().toISOString(),
+      createdAt: events[idx].createdAt || new Date().toISOString(),
+    };
+  } else {
+    events.push({
+      id: generateClubLeaderEventId(),
+      nameMatch: payload.nameMatch,
+      year: payload.year,
+      month: payload.month,
+      day: payload.day,
+      time: payload.time,
+      author: payload.author,
+      createdAt: new Date().toISOString(),
+    });
+  }
+  writeLocalClubLeaderEvents(events);
+  setClubLeaderCustomEventsCache(events);
+  return Promise.resolve();
+}
+
+function persistClubLeaderEventDeleteLocally(eventId) {
+  var events = readLocalClubLeaderEvents().filter(function (ev) {
+    return ev.id !== eventId;
+  });
+  writeLocalClubLeaderEvents(events);
+  setClubLeaderCustomEventsCache(events);
+  return Promise.resolve();
 }
 
 function findClubLeaderCustomEventById(id) {
@@ -1796,16 +1867,9 @@ function renderClubScheduleCalendars() {
     clubScheduleViewMonth = iv.month;
   }
 
-  var syncNotice = clubScheduleSyncError
-    ? '<p class="club-schedule-sync-error" role="alert">' +
-      escapeHtmlText(clubScheduleSyncError) +
-      "</p>"
-    : "";
-
   root.innerHTML =
     '<div class="club-schedule-calendars-grid">' +
     '<div class="club-cal-toolbar">' +
-    syncNotice +
     '<button type="button" id="clubScheduleAddBtn" class="club-cal-add-btn">' +
     "+ 일정 등록 (리더 전용)" +
     "</button></div>" +
@@ -2054,11 +2118,6 @@ function handleClubScheduleRegisterSubmit(e) {
 
   var values = readClubScheduleFormValues();
   if (!validateClubScheduleFormValues(values, err)) return;
-  if (!window.ClubScheduleApi) {
-    err.textContent = "공용 달력 서버 설정을 찾을 수 없습니다.";
-    err.classList.remove("hidden");
-    return;
-  }
 
   var password = getClubScheduleFormPasswordValue();
   var payload = {
@@ -2070,14 +2129,19 @@ function handleClubScheduleRegisterSubmit(e) {
     author: values.author,
   };
 
-  var request =
-    clubScheduleFormMode === "edit"
-      ? window.ClubScheduleApi.updateEvent(
-          password,
-          eventIdInput ? eventIdInput.value : "",
-          payload
-        )
-      : window.ClubScheduleApi.createEvent(password, payload);
+  var request;
+  if (isClubScheduleRemoteApiEnabled()) {
+    request =
+      clubScheduleFormMode === "edit"
+        ? window.ClubScheduleApi.updateEvent(
+            password,
+            eventIdInput ? eventIdInput.value : "",
+            payload
+          )
+        : window.ClubScheduleApi.createEvent(password, payload);
+  } else {
+    request = persistClubLeaderEventLocally(payload, eventIdInput ? eventIdInput.value : "");
+  }
 
   request
     .then(function () {
@@ -2139,16 +2203,11 @@ function handleClubScheduleDelete() {
     return;
   }
 
-  if (!window.ClubScheduleApi) {
-    if (err) {
-      err.textContent = "공용 달력 서버 설정을 찾을 수 없습니다.";
-      err.classList.remove("hidden");
-    }
-    return;
-  }
+  var deleteRequest = isClubScheduleRemoteApiEnabled()
+    ? window.ClubScheduleApi.deleteEvent(getClubScheduleFormPasswordValue(), existing.id)
+    : persistClubLeaderEventDeleteLocally(existing.id);
 
-  window.ClubScheduleApi
-    .deleteEvent(getClubScheduleFormPasswordValue(), existing.id)
+  deleteRequest
     .then(function () {
       return refreshClubLeaderCustomEvents();
     })

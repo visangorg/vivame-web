@@ -3,21 +3,19 @@
     return String(value || "").replace(/\/$/, "");
   }
 
+  function isRemoteApiEnabled() {
+    if (trimSlash(global.CLUB_SCHEDULE_API_BASE)) return true;
+    var loc = global.location || {};
+    var host = loc.hostname || "";
+    var port = String(loc.port || "");
+    return (host === "localhost" || host === "127.0.0.1") && port === "3001";
+  }
+
   function getClubScheduleApiBase() {
     if (global.CLUB_SCHEDULE_API_BASE) {
       return trimSlash(global.CLUB_SCHEDULE_API_BASE);
     }
-    var loc = global.location || {};
-    if (loc.protocol === "file:") {
-      return "http://localhost:3001";
-    }
-    var host = loc.hostname;
-    var port = loc.port;
-    if (host === "localhost" || host === "127.0.0.1") {
-      if (port && port !== "3001") {
-        return "http://localhost:3001";
-      }
-    }
+    if (isRemoteApiEnabled()) return "";
     return "";
   }
 
@@ -54,6 +52,9 @@
   }
 
   async function listEvents() {
+    if (!isRemoteApiEnabled()) {
+      return [];
+    }
     var res;
     try {
       res = await fetch(apiUrl("/api/club-events"), { method: "GET" });
@@ -118,6 +119,7 @@
   }
 
   global.ClubScheduleApi = {
+    isRemoteApiEnabled: isRemoteApiEnabled,
     getClubScheduleApiBase: getClubScheduleApiBase,
     listEvents: listEvents,
     createEvent: createEvent,
