@@ -64,6 +64,16 @@ var INTERVIEW_ARTICLES = {
     thumbAlt: "2022 개정 비상 중고등 국어 교과서 라인업",
     templateId: "interview-article-vol6",
   },
+  "10": {
+    title: "‘내 옆의 완자’를 함께 지켜온 시간, 완자 사회 CP 3인방 🧡",
+    vol: "vol.10",
+    tag: "비상의 소식",
+    tagClass: "work",
+    meta: "2026 | 완자 사회 · 나보라 CP, 박근영 CP, 전수현 CP",
+    thumb: "./assets/interview-vol10-hero.jpg",
+    thumbAlt: "완자 사회 교재 — 중학·고등 완자와 펼쳐진 본문 페이지",
+    templateId: "interview-article-vol10",
+  },
   "9": {
     title: "비바샘을 더 '비바샘답게'! VIVA LAB 팀의 BX 탐구 일기 🎨",
     vol: "vol.9",
