@@ -995,6 +995,7 @@ var CLUB_SCHEDULE_RULES = [
       { year: 2026, month: 3, day: 23 },
       { year: 2026, month: 5, day: 23 },
       { year: 2026, month: 6, day: 9 },
+      { year: 2026, month: 9, day: 22 },
     ],
     shortLabel: "떼구르",
     chipName: "떼구르",
@@ -1017,7 +1018,10 @@ var CLUB_SCHEDULE_RULES = [
   {
     nameMatch: "온리 플라워",
     weekdays: [],
-    specificDates: [{ year: 2026, month: 3, day: 28 }],
+    specificDates: [
+      { year: 2026, month: 3, day: 28 },
+      { year: 2026, month: 9, day: 21 },
+    ],
     shortLabel: "온리플라워",
     chipName: "온리플라워",
     chipVariant: "onniflower",
@@ -1031,6 +1035,7 @@ var CLUB_SCHEDULE_RULES = [
       { year: 2026, month: 5, day: 11 },
       { year: 2026, month: 6, day: 16 },
       { year: 2026, month: 7, day: 13 },
+      { year: 2026, month: 9, day: 15 },
     ],
     shortLabel: "비상턴",
     chipName: "비상턴",
