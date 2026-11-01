@@ -1184,6 +1184,7 @@ function refreshClubLeaderCustomEvents() {
   return window.ClubScheduleApi.listEvents()
     .then(function (events) {
       setClubLeaderCustomEventsCache(events);
+      writeLocalClubLeaderEvents(events);
       clubScheduleSyncError = "";
     })
     .catch(function () {

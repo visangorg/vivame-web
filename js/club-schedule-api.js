@@ -1,21 +1,31 @@
 (function (global) {
+  var LEADER_PASSWORD = "visang!";
+
   function trimSlash(value) {
     return String(value || "").replace(/\/$/, "");
   }
 
-  function isRemoteApiEnabled() {
-    if (trimSlash(global.CLUB_SCHEDULE_API_BASE)) return true;
+  function isNetlifyHost() {
+    var host = (global.location && global.location.hostname) || "";
+    return host === "netlify.app" || /\.netlify\.app$/.test(host);
+  }
+
+  function isLocalApiHost() {
     var loc = global.location || {};
     var host = loc.hostname || "";
     var port = String(loc.port || "");
     return (host === "localhost" || host === "127.0.0.1") && port === "3001";
   }
 
+  function isRemoteApiEnabled() {
+    if (trimSlash(global.CLUB_SCHEDULE_API_BASE)) return true;
+    return isNetlifyHost() || isLocalApiHost();
+  }
+
   function getClubScheduleApiBase() {
     if (global.CLUB_SCHEDULE_API_BASE) {
       return trimSlash(global.CLUB_SCHEDULE_API_BASE);
     }
-    if (isRemoteApiEnabled()) return "";
     return "";
   }
 
@@ -29,6 +39,14 @@
       headers["X-Club-Leader-Password"] = password;
     }
     return headers;
+  }
+
+  function assertLeaderPassword(password) {
+    if (password !== LEADER_PASSWORD) {
+      var error = new Error("비밀번호가 올바르지 않습니다. (리더 전용)");
+      error.status = 401;
+      throw error;
+    }
   }
 
   async function parseJsonResponse(res) {
@@ -70,6 +88,7 @@
   }
 
   async function createEvent(password, payload) {
+    assertLeaderPassword(password);
     var res;
     try {
       res = await fetch(apiUrl("/api/club-events"), {
@@ -87,6 +106,7 @@
   }
 
   async function updateEvent(password, id, payload) {
+    assertLeaderPassword(password);
     var res;
     try {
       res = await fetch(apiUrl("/api/club-events/" + encodeURIComponent(id)), {
@@ -104,6 +124,7 @@
   }
 
   async function deleteEvent(password, id) {
+    assertLeaderPassword(password);
     var res;
     try {
       res = await fetch(apiUrl("/api/club-events/" + encodeURIComponent(id)), {

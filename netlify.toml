@@ -1,0 +1,22 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["server/domain/**", "server/application/**", "server/infrastructure/**"]
+
+[functions.club-events]
+  included_files = ["server/domain/**", "server/application/**", "server/infrastructure/**"]
+
+[[redirects]]
+  from = "/api/club-events"
+  to = "/.netlify/functions/club-events"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/club-events/*"
+  to = "/.netlify/functions/club-events"
+  status = 200
+  force = true

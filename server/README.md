@@ -40,3 +40,12 @@ npm run dev
 배포 후 나온 URL을 프론트의 `window.CLUB_SCHEDULE_API_BASE`에 넣으면 동호회 일정이 해당 서버에 쌓여 모든 브라우저에서 같이 보입니다.
 
 같은 서버로 사이트까지 열려면 저장소 루트에서 `node server/server.js`를 실행하세요. `index.html`을 정적 파일로 함께 제공합니다.
+
+## Netlify (권장, 리더 일정 공유)
+
+이 저장소를 Netlify에 배포하면 `/api/club-events`가 공용 저장소로 동작합니다. MVTI 테스트와 같이 Netlify에 올리면 됩니다.
+
+- Build command: 비워 두거나 생략
+- Publish directory: `.`
+- 사이트 주소가 `*.netlify.app`이면 프론트 설정 없이 바로 공유됩니다.
+- GitHub Pages로 사이트를 유지하면 `index.html`의 `CLUB_SCHEDULE_API_BASE`에 Netlify 주소를 넣으세요.
