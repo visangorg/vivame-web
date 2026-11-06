@@ -501,7 +501,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 * 🤝 밝고 유쾌한 분위기 속에서 사내 네트워크를 넓히고 싶은 CP님`,
     leaderInfo: "리더: 법무 Cell 정수진\n총무: 에듀테크플랫폼개발 Cell 오현식",
     email: "jungsj1@visang.com",
-    image: "./assets/club-ttegureu.png",
+    image: "./assets/club-ttegureu.jpg",
     badge: "볼링/친목",
   },
   {
