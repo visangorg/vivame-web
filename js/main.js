@@ -401,7 +401,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 * 🏟️ 혼자 가는 직관보다 함께 응원하는 함성의 힘을 믿는 분`,
     leaderInfo: "리더: 교과서정책 Cell 이병주\n총무: 통합실용4 Cell 정시우",
     email: "leebj1@visang.com",
-    image: "./assets/club-daramji.png",
+    image: "./assets/club-daramji.jpg",
     badge: "스포츠 직관",
   },
   {
