@@ -467,7 +467,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 * 📈 높은 참여도 속에서 끈끈하고 화기애애한 분위기를 즐기고 싶은 분`,
     leaderInfo: "리더: T-러닝경영정보 Cell 정미화\n총무: 유아 Core Group 김유미",
     email: "jungmh2@visang.com",
-    image: "./assets/club-only-flower.png",
+    image: "./assets/club-only-flower.jpg",
     badge: "플라워/힐링",
   },
   {
