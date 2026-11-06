@@ -605,6 +605,40 @@ AI 활용 기획부터 실제 영상 제작까지,
     image: "./assets/club-vtube.png",
     badge: "유튜브/콘텐츠",
   },
+  {
+    name: "호다닥",
+    tagline: "과천에서 서울까지, 퇴근 후 함께 달리는 러닝 동호회",
+    summary:
+      "퇴근 후에 같이 달리다가 마라톤까지 호다닥 입문해 보아요. 러닝 입문자부터 고수까지 모두 환영합니다!",
+    detail: `과천에서 서울까지, **호다닥!**
+
+퇴근 후에 같이 달리다가
+마라톤까지 호다닥 입문해 보아요.
+
+러닝 입문자부터 고수까지
+모두 많은 관심 부탁드립니다!
+
+혼자면 막막했던 첫 발걸음도,
+동료와 함께라면 기록이 되고 습관이 됩니다.
+
+준비운동부터 마무리까지
+안전하게, 즐겁게, 오래 달려 봐요!
+
+✨ 이런 CP님, 우리와 찰떡이에요!
+* 🏃 러닝 입문자 – 달리기를 시작하고 싶지만 혼자는 막막했던 분
+
+* 🤝 혼자보다 함께! – 동료들과 즐겁게 달리며 친목도 쌓고 싶은 분
+
+* 🌙 꾸준한 운동 습관 – 퇴근 후 건강한 취미를 만들고 싶은 분
+
+* 🏅 기록에 도전! – 페이스 향상부터 5km·10km·마라톤 완주까지 도전하고 싶은 분
+
+* 🛡️ 안전하고 즐거운 러닝 – 준비운동부터 마무리까지, 부상 없이 오래 달리고 싶은 분`,
+    leaderInfo: "리더: IT인프라 Cell 유가인\n총무: IT인프라 Cell 유가인",
+    email: "yugi@visang.com",
+    image: "./assets/club-hodadak.jpg",
+    badge: "러닝/마라톤",
+  },
 ];
 
 function escapeHtmlText(s) {
@@ -1115,6 +1149,15 @@ var CLUB_SCHEDULE_RULES = [
     shortLabel: "VTube",
     chipName: "VTube",
     chipVariant: "vtube",
+    iconEmoji: "",
+  },
+  {
+    nameMatch: "호다닥",
+    weekdays: [],
+    specificDates: [],
+    shortLabel: "호다닥",
+    chipName: "호다닥",
+    chipVariant: "hodadak",
     iconEmoji: "",
   },
 ];

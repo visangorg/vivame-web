@@ -1469,6 +1469,15 @@ button.club-cal-chip--interactive:focus-visible {
   color: #be185d;
 }
 
+.club-cal-chip--hodadak {
+  background: rgba(249, 115, 22, 0.12);
+  border-color: rgba(249, 115, 22, 0.34);
+}
+
+.club-cal-chip--hodadak .club-cal-chip-name {
+  color: #c2410c;
+}
+
 .club-cal-chip--leader-added {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
