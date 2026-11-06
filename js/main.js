@@ -536,7 +536,7 @@ SNS에서 난리 난 트렌디한 공간까지!
 * ✨ 극강의 P 성향을 가진 자유로운 영혼의 소유자`,
     leaderInfo: "리더: AX추진 Cell 백부경\n총무: AI서비스기획 Cell 허수인",
     email: "baekbk@visang.com",
-    image: "./assets/club-avocado.png",
+    image: "./assets/club-avocado.png?v=20261106",
     badge: "맛집 & 게임",
   },
   {
